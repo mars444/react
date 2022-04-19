@@ -2,6 +2,8 @@ import React from 'react';
 
 import {Button} from "primereact/button";
 import {Link} from "react-router-dom";
+import CustomButton from "./buttons/CustomButton";
+import {InputText} from "primereact/inputtext";
 
 const HomePage = () => {
     return (
@@ -20,6 +22,12 @@ const HomePage = () => {
                 <Button className='mt-2 button_non_underline'
                         type="button" label="Registration"  icon="pi pi-chevron-left" iconPos="right"/>
             </Link>
+
+            <div className="p-inputgroup ">
+                <InputText/>
+                <CustomButton className='button' buttonName='buttonName' disabled={true} icon="pi pi-times" color='red' />
+            </div>
+
 
 
         </div>

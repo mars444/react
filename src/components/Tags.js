@@ -1,9 +1,6 @@
 import React, {forwardRef, useState} from 'react';
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
-import AddTagInput from "./AddTagInput";
-import AddTest from "./AddInput";
-import DeleteInput from "./DeleteInput";
 import AddInput from "./AddInput";
 
 const Tags = ({value, updateForm, name}) => {
@@ -25,17 +22,23 @@ const Tags = ({value, updateForm, name}) => {
     }
 
 
+
     const deleteTag = index => {
 
-            const newValue = [...value]
+        console.log(value[index])
 
-            newValue.splice(index,1)
+            if (value[index]) {
+                const newValue = [...value]
 
-            updateForm({
-                target: {value: newValue, name}
-            })
+                newValue.splice(index,1)
 
-            console.log(newValue)
+                updateForm({
+                    target: {value: newValue, name}
+                })
+
+                console.log(newValue)
+
+            }
 
 
     }
@@ -43,6 +46,7 @@ const Tags = ({value, updateForm, name}) => {
 
 
     const addTag = (item) => {
+        console.log(item)
         if (item) {
             const newValue = [...value]
 

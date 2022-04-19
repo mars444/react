@@ -10,7 +10,7 @@ import {
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import GoHomeBtn from "./GoHomeBtn";
-import Desc from "./Desc";
+import Tags from "./Tags";
 import { AutoComplete } from 'primereact/autocomplete';
 import AddTagInput from "./AddTagInput";
 
@@ -133,7 +133,7 @@ const RegistrationPage = () => {
 
 
 
-                <Desc name= 'tags' value = {form.tags} updateForm = {updateForm}/>
+                <Tags name= 'tags' value = {form.tags} updateForm = {updateForm}/>
 
 
 

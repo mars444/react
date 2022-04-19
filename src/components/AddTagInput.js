@@ -7,7 +7,7 @@ const AddTagInput = ({value, updateForm, name}) => {
 
     const [inputStyle, setInputStyle] = useState({
         value: '',
-        btnStyle: '',
+        btnStyle: 'pi pi-question',
         btnDisabled: true
     })
 
@@ -25,7 +25,7 @@ const AddTagInput = ({value, updateForm, name}) => {
         } else {
             setInputStyle(
                 {value: e.target.value,
-                    btnStyle: '',
+                    btnStyle: 'pi pi-question',
                     btnDisabled: true
                 }
             )
@@ -34,21 +34,24 @@ const AddTagInput = ({value, updateForm, name}) => {
 
     const addItem = e => {
         console.log(e)
+        console.log(e.target.value)
+        if (e.target.value) {
+            const newValue = [...value]
+            newValue.push(e.target.value)
 
-        const newValue = [...value]
-        newValue.push(e.target.value)
+            updateForm({
+                target: {value: newValue, name}
+            })
 
-        updateForm({
-            target: {value: newValue, name}
-        })
+            setInputStyle(
+                {
+                    value: '',
+                    btnStyle: 'pi pi-question',
+                    btnDisabled: true
+                }
+            )
+        }
 
-        setInputStyle(
-            {
-                value: '',
-                btnStyle: '',
-                btnDisabled: true
-            }
-        )
 
     }
 
@@ -58,7 +61,7 @@ const AddTagInput = ({value, updateForm, name}) => {
                 <InputText onChange={checkInputValue}
                            placeholder="Vote"
                            value = {inputStyle.value}/>
-                <Button disabled={inputStyle.btnDisabled} icon={inputStyle.btnStyle} onClick={addItem} value={inputStyle.value}/>
+                <Button disabled={inputStyle.btnDisabled} icon={inputStyle.btnStyle} onClick={addItem}/>
             </div>
         </div>
     );

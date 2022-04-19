@@ -2,8 +2,9 @@ import React, {forwardRef, useState} from 'react';
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import AddTagInput from "./AddTagInput";
+import AddTest from "./AddTest";
 
-const Desc = ({value, updateForm, name}) => {
+const Tags = ({value, updateForm, name}) => {
 
 
 
@@ -24,20 +25,42 @@ const Desc = ({value, updateForm, name}) => {
 
 
     const deleteTag = e => {
-        console.log(e)
-        const newValue = [...value]
+        console.log(e.target)
+        console.log(e.target.name)
 
-        newValue.splice(e.name,1)
+        if (e.target.name) {
+            const newValue = [...value]
 
-        updateForm({
-            target: {value: newValue, name}
-        })
+            newValue.splice(e.target.name,1)
 
-        console.log(value)
+            updateForm({
+                target: {value: newValue, name}
+            })
+
+            console.log(newValue)
+        }
+
 
 
     }
 
+    const addTag = (item) => {
+        if (item) {
+            const newValue = [...value]
+
+            newValue.push(item)
+
+            updateForm({
+                target: {value: newValue, name}
+            })
+
+            console.log(newValue)
+        }
+
+
+
+
+    }
 
     return (
         <div>
@@ -48,13 +71,13 @@ const Desc = ({value, updateForm, name}) => {
                                    placeholder="Vote"
                                    name={index}
                                    value={item}/>
-                        <Button icon='pi pi-minus' onClick={deleteTag}/>
+                        <Button icon='pi pi-minus' onClick={deleteTag}  name={index}/>
                     </div>
                 ))
             }
 
 
-            <AddTagInput className="desc_input" name= 'tags' value = {value} updateForm = {updateForm}/>
+        <AddTest onChange={addTag}/>
 
 
 
@@ -66,4 +89,4 @@ const Desc = ({value, updateForm, name}) => {
     );
 };
 
-export default Desc;
+export default Tags;

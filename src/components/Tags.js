@@ -2,10 +2,11 @@ import React, {forwardRef, useState} from 'react';
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import AddTagInput from "./AddTagInput";
-import AddTest from "./AddTest";
+import AddTest from "./AddInput";
+import DeleteInput from "./DeleteInput";
+import AddInput from "./AddInput";
 
 const Tags = ({value, updateForm, name}) => {
-
 
 
     const changeHandler = e => {
@@ -24,25 +25,23 @@ const Tags = ({value, updateForm, name}) => {
     }
 
 
-    const deleteTag = e => {
-        console.log(e.target)
-        console.log(e.target.name)
+    const deleteTag = index => {
 
-        if (e.target.name) {
+
             const newValue = [...value]
 
-            newValue.splice(e.target.name,1)
+            newValue.splice(index,1)
 
             updateForm({
                 target: {value: newValue, name}
             })
 
             console.log(newValue)
-        }
-
 
 
     }
+
+
 
     const addTag = (item) => {
         if (item) {
@@ -58,8 +57,6 @@ const Tags = ({value, updateForm, name}) => {
         }
 
 
-
-
     }
 
     return (
@@ -71,19 +68,12 @@ const Tags = ({value, updateForm, name}) => {
                                    placeholder="Vote"
                                    name={index}
                                    value={item}/>
-                        <Button icon='pi pi-minus' onClick={deleteTag}  name={index}/>
+                        <Button icon='pi pi-minus' onClick={() => {deleteTag(index)}}  />
                     </div>
                 ))
             }
 
-
-        <AddTest onChange={addTag}/>
-
-
-
-
-
-
+            <AddInput onChange={addTag}/>
 
         </div>
     );

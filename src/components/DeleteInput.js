@@ -3,25 +3,28 @@ import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import {useState} from "react";
 
-const AddTagInput = ({onChange}) => {
+const AddTagInput = ({onChange, value}) => {
 
 
-    const [value, setValue] = useState('')
+    const [valueInput, setValue] = useState(value)
 
 
     const sendInput = () => {
-        onChange(value)
-        setValue('')
+        onChange(valueInput)
+    }
 
+
+    const updateInput = e => {
+        setValue(e.target.value)
     }
 
     return (
         <div>
             <div className="p-inputgroup desc_input">
-                <InputText onChange={e => {setValue(e.target.value)}}
+                <InputText onChange={updateInput}
                            placeholder="Vote"
-                           value = {value}/>
-                <Button disabled = {!value} icon= {value ? 'pi pi-question' : 'pi pi-plus'}  onClick={sendInput}/>
+                           value={valueInput}/>
+                <Button icon = 'pi pi-minus'  onClick={sendInput}/>
             </div>
         </div>
     );

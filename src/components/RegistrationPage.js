@@ -12,6 +12,7 @@ import {Button} from "primereact/button";
 import GoHomeBtn from "./GoHomeBtn";
 import Desc from "./Desc";
 import { AutoComplete } from 'primereact/autocomplete';
+import AddTagInput from "./AddTagInput";
 
 const RegistrationPage = () => {
 
@@ -43,7 +44,8 @@ const RegistrationPage = () => {
             email: '',
             name: '',
             surname: '',
-            gender: ''
+            gender: '',
+            tags: []
         });
     };
 
@@ -71,9 +73,6 @@ const RegistrationPage = () => {
         setFilteredItems(_filteredItems);
     }
 
-    const addInputUpdate = e => {
-
-    }
 
 
     return (
@@ -134,7 +133,9 @@ const RegistrationPage = () => {
 
 
 
-                <Desc name= 'tags' value = {form.tags} onChange = {updateForm}/>
+                <Desc name= 'tags' value = {form.tags} updateForm = {updateForm}/>
+
+
 
                 <Button className='mt-2 button_non_underline' onClick={printForm}
                         type="button" label="Register"  icon="pi pi-chevron-right" iconPos="right"/>

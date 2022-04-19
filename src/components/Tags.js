@@ -27,7 +27,6 @@ const Tags = ({value, updateForm, name}) => {
 
     const deleteTag = index => {
 
-
             const newValue = [...value]
 
             newValue.splice(index,1)

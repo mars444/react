@@ -12,6 +12,8 @@ const HomePage = () => {
         console.log(b)
         console.log(c)
     }
+
+
     return (
         <div className= 'flex flex-column align-items-center p-4 bg-white border-round 30px'>
         <div className= 'text-4xl pb-10 '>
@@ -30,12 +32,11 @@ const HomePage = () => {
                         type="button" label="Registration"  icon="pi pi-chevron-left" iconPos="right"/>
             </Link>
 
-            <div className="p-inputgroup mt-4">
-                <InputText/>
-                <CustomButton className='yellow-button' disabled={false} example='exapleParametr444' icon="pi pi-times" color='#85b15e'  onClick={getElements}>
+
+                <CustomButton className='br-1 m-3 green-2' disabled={false} example='exapleParametr444' icon="pi pi-spin pi-spinner" color='green-2'  onClick={getElements}>
                     Click Me
                 </CustomButton>
-            </div>
+
 
 
 

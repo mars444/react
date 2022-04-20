@@ -1,46 +1,38 @@
 import React, {useState} from 'react';
 import './button.scss';
 
-const CustomButton = ({onClick, color, disabled, example, icon, className, style, children}) => {
+const CustomButton = ({onClick, disabled = true, example, icon, className ='', style, children}) => {
 
     //const CustomButton = (props) => {
     // то же самое const {onClick, color='#000', disabled, example, icon, className, style, children} = props
 
 
-    const stylesBtn = {
-        backgroundColor: color,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: 16,
-        color: '#fff',
-        fontWeight: 'bold',
-        padding: 10,
-        opacity: 0.7,
-        border: 'none'
-    }
-
-    const iconStyle = {
-        paddingLeft: 10
-    }
 
     const btnClicked = (e) => {
-        const variable = true
+        const variable = 'create< in component variable'
         onClick(e,example,variable)
 
     }
 
+    const classNameArray = className.split(" ");
+
+    const finalClassName = classNameArray.reduce(
+        (total , value) => total + 'custom-button_' +  value + ' ', ''
+    );
+
+
+    const clName = `custom-button  ${finalClassName}`
+    const clNameIcon = `custom-button__icon ${icon}`
 
 
     return (
-        <div className='flex align-content-between justify-content-center'>
 
-            <button style={stylesBtn} className={className} disabled={disabled} onClick={btnClicked}>
+            <button className={clName} disabled={disabled} onClick={btnClicked}>
                 {children}
-                <i style={iconStyle} className={icon}></i>
+                <i className={clNameIcon}></i>
             </button>
 
-        </div>
+
     );
 };
 

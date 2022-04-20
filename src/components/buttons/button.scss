@@ -1,3 +1,106 @@
-.yellow-button {
-  background-color: yellow;
+//:root {
+//  blue-1: #cae6fc;
+//  blue-3: #75bef8;
+//  blue-5: #2196f3;
+//
+//  green-1:#30aa9f;
+//  green-2:#008074;
+//  green-3:#00534b;
+//
+//  red-1:#f88a82;
+//  red-2:#f44336;
+//  red-3:#ab2f26;
+//}
+
+.custom-button {
+
+    display: flex;
+    align-items: center;
+    justifyContent: center !important;
+    fontSize: 16px !important;
+    fontWeight: bold !important;
+    padding: 10px;
+    opacity: 1;
+    border: none;
+    transition: opacity 0.5s;
+    cursor: pointer;
+    margin: 5px ;
+
+    &:hover {
+      opacity: 0.8;
+
+    }
+
+
+    &__icon {
+    margin-left: 10px;
+    }
+
+    &_br {
+      &-1 {
+        border-radius: 5px;
+      }
+      &-2 {
+        border-radius: 10px;
+      }
+      &-3 {
+        border-radius: 15px;
+      }
+    }
+
+  &_m{
+    &-1{
+      margin: 5px;
+    }
+    &-2{
+      margin: 10px;
+    }
+    &-3{
+      margin: 15px;
+    }
+  }
+
+    &_red {
+      background-color: red;
+      &-1 {
+        background-color: #f88a82;
+      }
+      &-2 {
+        background-color: #f44336;
+      }
+      &-3 {
+        background-color: #ab2f26;
+      }
+
+    }
+
+    &_green {
+      background-color: green;
+      &-1 {
+        background-color: #30aa9f;
+      }
+      &-2 {
+        background-color: #008074;
+      }
+      &-3 {
+        background-color: #00534b;
+      }
+
+    }
+
+    &_red {
+      &-1 {
+        background-color: #cae6fc;
+      }
+      &-2 {
+        background-color: #75bef8;
+      }
+      &-3 {
+        background-color: #2196f3;
+      }
+
+    }
+
+
+
 }

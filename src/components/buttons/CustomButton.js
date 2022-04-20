@@ -1,30 +1,43 @@
 import React, {useState} from 'react';
 import './button.scss';
 
-const CustomButton = ({onClick, color='#000', disabled, example, icon, className, style, children}) => {
+const CustomButton = ({onClick, color, disabled, example, icon, className, style, children}) => {
 
     //const CustomButton = (props) => {
     // то же самое const {onClick, color='#000', disabled, example, icon, className, style, children} = props
 
 
-    const styles = {
-        backgroundColor: color
+    const stylesBtn = {
+        backgroundColor: color,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 16,
+        color: '#fff',
+        fontWeight: 'bold',
+        padding: 10,
+        opacity: 0.7,
+        border: 'none'
+    }
+
+    const iconStyle = {
+        paddingLeft: 10
+    }
+
+    const btnClicked = (e) => {
+        const variable = true
+        onClick(e,example,variable)
 
     }
 
-
-    const funcOnClick = e => {
-        console.log(example)
-        console.log(e)
-
-    }
 
 
     return (
         <div className='flex align-content-between justify-content-center'>
-            <button style={styles} className={className} disabled={disabled} onClick={funcOnClick}>
+
+            <button style={stylesBtn} className={className} disabled={disabled} onClick={btnClicked}>
                 {children}
-                    <i className={icon}></i>
+                <i style={iconStyle} className={icon}></i>
             </button>
 
         </div>

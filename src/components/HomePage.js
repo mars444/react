@@ -7,8 +7,10 @@ import {InputText} from "primereact/inputtext";
 
 const HomePage = () => {
 
-    const getElements = e => {
-        console.log(e)
+    const getElements = (a,b,c) => {
+        console.log(a)
+        console.log(b)
+        console.log(c)
     }
     return (
         <div className= 'flex flex-column align-items-center p-4 bg-white border-round 30px'>
@@ -28,10 +30,10 @@ const HomePage = () => {
                         type="button" label="Registration"  icon="pi pi-chevron-left" iconPos="right"/>
             </Link>
 
-            <div className="p-inputgroup">
+            <div className="p-inputgroup mt-4">
                 <InputText/>
-                <CustomButton className='button' buttonName='buttonName' disabled={false} example='444' icon="pi pi-times" color='blue'  onClick={getElements}>
-
+                <CustomButton className='yellow-button' disabled={false} example='exapleParametr444' icon="pi pi-times" color='#85b15e'  onClick={getElements}>
+                    Click Me
                 </CustomButton>
             </div>
 

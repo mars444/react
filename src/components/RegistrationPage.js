@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {request} from "../functions/requestFrom";
+
 import { useState, useEffect } from 'react'
 
 import {
@@ -12,7 +14,9 @@ import {Button} from "primereact/button";
 import GoHomeBtn from "./GoHomeBtn";
 import Tags from "./Tags";
 import { AutoComplete } from 'primereact/autocomplete';
-import AddTagInput from "./AddTagInput";
+import { Calendar } from 'primereact/calendar';
+import { InputNumber } from 'primereact/inputnumber';
+import { Knob } from 'primereact/knob';
 
 const RegistrationPage = () => {
 
@@ -24,30 +28,22 @@ const RegistrationPage = () => {
         name: '',
         surname: '',
         gender: '',
-        tags: ['', '']
+        tags: [],
+        birthday: null,
+        age: ''
     });
 
+    const [btnStatus, setBtnStatus] = useState(false)
+
     const updateForm = e => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        });
+
+            setForm({
+                ...form,
+                [e.target.name]: e.target.value
+            });
+
     };
 
-
-    const printForm = () => {
-        console.log(form);
-        setForm({
-            nickName: '',
-            password: '',
-            repeatPassword: '',
-            email: '',
-            name: '',
-            surname: '',
-            gender: '',
-            tags: []
-        });
-    };
 
     const [filteredItems, setFilteredItems] = useState(null);
 
@@ -73,6 +69,51 @@ const RegistrationPage = () => {
         setFilteredItems(_filteredItems);
     }
 
+
+
+
+    const calculationAge = e => {
+        const curDate = new Date()
+        const eDate = e.target.value
+        if(e.target.value) {
+            const timeDiff = Math.abs(eDate.getTime() - curDate.getTime())
+
+
+            const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24 * 365))
+
+            setForm({
+                ...form,
+                [e.target.name]: e.target.value,
+                age:diffDays
+            });
+        }
+
+
+    }
+
+    const clearForm = () => {
+        setForm({
+            nickName: '',
+            password: '',
+            repeatPassword: '',
+            email: '',
+            name: '',
+            surname: '',
+            gender: '',
+            tags: [],
+            birthday: null,
+            age: ''
+        });
+    }
+
+
+    const requestSend = async () => {
+        clearForm()
+        setBtnStatus(true)
+        await request(form)
+
+        setBtnStatus(false)
+    }
 
 
     return (
@@ -117,6 +158,14 @@ const RegistrationPage = () => {
                            name='surname'
                            placeholder='surname'/>
 
+                <Calendar placeholder='birthday' name='birthday' className='border-round m-2' value={form.birthday} onChange={calculationAge}></Calendar>
+
+
+                <InputText mask="99" value={form.age}
+                           name='age'
+                           onChange={updateForm}
+                           className='border-round m-2'
+                           placeholder='your age'/>
 
 
                 <AutoComplete
@@ -137,7 +186,7 @@ const RegistrationPage = () => {
 
 
 
-                <Button className='mt-2 button_non_underline' onClick={printForm}
+                <Button className='mt-2 button_non_underline' onClick={requestSend} loading={btnStatus}
                         type="button" label="Register"  icon="pi pi-chevron-right" iconPos="right"/>
 
                 <div className="sub_title pb-2 mt-2">

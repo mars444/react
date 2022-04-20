@@ -27,7 +27,7 @@ const Tags = ({value, updateForm, name}) => {
 
         console.log(value[index])
 
-            if (value[index]) {
+            if (value[index] != null) {
                 const newValue = [...value]
 
                 newValue.splice(index,1)

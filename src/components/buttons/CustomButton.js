@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './button.scss';
 
-const CustomButton = ({onClick, disabled = true, example, icon, className ='', style, children}) => {
+const CustomButton = ({onClick, disabled = false, loading = false, color, example, icon, className ='', children}) => {
 
     //const CustomButton = (props) => {
     // то же самое const {onClick, color='#000', disabled, example, icon, className, style, children} = props
@@ -9,20 +9,18 @@ const CustomButton = ({onClick, disabled = true, example, icon, className ='', s
 
 
     const btnClicked = (e) => {
+        if(loading || disabled)   return
         const variable = 'create< in component variable'
         onClick(e,example,variable)
 
     }
 
-    const classNameArray = className.split(" ");
+    const btn = 'custom-button'
 
-    const finalClassName = classNameArray.reduce(
-        (total , value) => total + 'custom-button_' +  value + ' ', ''
-    );
+    const clName = `${btn} ${disabled? btn+'_disabled' : ''} ${btn}_${color} ${className}`
 
+    const clNameIcon = `custom-button__icon custom-button__icon-${icon} custom-button__icon_loading-${loading ? 'on':'off'}`
 
-    const clName = `custom-button  ${finalClassName}`
-    const clNameIcon = `custom-button__icon ${icon}`
 
 
     return (
@@ -32,30 +30,9 @@ const CustomButton = ({onClick, disabled = true, example, icon, className ='', s
                 <i className={clNameIcon}></i>
             </button>
 
-
     );
 };
 
-
-// {
-//     {buttonName} || <i className={icon}></i>
-// }
-
-//loading pi pi-loading
-// onClick   (передавать example и ивент)
-// color
-// disabled
-// buttonName
-// icon
-// className
-// style
-
-// const [button, setColor] = useState({
-//     onClick: onClick,
-//     color: color,
-//     disabled:disabled,
-//     buttonName:buttonName,
-// })
 
 export default CustomButton;
 

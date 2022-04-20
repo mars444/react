@@ -12,51 +12,89 @@
 //  red-3:#ab2f26;
 //}
 
-.custom-button {
 
+.custom-button {
     display: flex;
     align-items: center;
-    justifyContent: center !important;
-    fontSize: 16px !important;
-    fontWeight: bold !important;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
     padding: 10px;
     opacity: 1;
     border: none;
     transition: opacity 0.5s;
-    cursor: pointer;
     margin: 5px ;
+    background: #00534b;
+    color: #fff;
 
-    &:hover {
-      opacity: 0.8;
 
+
+
+    &_disabled {
+      opacity: 0.3;
+      background-color: darkgray !important;
     }
+
+    &_enabled{
+      cursor: pointer;
+      opacity: 1;
+        &:hover {
+          opacity: 0.8;
+        }
+    }
+
+
+
+
 
 
     &__icon {
-    margin-left: 10px;
+      margin-left: 10px;
+      font-style: normal;
+      font-weight: normal;
+
+      &-plus {
+        &::after {
+          font-family: 'primeicons';
+          content: "\e90d";
+
+        }
+      }
+
+      &-minus {
+        &::after {
+          font-family: 'primeicons';
+          content: "\e90f";
+        }
+      }
+
+      &-up{
+        &::after {
+          font-family: 'primeicons';
+          content: "\e914";
+        }
+      }
+
+      &_loading {
+        &-on {
+          &::after {
+            font-family: 'primeicons';
+            content: "\e926" !important;
+          }
+          animation: 1s linear 0s infinite  load;
+        }
+
+      }
+
     }
 
-    &_br {
-      &-1 {
-        border-radius: 5px;
-      }
-      &-2 {
-        border-radius: 10px;
-      }
-      &-3 {
-        border-radius: 15px;
-      }
-    }
 
-  &_m{
-    &-1{
-      margin: 5px;
+  @keyframes load {
+    0% {
+      transform: rotate(0deg);
     }
-    &-2{
-      margin: 10px;
-    }
-    &-3{
-      margin: 15px;
+    100% {
+      transform: rotate(360deg);
     }
   }
 
@@ -88,7 +126,7 @@
 
     }
 
-    &_red {
+    &_blue {
       &-1 {
         background-color: #cae6fc;
       }

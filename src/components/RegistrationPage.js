@@ -24,7 +24,7 @@ const RegistrationPage = () => {
         name: '',
         surname: '',
         gender: '',
-        tags: ['hello', 'ddd']
+        tags: ['', '']
     });
 
     const updateForm = e => {

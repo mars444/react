@@ -3,14 +3,13 @@ import React from 'react';
 import {Button} from "primereact/button";
 import {Link} from "react-router-dom";
 import CustomButton from "./buttons/CustomButton";
-import {InputText} from "primereact/inputtext";
 
 const HomePage = () => {
 
-    const getElements = (a,b,c) => {
-        console.log(a)
-        console.log(b)
-        console.log(c)
+    const getElements = (e,exampleProp,exampleVar) => {
+        console.log(e)
+        console.log(exampleProp)
+        console.log(exampleVar)
     }
 
 
@@ -32,13 +31,9 @@ const HomePage = () => {
                         type="button" label="Registration"  icon="pi pi-chevron-left" iconPos="right"/>
             </Link>
 
-
-                <CustomButton className='br-1 m-3 green-2' disabled={false} example='exapleParametr444' icon="pi pi-spin pi-spinner" color='green-2'  onClick={getElements}>
+                <CustomButton className='m-1' color='red-1' disabled={false}  example='exapleParametr444' onClick={getElements}>
                     Click Me
                 </CustomButton>
-
-
-
 
         </div>
     );

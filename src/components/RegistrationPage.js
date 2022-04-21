@@ -109,9 +109,26 @@ const RegistrationPage = () => {
     const requestSend = async () => {
         console.log(form)
         setBtnStatus(true)
-        await request(form,showSuccess, showError)
-        clearForm()
-        setBtnStatus(false)
+
+        try {
+            await request(form)
+            //showSuccess()
+            console.log('succses')
+            return new Error('666')
+        }
+        catch(err){
+                console.error(err)
+                //showError(err)
+        }
+
+
+            clearForm()
+            setBtnStatus(false)
+
+
+
+
+
 
     }
 
@@ -120,8 +137,8 @@ const RegistrationPage = () => {
     const showSuccess = () => {
         toast.current.show({severity: 'success', summary: 'Success Message'});
     }
-    const showError = () => {
-        toast.current.show({severity: 'error', summary: 'Error Message'});
+    const showError = (text) => {
+        toast.current.show({severity: 'error', summary: text});
     }
 
 

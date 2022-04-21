@@ -120,10 +120,12 @@ const RegistrationPage = () => {
                 console.error(err)
                 //showError(err)
         }
-
-
+        finally {
             clearForm()
             setBtnStatus(false)
+        }
+
+
 
 
 

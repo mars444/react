@@ -2,7 +2,7 @@ import React from 'react';
 
 import {request} from "../functions/requestFrom";
 
-import { useState, useEffect } from 'react'
+import { useState, useRef } from 'react'
 
 import {
     Link
@@ -15,8 +15,7 @@ import GoHomeBtn from "./GoHomeBtn";
 import Tags from "./Tags";
 import { AutoComplete } from 'primereact/autocomplete';
 import { Calendar } from 'primereact/calendar';
-import { InputNumber } from 'primereact/inputnumber';
-import { Knob } from 'primereact/knob';
+import { Toast } from 'primereact/toast';
 
 const RegistrationPage = () => {
 
@@ -108,16 +107,31 @@ const RegistrationPage = () => {
 
 
     const requestSend = async () => {
-        clearForm()
+        console.log(form)
         setBtnStatus(true)
-        await request(form)
-
+        await request(form,showSuccess, showError)
+        clearForm()
         setBtnStatus(false)
+
     }
 
 
+
+    const showSuccess = () => {
+        toast.current.show({severity: 'success', summary: 'Success Message'});
+    }
+    const showError = () => {
+        toast.current.show({severity: 'error', summary: 'Error Message'});
+    }
+
+
+    const toast = useRef(null);
+
     return (
         <div>
+
+            <Toast ref={toast} />
+
             <div className="flex flex-column align-items-center p-4 bg-white border-round m-2 relative_block">
                 <GoHomeBtn/>
 
@@ -199,6 +213,11 @@ const RegistrationPage = () => {
                 </Link>
 
             </div>
+
+
+
+            <Toast ref={toast} />
+
         </div>
     );
 };

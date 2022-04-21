@@ -1,25 +1,21 @@
-export const delay = (form) => {
-    if (form instanceof Object) {
-        return new Promise(resolve => {setTimeout(() => resolve(JSON.stringify(form)), 2000)})
-    }
-    return new Promise((reject) => {setTimeout(() => reject('error'), 2000)})
 
+
+export const delay = (form) => {
+        return new Promise((resolve, reject) => {setTimeout(() => {resolve(JSON.stringify(form)),reject('error')}, 2000)})
 
 }
 
 
-export const request = async (form) => {
-    console.log('Данные отправлены')
-    const x = await delay(5)
+export const request = async (form, showSuccess, showError) => {
 
-    console.log(x)
-    if(x) {
-        console.log('succses')
-    } else {
-        console.error('false')
+    await delay(form)
+
+
+    if(form.nickName != '') {
+        await showSuccess()
+        return
     }
 
+    await showError()
 
-
-    console.log('Данные получены')
 }

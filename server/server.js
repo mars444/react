@@ -8,63 +8,92 @@ const app = express()
 const dict = [
     {
         id:1,
-        title: 'BMV',
+        marka: 'BMV',
+        models: 'X1',
         description: {
-            X1: {
-                color: 'red',
-                weight: '1500 kg',
-                power: '600 hp'
-            }
+            color: 'red',
+            weight: '1500 kg',
+            power: '600 hp'
+
         }
     },
 
     {
         id:2,
-        title: 'Audi',
+        marka: 'Toyota',
+        models: 'X2',
         description: {
-            X1: {
-                color: 'red',
-                weight: '1500 kg',
-                power: '600 hp'
-            }
+            color: 'red',
+            weight: '1500 kg',
+            power: '600 hp'
+
         }
     },
-
     {
         id:3,
-        title: 'Toyota',
+        marka: 'BMV',
+        model: 'X1',
         description: {
-            X1: {
-                color: 'red',
-                weight: '1500 kg',
-                power: '600 hp'
-            }
+            color: 'red',
+            weight: '1500 kg',
+            power: '600 hp'
+
         }
     },
-
     {
         id:4,
-        title: 'Mersedes',
+        marka: 'BMV',
+        model: 'X1',
         description: {
-            X1: {
-                color: 'red',
-                weight: '1500 kg',
-                power: '600 hp'
-            }
+            color: 'red',
+            weight: '1500 kg',
+            power: '600 hp'
+
+        }
+    },
+    {
+        id:5,
+        marka: 'BMV',
+        model: 'X1',
+        description: {
+            color: 'red',
+            weight: '1500 kg',
+            power: '600 hp'
+
+        }
+    },  {
+        id:6,
+        marka: 'BMV',
+        model: 'X1',
+        description: {
+            color: 'red',
+            weight: '1500 kg',
+            power: '600 hp'
+
+        }
+    },  {
+        id:7,
+        marka: 'BMV',
+        model: 'X1',
+        description: {
+            color: 'red',
+            weight: '1500 kg',
+            power: '600 hp'
+
+        }
+    },
+    {
+        id:8,
+        marka: 'BMV',
+        model: 'X1',
+        description: {
+            color: 'red',
+            weight: '1500 kg',
+            power: '600 hp'
+
         }
     },
 
-    {
-        id:5,
-        title: 'Volvlo',
-        description: {
-            X1: {
-                color: 'red',
-                weight: '1500 kg',
-                power: '600 hp'
-            }
-        }
-    }
 
 ]
 

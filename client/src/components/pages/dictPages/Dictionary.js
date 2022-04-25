@@ -2,18 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {getData} from "../../../functions/getSend";
 
 import {
-    HashRouter as Router,
-    Switch,
-    Route,
-    Link, useRouteMatch
+useRouteMatch
 } from "react-router-dom"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import {Button} from "primereact/button";
-import Brand from "./Brand";
-import {InputText} from "primereact/inputtext";
-
-import { Panel } from 'primereact/panel';
 
 const Dictionary =  () => {
 
@@ -43,7 +35,7 @@ const Dictionary =  () => {
             <div  className="flex flex-column align-items-center p-4 bg-white border-round m-2 relative_block">
                 <DataTable loading={load} onRowClick={(e) => console.log(e.data.title)} title='Brands' value={dictData}   showGridlines responsiveLayout="scroll">
                     <Column field="id"  header="ID"></Column>
-                    <Column field="title"  header="Brands"></Column>
+                    <Column field="marka"  header="Brands"></Column>
 
                 </DataTable>
 

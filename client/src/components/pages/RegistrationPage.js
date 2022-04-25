@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {request} from "../functions/requestFrom";
+import {request} from "../../functions/requestFrom";
 
 import { useState, useRef } from 'react'
 
@@ -11,12 +11,12 @@ import {
 
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
-import GoHomeBtn from "./GoHomeBtn";
-import Tags from "./Tags";
+import GoHomeBtn from "../buttons/GoHomeBtn";
+import Tags from "../Tags";
 import { AutoComplete } from 'primereact/autocomplete';
 import { Calendar } from 'primereact/calendar';
 import { Toast } from 'primereact/toast';
-import {postData} from "../functions/postSend";
+import {postData} from "../../functions/postSend";
 
 const RegistrationPage = () => {
 
@@ -112,10 +112,13 @@ const RegistrationPage = () => {
         setBtnStatus(true)
 
         try {
-            await request(form)
+            await postData('http://localhost:3000/registration', form)
             //showSuccess()
-            console.log('succses')
-            return new Error('666')
+                .then((data) => {
+
+                    console.log(data)
+
+                });
         }
         catch(err){
                 console.error(err)

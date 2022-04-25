@@ -4,7 +4,8 @@ import {
     HashRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
+    useRouteMatch
 } from "react-router-dom";
 
 import './scss/main.scss'
@@ -17,13 +18,16 @@ import 'primeicons/primeicons.css';                            //icons
 import 'primeflex/primeflex.scss';
 
 
-import AuthorizationPage from './components/AuthorizationPage';
-import RegistrationPage from "./components/RegistrationPage";
-import StartPage from "./components/StartPage";
-import HomePage from "./components/HomePage";
+import AuthorizationPage from './components/pages/AuthorizationPage';
+import RegistrationPage from "./components/pages/RegistrationPage";
+import StartPage from "./components/pages/StartPage";
+import HomePage from "./components/pages/HomePage";
+import Dictionary from "./components/pages/dictPages/Dictionary";
 
 
 function App() {
+
+
     return (
         <Router>
             <div className='test surface-50'>
@@ -40,6 +44,9 @@ function App() {
                     </Route>
                     <Route path="/home">
                         <HomePage/>
+                    </Route>
+                    <Route path="/dict">
+                        <Dictionary/>
                     </Route>
                 </Switch>
             </div>

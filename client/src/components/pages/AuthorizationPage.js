@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
-import {postData} from "../functions/postSend";
+import {postData} from "../../functions/postSend";
 
 import {
     Link,
@@ -10,9 +10,10 @@ import {
 } from "react-router-dom";
 
 
-import GoHomeBtn from "./GoHomeBtn";
+import GoHomeBtn from "../buttons/GoHomeBtn";
 
 const AuthorizationPage = () => {
+    console.log('render')
 
     const [loginForm, setLoginForm] = useState({
         login : '',
@@ -33,22 +34,33 @@ const AuthorizationPage = () => {
 
         setBtnStatus(true)
 
-       await postData('http://localhost:3000', loginForm )
-            .then((data) => {
-                if (data.id) {
-                    console.log(data)
-                }
+
+        try {
+            await postData('http://localhost:3000/auth', loginForm )
+                .then((data) => {
+                    if (data.id) {
+                        console.log(data)
+                    }
+                });
+        }
+        catch(err){
+            console.error(err)
+            //showError(err)
+        }
+        finally {
+            setBtnStatus(false)
+
+
+
+            setLoginForm({
+                login: '',
+                password: '',
             });
-
-        setBtnStatus(false)
-
+        }
 
 
-        setLoginForm({
-            login: '',
-            password: '',
 
-        });
+
     };
     return (
         <div className="flex flex-column align-items-center p-4 bg-white border-round 30px relative_block">

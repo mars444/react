@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Button} from "primereact/button";
 import {Link} from "react-router-dom";
-import CustomButton from "./buttons/CustomButton";
+import CustomButton from "../buttons/CustomButton";
 
 const StartPage = () => {
 
@@ -29,6 +29,11 @@ const StartPage = () => {
             <Link to="/registration">
                 <Button className='mt-2 button_non_underline'
                         type="button" label="Registration"  icon="pi pi-chevron-left" iconPos="right"/>
+            </Link>
+
+            <Link to="/dict">
+                <Button className='mt-6 button_non_underline'
+                        type="button" label="Dict"  icon="pi pi-plus" iconPos="right"/>
             </Link>
 
                 {/*<CustomButton className='m-1' color='red-1' disabled={false}  example='exapleParametr444' onClick={getElements}>*/}

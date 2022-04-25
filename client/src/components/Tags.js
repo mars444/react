@@ -1,7 +1,7 @@
 import React, {forwardRef, useState} from 'react';
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
-import AddInput from "./AddInput";
+import AddInput from "./inputs/AddInput";
 
 const Tags = ({value, updateForm, name}) => {
 

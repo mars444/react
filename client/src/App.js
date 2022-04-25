@@ -19,8 +19,8 @@ import 'primeflex/primeflex.scss';
 
 import AuthorizationPage from './components/AuthorizationPage';
 import RegistrationPage from "./components/RegistrationPage";
+import StartPage from "./components/StartPage";
 import HomePage from "./components/HomePage";
-import MenuList from "./components/MenuList";
 
 
 function App() {
@@ -30,13 +30,16 @@ function App() {
                 {/*<MenuList/>*/}
                 <Switch>
                     <Route exact path="/">
-                        <HomePage/>
+                        <StartPage/>
                     </Route>
                     <Route path="/authorization">
                         <AuthorizationPage/>
                     </Route>
                     <Route path="/registration">
                         <RegistrationPage/>
+                    </Route>
+                    <Route path="/home">
+                        <HomePage/>
                     </Route>
                 </Switch>
             </div>

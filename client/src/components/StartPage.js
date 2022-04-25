@@ -4,7 +4,7 @@ import {Button} from "primereact/button";
 import {Link} from "react-router-dom";
 import CustomButton from "./buttons/CustomButton";
 
-const HomePage = () => {
+const StartPage = () => {
 
     const getElements = (e,exampleProp,exampleVar) => {
         console.log(e)
@@ -31,12 +31,12 @@ const HomePage = () => {
                         type="button" label="Registration"  icon="pi pi-chevron-left" iconPos="right"/>
             </Link>
 
-                <CustomButton className='m-1' color='red-1' disabled={false}  example='exapleParametr444' onClick={getElements}>
-                    Click Me
-                </CustomButton>
+                {/*<CustomButton className='m-1' color='red-1' disabled={false}  example='exapleParametr444' onClick={getElements}>*/}
+                {/*    Click Me*/}
+                {/*</CustomButton>*/}
 
         </div>
     );
 };
 
-export default HomePage;
+export default StartPage;

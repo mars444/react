@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
+import {postData} from "../functions/postSend";
 
 import {
     Link,
     Route,
+    useHistory,
 } from "react-router-dom";
+
+
 import GoHomeBtn from "./GoHomeBtn";
 
 const AuthorizationPage = () => {
@@ -14,6 +18,7 @@ const AuthorizationPage = () => {
         login : '',
         password: ''
     })
+    const [btnStatus, setBtnStatus] = useState(false)
 
     const updateLoginForm = e => {
         setLoginForm({
@@ -23,8 +28,22 @@ const AuthorizationPage = () => {
 
     }
 
-    const printLoginForm = () => {
+    const printLoginForm = async () => {
         console.log(loginForm);
+
+        setBtnStatus(true)
+
+       await postData('http://localhost:3000', loginForm )
+            .then((data) => {
+                if (data.id) {
+                    console.log(data)
+                }
+            });
+
+        setBtnStatus(false)
+
+
+
         setLoginForm({
             login: '',
             password: '',
@@ -50,7 +69,7 @@ const AuthorizationPage = () => {
                         placeholder='password'
                         type="password"/>
 
-            <Button  name='loginPressed' className='mt-2' onClick={printLoginForm}
+            <Button loading={btnStatus}  name='loginPressed' className='mt-2' onClick={printLoginForm}
                     type="button" label="Login"  icon="pi pi-chevron-right" iconPos="right"/>
 
             <div className="sub_title pb-2 mt-2">

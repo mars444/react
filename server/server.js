@@ -3,8 +3,11 @@ const bodyParser = require('body-parser')
 const { v4: uuidv4 } = require('uuid')
 const app = express()
 
-app.use(bodyParser.urlencoded({ extended: true }))
+//app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+let cors = require("cors");
+app.use(cors());
 
 
 const PORT = 3000
@@ -24,10 +27,6 @@ app.post('*', (req, res) => {
     const pass = req.body.password || 'pusto'
     const id = uuidv4()
 
-    console.log(id)
-    res.set({
-        "Access-Control-Allow-Origin": "*",
-    });
 
     res.status(200).json({login: login, password: pass, toto: 'wefewfwf', id: id})
 })

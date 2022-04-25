@@ -5,33 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e05681b0-ba90-4b6d-bacd-5b597ff26558" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ReactWithoutApp.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddInput.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddTagInput.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AuthorizationPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DeleteInput.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GoHomeBtn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomePage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MenuList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RegistrationPage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Tags.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/buttons/CustomButton.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/buttons/button.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/requestFrom.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scss/main.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +74,7 @@
       <workItem from="1650885845138" duration="745000" />
       <workItem from="1650886608254" duration="250000" />
       <workItem from="1650886872129" duration="170000" />
-      <workItem from="1650887064708" duration="326000" />
+      <workItem from="1650887064708" duration="1406000" />
     </task>
     <servers />
   </component>

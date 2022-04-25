@@ -16,6 +16,7 @@ import Tags from "./Tags";
 import { AutoComplete } from 'primereact/autocomplete';
 import { Calendar } from 'primereact/calendar';
 import { Toast } from 'primereact/toast';
+import {postData} from "../functions/postSend";
 
 const RegistrationPage = () => {
 

@@ -151,9 +151,22 @@ app.post('/registration', (req, res) => {
 app.get('/dict', (req, res) => {
 
 
-    const text = Object.keys(dict)
-    console.log()
-    res.status(200).json(dict)
+
+    const dictMarks = dict.map(item => item.marka)
+    const noRepeatDict = dictMarks.filter((el, i, a) => el != a[i+1] && el != a[i-1])
+
+    const arrToSend = []
+
+    for (let i = 0; i < noRepeatDict.length; i++) {
+        const dictFinal = {}
+        dictFinal.id = i+1
+        dictFinal.marka = noRepeatDict[i]
+        arrToSend.push(dictFinal)
+    }
+
+    console.log('Server send:  ', arrToSend)
+
+    res.status(200).json(arrToSend)
 
 })
 

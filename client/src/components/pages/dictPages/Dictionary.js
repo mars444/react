@@ -9,8 +9,6 @@ import { Column } from 'primereact/column';
 
 const Dictionary =  () => {
 
-    let { path, url } = useRouteMatch();
-
     const [dictData, setData] = useState([])
     const [load, setLoad] = useState(true)
 
@@ -19,21 +17,25 @@ const Dictionary =  () => {
 
         getData(URL)
             .then((data) => {
+                console.log(data)
                 setData(data)
             })
             .then(() => setLoad(false))
 
     }, []);
 
+    const getMark = (e) => {
+        console.log(e.data.marka)
+    }
 
-    const [products, setProducts] = useState(null);
+
 
 
 
     return (
         <div>
             <div  className="flex flex-column align-items-center p-4 bg-white border-round m-2 relative_block">
-                <DataTable loading={load} onRowClick={(e) => console.log(e.data.title)} title='Brands' value={dictData}   showGridlines responsiveLayout="scroll">
+                <DataTable loading={load} onRowClick={getMark} title='Brands' value={dictData}   showGridlines responsiveLayout="scroll">
                     <Column field="id"  header="ID"></Column>
                     <Column field="marka"  header="Brands"></Column>
 

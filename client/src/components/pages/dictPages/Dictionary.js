@@ -15,15 +15,16 @@ const Dictionary =  () => {
 
     let history = useHistory();
     let { id } = useParams();
+    const location = useLocation();
     const [dictData, setData] = useState([])
     const [load, setLoad] = useState(true)
-    const location = useLocation();
+
 
     console.log('location   ', location)
     // const hist = useHistory();
 
     useEffect(() => {
-        const  URL = 'http://localhost:3000/dict'
+        const  URL = 'http://localhost:3001/dict'
 
         getData(URL)
             .then((data) => {
@@ -34,13 +35,13 @@ const Dictionary =  () => {
 
     }, []);
 
+
     const pushUrl = (item) => {
         history.push(`${location.pathname}/${item}`);
     }
 
     const getMark = (e) => {
         pushUrl(e.data.marka)
-
     }
 
 

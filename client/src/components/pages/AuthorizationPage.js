@@ -36,7 +36,7 @@ const AuthorizationPage = () => {
 
 
         try {
-            await postData('http://localhost:3000/auth', loginForm )
+            await postData('http://localhost:3001/auth', loginForm )
                 .then((data) => {
                     if (data.id) {
                         console.log(data)

@@ -24,6 +24,7 @@ import StartPage from "./components/pages/StartPage";
 import HomePage from "./components/pages/HomePage";
 import Dictionary from "./components/pages/dictPages/Dictionary";
 import PageMarksWithPanel from "./components/pages/dictPages/PageMarksWithPanel";
+import PageModel from "./components/pages/dictPages/PageModel";
 
 
 
@@ -56,6 +57,11 @@ function App() {
         {
             path: "/dict/:id",
             Component: PageMarksWithPanel,
+            exact: true
+        },
+        {
+            path: "/dict/:id/:part",
+            Component: PageModel,
         }
     ];
 

@@ -3,13 +3,21 @@ const bodyParser = require('body-parser')
 const { v4: uuidv4 } = require('uuid')
 const app = express()
 
+// const marksAvto =[
+//     { id: 1, marka: 'BMV' },
+//     { id: 2, marka: 'Toyota' },
+//     { id: 3, marka: 'Lada' },
+//     { id: 4, marka: 'Nissan' },
+//     { id: 5, marka: 'Mersedes' },
+//     { id: 6, marka: 'Volvo' }
+// ]
 
 
 const dict = [
     {
         id:1,
         marka: 'BMV',
-        models: 'X1',
+        model: 'X1',
         description: {
             color: 'red',
             weight: '1500 kg',
@@ -21,7 +29,7 @@ const dict = [
     {
         id:2,
         marka: 'Toyota',
-        models: 'X2',
+        model: 'X2',
         description: {
             color: 'red',
             weight: '1500 kg',
@@ -32,7 +40,7 @@ const dict = [
     {
         id:3,
         marka: 'BMV',
-        model: 'X1',
+        model: 'X5M',
         description: {
             color: 'red',
             weight: '1500 kg',
@@ -42,8 +50,8 @@ const dict = [
     },
     {
         id:4,
-        marka: 'BMV',
-        model: 'X1',
+        marka: 'Lada',
+        model: 'Xda1',
         description: {
             color: 'red',
             weight: '1500 kg',
@@ -54,7 +62,7 @@ const dict = [
     {
         id:5,
         marka: 'BMV',
-        model: 'X1',
+        model: '500',
         description: {
             color: 'red',
             weight: '1500 kg',
@@ -63,7 +71,7 @@ const dict = [
         }
     },  {
         id:6,
-        marka: 'BMV',
+        marka: 'Nissan',
         model: 'X1',
         description: {
             color: 'red',
@@ -73,7 +81,7 @@ const dict = [
         }
     },  {
         id:7,
-        marka: 'BMV',
+        marka: 'Mersedes',
         model: 'X1',
         description: {
             color: 'red',
@@ -84,7 +92,7 @@ const dict = [
     },
     {
         id:8,
-        marka: 'BMV',
+        marka: 'Volvo',
         model: 'X1',
         description: {
             color: 'red',
@@ -100,13 +108,14 @@ const dict = [
 
 
 
+
 //app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 let cors = require("cors");
 app.use(cors());
 
-const PORT = 3000
+const PORT = 3001
 
 app.listen(PORT, () => {
     console.log(`server started....  PORT: ${PORT}`)
@@ -153,7 +162,9 @@ app.get('/dict', (req, res) => {
 
 
     const dictMarks = dict.map(item => item.marka)
-    const noRepeatDict = dictMarks.filter((el, i, a) => el != a[i+1] && el != a[i-1])
+
+    const noRepeatDict = [...new Set(dictMarks)]
+
 
     const arrToSend = []
 
@@ -167,6 +178,24 @@ app.get('/dict', (req, res) => {
     console.log('Server send:  ', arrToSend)
 
     res.status(200).json(arrToSend)
+
+})
+
+
+app.get('/dict/:marka', (req, res) => {
+
+    function filterDict(value) {
+        if (value.marka == req.params.marka) {
+            return value
+        }
+
+    }
+
+    const filteredDict = dict.filter(filterDict);
+
+    console.log(filteredDict)
+
+    res.status(200).json(filteredDict)
 
 })
 

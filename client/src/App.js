@@ -23,9 +23,42 @@ import RegistrationPage from "./components/pages/RegistrationPage";
 import StartPage from "./components/pages/StartPage";
 import HomePage from "./components/pages/HomePage";
 import Dictionary from "./components/pages/dictPages/Dictionary";
+import PageMarksWithPanel from "./components/pages/dictPages/PageMarksWithPanel";
+
 
 
 function App() {
+
+
+    const appRoutes = [
+        {
+            path: '/',
+            Component: StartPage,
+            exact: true,
+        },
+        {
+            path: "/authorization",
+            Component: AuthorizationPage,
+        },
+        {
+            path: "/registration",
+            Component: RegistrationPage,
+        },
+        {
+            path: "/home",
+            Component: HomePage,
+        },
+        {
+            path: "/dict",
+            Component: Dictionary,
+            exact: true
+        },
+        {
+            path: "/dict/:id",
+            Component: PageMarksWithPanel,
+        }
+    ];
+
 
 
     return (
@@ -33,23 +66,12 @@ function App() {
             <div className='test surface-50'>
                 {/*<MenuList/>*/}
                 <Switch>
-                    <Route exact path="/">
-                        <StartPage/>
-                    </Route>
-                    <Route path="/authorization">
-                        <AuthorizationPage/>
-                    </Route>
-                    <Route path="/registration">
-                        <RegistrationPage/>
-                    </Route>
-                    <Route path="/home">
-                        <HomePage/>
-                    </Route>
-                    <Route path="/dict">
-                        <Dictionary/>
-                    </Route>
+                    {appRoutes.map(({path, Component, exact},index) => {
+
+                        return <Route key={index}  path={path} exact={exact} component={Component}/>
+                    })}
                 </Switch>
-            </div>
+            </div>g
         </Router>
 
     );

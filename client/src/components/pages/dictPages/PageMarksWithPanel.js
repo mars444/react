@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from 'react';
 import {getData} from "../../../functions/getSend";
 
@@ -7,23 +8,21 @@ import {
 
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { useHistory, useLocation } from "react-router";
+import { useHistory } from "react-router";
 import GoBackBtn from "../../buttons/GoBack";
+import { Panel } from 'primereact/panel';
+
+const PageMarksWithPanel =  () => {
 
 
-const Dictionary =  () => {
-
-    let history = useHistory();
-    let { id } = useParams();
     const [dictData, setData] = useState([])
     const [load, setLoad] = useState(true)
-    const location = useLocation();
-
-    console.log('location   ', location)
+    let { id } = useParams();
+    // const location = useLocation();
     // const hist = useHistory();
 
     useEffect(() => {
-        const  URL = 'http://localhost:3000/dict'
+        const  URL = `http://localhost:3000/dict/${id}`
 
         getData(URL)
             .then((data) => {
@@ -34,28 +33,29 @@ const Dictionary =  () => {
 
     }, []);
 
-    const pushUrl = (item) => {
-        history.push(`${location.pathname}/${item}`);
-    }
-
     const getMark = (e) => {
-        pushUrl(e.data.marka)
+        console.log(e.data)
 
     }
-
-
-
 
 
     return (
         <div>
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>
-                 <DataTable loading={load} onRowClick={getMark} title='Brands' value={dictData}   showGridlines responsiveLayout="scroll">
-                     <Column field="id"  header="ID"></Column>
-                     <Column field="marka"  header="Brands"></Column>
+                 <div className='pb-3'>Models: {id}</div>
+                 <DataTable loading={load} onRowClick={getMark} title='Models' value={dictData}   showGridlines responsiveLayout="scroll">
+                     <Column field="id"  header="ID">
+                         <Panel header="1" toggleable></Panel>
+                     </Column>
+                     <Column field="model"  header="Model"></Column>
                  </DataTable>
              </div>
+
+
+
+
+
 
 
         </div>
@@ -65,4 +65,4 @@ const Dictionary =  () => {
     );
 };
 
-export default Dictionary;
+export default PageMarksWithPanel;

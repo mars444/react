@@ -42,16 +42,7 @@ const PageMarksWithPanel =  () => {
 
     const getModelDescription = (e) => {
 
-
         history.push(`/dict/${id}/${e.data.model}`);
-        const  URL = `http://localhost:3000/dict/${id}/${e.data.model}`
-        getData(URL,50)
-            .then((data) => {
-                setSidebarContent(data)
-            })
-            .then(() => {
-                setHide(true)
-            })
 
 
     }
@@ -119,7 +110,7 @@ const PageMarksWithPanel =  () => {
              </div>
 
                 <Switch>
-                    <Route path="/dict/:id/:model" component={() => SideBar(sidebarHide)}/>
+                    <Route path="/dict/:id/:model" component={SideBar}/>
 
                 </Switch>
 

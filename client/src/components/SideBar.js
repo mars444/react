@@ -2,7 +2,7 @@ import React from 'react';
 import { Sidebar } from 'primereact/sidebar';
 import {useEffect, useState} from "react";
 import {getData} from "../functions/getSend";
-import {useParams} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 
 
 const SideBarContent = ({description}) => {
@@ -32,7 +32,7 @@ const SideBarContent = ({description}) => {
 
 const SideBar = (sidebarHide) => {
 
-
+    const history = useHistory()
     const sidebarHideq = () => {
         setVisibleLeft(false)
         sidebarHide()
@@ -53,11 +53,11 @@ const SideBar = (sidebarHide) => {
                 setSidebarContent(data)
             })
 
-    }, []);
+    }, [model]);
 
             return (
 
-                <Sidebar  visible={visibleLeft} onHide={sidebarHideq}>
+                <Sidebar  visible={visibleLeft} onHide={()=>history.goBack()}>
 
                     {sidebarContent && <SideBarContent description={sidebarContent} />}
 

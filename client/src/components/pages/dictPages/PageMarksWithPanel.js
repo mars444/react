@@ -80,25 +80,33 @@ const PageMarksWithPanel =  () => {
     };
 
 
-    // const SideBar = () => {
-    //
-    //     return (
-    //
-    //         <Sidebar  visible={visibleLeft} onHide={() => setVisibleLeft(false)}>
-    //
-    //             <SideBarContent description={sidebarContent} />
-    //
-    //         </Sidebar>
-    //     );
-    // };
+    const SideBar = () => {
+
+        return (
+
+            <Sidebar  visible={visibleLeft} onHide={() => setVisibleLeft(false)}>
+
+                <SideBarContent description={sidebarContent} />
+
+            </Sidebar>
+        );
+    };
 
 
+
+    const sidebarHide = () => {
+
+        history.push(`/dict/${id}`);
+
+        setVisibleLeft(false)
+    }
 
 
 
 
     return (
         <div>
+
 
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>
@@ -111,11 +119,19 @@ const PageMarksWithPanel =  () => {
 
              </div>
 
-                <Sidebar  visible={visibleLeft} onHide={() => setVisibleLeft(false)}>
 
-                    <SideBarContent description={sidebarContent} />
+                <Route path="/dict/:id/:model" component={() =>  (
 
-                </Sidebar>
+                    <Sidebar  onHide={sidebarHide}  visible={visibleLeft} >
+
+                        {sidebarContent && <SideBarContent description={sidebarContent} />}
+
+                    </Sidebar>
+                )}/>
+
+
+
+
 
         </div>
 

@@ -57,12 +57,8 @@ function App() {
         {
             path: "/dict/:id",
             Component: PageMarksWithPanel,
-            exact: true
         },
-        {
-            path: "/dict/:id/:model",
-            Component: PageMarksWithPanel,
-        }
+
     ];
 
 

@@ -60,8 +60,8 @@ function App() {
             exact: true
         },
         {
-            path: "/dict/:id/:part",
-            Component: PageModel,
+            path: "/dict/:id/:model",
+            Component: PageMarksWithPanel,
         }
     ];
 

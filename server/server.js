@@ -3,21 +3,60 @@ const bodyParser = require('body-parser')
 const { v4: uuidv4 } = require('uuid')
 const app = express()
 
-// const marksAvto =[
-//     { id: 1, marka: 'BMV' },
-//     { id: 2, marka: 'Toyota' },
-//     { id: 3, marka: 'Lada' },
-//     { id: 4, marka: 'Nissan' },
-//     { id: 5, marka: 'Mersedes' },
-//     { id: 6, marka: 'Volvo' }
-// ]
+const marksAvto =[
+    { id: 1, marka: 'BMV' },
+    { id: 2, marka: 'Toyota' },
+    { id: 3, marka: 'Lada' },
+    { id: 4, marka: 'Nissan' },
+    { id: 5, marka: 'Mersedes' },
+    { id: 6, marka: 'Volvo' }
+]
 
 
 const dict = [
     {
-        id:1,
+        id: 1,
+        marka_id: 1,
         marka: 'BMV',
         model: 'X1',
+        description: {
+            color: 'red',
+            weight: '1500 kg',
+            power: '600 hp'
+
+        }
+    },
+    {
+        id:2,
+        marka_id: 1,
+        model: 'X5M',
+        marka: 'BMV',
+        description: {
+            color: 'yellow',
+            weight: '1341500 kg',
+            power: '604q0 hp'
+
+        }
+    },
+
+    {
+        id:3,
+        marka_id: 1,
+        marka: 'BMV',
+        model: '500',
+        description: {
+            color: 'red',
+            weight: '12 kg',
+            power: '6004 hp'
+
+        }
+    },
+
+    {
+        id:1,
+        marka_id: 2,
+        marka: 'Toyota',
+        model: 'Camry',
         description: {
             color: 'red',
             weight: '1500 kg',
@@ -28,8 +67,9 @@ const dict = [
 
     {
         id:2,
+        marka_id: 2,
         marka: 'Toyota',
-        model: 'X2',
+        model: 'Corolla',
         description: {
             color: 'red',
             weight: '1500 kg',
@@ -37,51 +77,49 @@ const dict = [
 
         }
     },
-    {
-        id:3,
-        marka: 'BMV',
-        model: 'X5M',
-        description: {
-            color: 'red',
-            weight: '1500 kg',
-            power: '600 hp'
 
-        }
-    },
     {
-        id:4,
+        id:1,
+        marka_id: 3,
         marka: 'Lada',
-        model: 'Xda1',
+        model: 'Largus',
         description: {
-            color: 'red',
-            weight: '1500 kg',
-            power: '600 hp'
+            color: 'black',
+            weight: '1800 kg',
+            power: '100 hp'
 
         }
     },
-    {
-        id:5,
-        marka: 'BMV',
-        model: '500',
-        description: {
-            color: 'red',
-            weight: '1500 kg',
-            power: '600 hp'
 
-        }
-    },  {
-        id:6,
+    {
+        id:1,
+        marka_id: 4,
         marka: 'Nissan',
-        model: 'X1',
+        model: 'Almera',
         description: {
             color: 'red',
             weight: '1500 kg',
             power: '600 hp'
 
         }
-    },  {
-        id:7,
-        marka: 'Mersedes',
+    },
+
+    {
+        id:2,
+        marka_id: 4,
+        marka: 'Nissan',
+        model: 'GTR',
+        description: {
+            color: 'red',
+            weight: '1500 kg',
+            power: '600 hp'
+
+        }
+    },
+
+    {
+        id:1,
+        marka_id: 5,
         model: 'X1',
         description: {
             color: 'red',
@@ -91,8 +129,8 @@ const dict = [
         }
     },
     {
-        id:8,
-        marka: 'Volvo',
+        id:1,
+        marka_id: 6,
         model: 'X1',
         description: {
             color: 'red',
@@ -115,7 +153,7 @@ app.use(bodyParser.json())
 let cors = require("cors");
 app.use(cors());
 
-const PORT = 3001
+const PORT = 3000
 
 app.listen(PORT, () => {
     console.log(`server started....  PORT: ${PORT}`)
@@ -161,31 +199,31 @@ app.get('/dict', (req, res) => {
 
 
 
-    const dictMarks = dict.map(item => item.marka)
+    // const dictMarks = dict.map(item => item.marka)
+    //
+    // const noRepeatDict = [...new Set(dictMarks)]
+    //
+    //
+    // const arrToSend = []
+    //
+    // for (let i = 0; i < noRepeatDict.length; i++) {
+    //     const dictFinal = {}
+    //     dictFinal.id = i+1
+    //     dictFinal.marka = noRepeatDict[i]
+    //     arrToSend.push(dictFinal)
+    // }
 
-    const noRepeatDict = [...new Set(dictMarks)]
+    console.log(':  ', marksAvto)
 
-
-    const arrToSend = []
-
-    for (let i = 0; i < noRepeatDict.length; i++) {
-        const dictFinal = {}
-        dictFinal.id = i+1
-        dictFinal.marka = noRepeatDict[i]
-        arrToSend.push(dictFinal)
-    }
-
-    console.log('Server send:  ', arrToSend)
-
-    res.status(200).json(arrToSend)
+    res.status(200).json(marksAvto)
 
 })
 
 
-app.get('/dict/:marka', (req, res) => {
+app.get('/dict/:id', (req, res) => {
 
     function filterDict(value) {
-        if (value.marka == req.params.marka) {
+        if (value.marka_id == req.params.id) {
             return value
         }
 
@@ -193,9 +231,45 @@ app.get('/dict/:marka', (req, res) => {
 
     const filteredDict = dict.filter(filterDict);
 
-    console.log(filteredDict)
+    const dictId = filteredDict.map(item => item.id)
+    console.log((dictId))
 
-    res.status(200).json(filteredDict)
+    const dictModels = filteredDict.map(item => item.model)
+
+    const arrToSend = []
+
+    for (let i = 0; i < filteredDict.length; i++) {
+        const dictFinal = {}
+        dictFinal.id = dictId[i]
+        dictFinal.model = dictModels[i]
+        arrToSend.push(dictFinal)
+    }
+
+    console.log('ServerSend  ', arrToSend)
+
+    res.status(200).json(arrToSend)
+
+})
+
+
+app.get('/dict/:id/:model', (req, res) => {
+
+    function filterDict(value) {
+        if (value.marka_id == req.params.id && value.model == req.params.model) {
+
+            return value
+        }
+
+    }
+
+    const filteredDict = dict.filter(filterDict);
+    console.log(...filteredDict)
+
+
+
+
+
+    res.status(200).json(...filteredDict)
 
 })
 

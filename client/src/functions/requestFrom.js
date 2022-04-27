@@ -1,14 +1,14 @@
 
 
-export const delay = (form) => {
+export const delay = (form,sec) => {
         return new Promise((resolve, reject) => {
 
             if (form.nickName != '') {
                 setTimeout(() => {
                     resolve({status:200, value: JSON.stringify(form)})
-                }, 1500)
+                }, sec)
             } else {
-                setTimeout(() => {reject('Bad Form')}, 500)
+                setTimeout(() => {reject('Bad Form')}, sec)
             }
 
     })

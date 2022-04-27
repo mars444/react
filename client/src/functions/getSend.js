@@ -1,7 +1,7 @@
 import {delay} from "./requestFrom";
 
-export async function getData(url = '') {
-    await delay({})
+export async function getData(url = '', sec) {
+    await delay({},sec)
 
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.

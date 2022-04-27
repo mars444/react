@@ -3,30 +3,32 @@ import React, {useState, useEffect, useRef} from 'react';
 import {getData} from "../../../functions/getSend";
 
 import {
-    useParams,
+    useParams, Route, Switch
 } from "react-router-dom"
 
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import GoBackBtn from "../../buttons/GoBack";
-import { Panel } from 'primereact/panel';
-import {Button} from "primereact/button";
-import { OverlayPanel } from 'primereact/overlaypanel';
+
+import { Sidebar } from 'primereact/sidebar';
 
 const PageMarksWithPanel =  () => {
 
     const overlayPanel = useRef(null);
     const [dictData, setData] = useState([])
     const [load, setLoad] = useState(true)
-    let { id } = useParams();
-    // const location = useLocation();
-    // const hist = useHistory();
+    const [visibleLeft, setVisibleLeft] = useState(false);
+    const [sidebarContent, setSidebarContent] = useState('');
+    let { id, model } = useParams();
+
+    const location = useLocation();
+    const history = useHistory();
 
     useEffect(() => {
-        const  URL = `http://localhost:3001/dict/${id}`
+        const  URL = `http://localhost:3000/dict/${id}`
 
-        getData(URL)
+        getData(URL,500)
             .then((data) => {
                 console.log(data)
                 setData(data)
@@ -35,32 +37,85 @@ const PageMarksWithPanel =  () => {
 
     }, []);
 
-    const getMark = (e) => {
-        overlayPanel.current.toggle(e)
+
+
+
+    const getModelDescription = (e) => {
+
+
+        history.push(`/dict/${id}/${e.data.model}`);
+        const  URL = `http://localhost:3000/dict/${id}/${e.data.model}`
+        getData(URL,50)
+            .then((data) => {
+                setSidebarContent(data)
+            })
+            .then(() => {
+                setVisibleLeft(true)
+            })
+
+
     }
+
+    const SideBarContent = ({description}) => {
+
+        const keysDesc = Object.keys(description.description)
+
+        console.log(keysDesc)
+
+        return (
+            <div>
+                <h1>{description.marka}</h1>
+                <h3 className='mb-4'>{description.model}</h3>
+                {
+                    keysDesc.map((item, index) => (
+
+                    <div key={index} className="grid">
+                    <div className="col-4 border-right-2">{item}</div>
+                    <div className="col">{description.description[item]}</div>
+                    </div>
+                    ))
+                }
+            </div>
+        );
+    };
+
+
+    // const SideBar = () => {
+    //
+    //     return (
+    //
+    //         <Sidebar  visible={visibleLeft} onHide={() => setVisibleLeft(false)}>
+    //
+    //             <SideBarContent description={sidebarContent} />
+    //
+    //         </Sidebar>
+    //     );
+    // };
+
+
+
+
 
 
     return (
         <div>
+
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>
                  <div className='pb-3'>Models: {id}</div>
-                 <DataTable loading={load} onRowClick={getMark} title='Models' value={dictData}   showGridlines responsiveLayout="scroll">
+                 <DataTable loading={load} onRowClick={getModelDescription} title='Models' value={dictData}   showGridlines responsiveLayout="scroll">
                      <Column field="id"  header="ID"></Column>
 
                      <Column field="model"  header="Model"></Column>
                  </DataTable>
-                 <OverlayPanel  ref={overlayPanel} showCloseIcon id="overlay_panel" style={{width: '450px'}} className="overlaypanel-demo">
-                     lalalala
-                 </OverlayPanel>
+
              </div>
 
-            <Button type="button" icon="pi pi-search" label={'tjitid'} onClick={(e) => overlayPanel.current.toggle(e)} aria-haspopup aria-controls="overlay_panel" className="select-product-button" />
+                <Sidebar  visible={visibleLeft} onHide={() => setVisibleLeft(false)}>
 
+                    <SideBarContent description={sidebarContent} />
 
-
-
-
+                </Sidebar>
 
         </div>
 

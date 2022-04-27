@@ -10,15 +10,15 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useHistory, useLocation } from "react-router";
 import GoBackBtn from "../../buttons/GoBack";
+import SideBar from "../../SideBar";
 
-import { Sidebar } from 'primereact/sidebar';
 
 const PageMarksWithPanel =  () => {
 
     const overlayPanel = useRef(null);
     const [dictData, setData] = useState([])
     const [load, setLoad] = useState(true)
-    const [visibleLeft, setVisibleLeft] = useState(false);
+    const [hide, setHide] = useState(false);
     const [sidebarContent, setSidebarContent] = useState('');
     let { id, model } = useParams();
 
@@ -50,47 +50,47 @@ const PageMarksWithPanel =  () => {
                 setSidebarContent(data)
             })
             .then(() => {
-                setVisibleLeft(true)
+                setHide(true)
             })
 
 
     }
-
-    const SideBarContent = ({description}) => {
-
-        const keysDesc = Object.keys(description.description)
-
-        console.log(keysDesc)
-
-        return (
-            <div>
-                <h1>{description.marka}</h1>
-                <h3 className='mb-4'>{description.model}</h3>
-                {
-                    keysDesc.map((item, index) => (
-
-                    <div key={index} className="grid">
-                    <div className="col-4 border-right-2">{item}</div>
-                    <div className="col">{description.description[item]}</div>
-                    </div>
-                    ))
-                }
-            </div>
-        );
-    };
-
-
-    const SideBar = () => {
-
-        return (
-
-            <Sidebar  visible={visibleLeft} onHide={() => setVisibleLeft(false)}>
-
-                <SideBarContent description={sidebarContent} />
-
-            </Sidebar>
-        );
-    };
+    //
+    // const SideBarContent = ({description}) => {
+    //
+    //     const keysDesc = Object.keys(description.description)
+    //
+    //     console.log(keysDesc)
+    //
+    //     return (
+    //         <div>
+    //             <h1>{description.marka}</h1>
+    //             <h3 className='mb-4'>{description.model}</h3>
+    //             {
+    //                 keysDesc.map((item, index) => (
+    //
+    //                 <div key={index} className="grid">
+    //                 <div className="col-4 border-right-2">{item}</div>
+    //                 <div className="col">{description.description[item]}</div>
+    //                 </div>
+    //                 ))
+    //             }
+    //         </div>
+    //     );
+    // };
+    //
+    //
+    // const SideBar = () => {
+    //
+    //     return (
+    //
+    //         <Sidebar  visible={visibleLeft} onHide={() => setVisibleLeft(false)}>
+    //
+    //             <SideBarContent description={sidebarContent} />
+    //
+    //         </Sidebar>
+    //     );
+    // };
 
 
 
@@ -98,7 +98,6 @@ const PageMarksWithPanel =  () => {
 
         history.push(`/dict/${id}`);
 
-        setVisibleLeft(false)
     }
 
 
@@ -119,15 +118,11 @@ const PageMarksWithPanel =  () => {
 
              </div>
 
+                <Switch>
+                    <Route path="/dict/:id/:model" component={() => SideBar(sidebarHide)}/>
 
-                <Route path="/dict/:id/:model" component={() =>  (
+                </Switch>
 
-                    <Sidebar  onHide={sidebarHide}  visible={visibleLeft} >
-
-                        {sidebarContent && <SideBarContent description={sidebarContent} />}
-
-                    </Sidebar>
-                )}/>
 
 
 

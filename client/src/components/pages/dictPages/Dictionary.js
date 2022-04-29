@@ -12,9 +12,12 @@ import { useHistory, useLocation } from "react-router";
 import GoBackBtn from "../../buttons/GoBack";
 import PageMarksWithPanel from "./PageMarksWithPanel";
 import {useDispatch, useSelector} from "react-redux";
-
+import {saveDictStateAction} from "../../../../store/dictReducer";
+import store from "../../../../store/store";
 
 const Dictionary =  () => {
+
+    console.log(store.getState())
 
     const dispatch = useDispatch()
     const dictState = useSelector( state => state.dictStateRoot.dictState)
@@ -37,7 +40,9 @@ const Dictionary =  () => {
             .then((data) => {
                 console.log( 'req_data   ', data)
                 // setData(data)
-                dispatch({type:'saveDictState', value: data})
+                //dispatch({type:'saveDictState', value: data})
+
+                dispatch(saveDictStateAction(data))
             })
             .then(() => setLoad(false))
 

@@ -12,20 +12,26 @@ import { useHistory, useLocation } from "react-router";
 import GoBackBtn from "../../buttons/GoBack";
 import SideBar from "../../SideBar";
 import {useDispatch, useSelector} from "react-redux";
+import {saveMarkStateAction} from "../../../../store/markReducer";
+import store from "../../../../store/store";
+
+
+
+
+
 
 
 const PageMarksWithPanel =  () => {
 
-
+    console.log(store.getState())
     const dispatch = useDispatch()
     const markState = useSelector( state => state.markStateRoot.markState)
 
 
     const overlayPanel = useRef(null);
-    const [dictData, setData] = useState([])
-    const [load, setLoad] = useState(false )
-    const [hide, setHide] = useState(false);
-    const [sidebarContent, setSidebarContent] = useState('');
+    // const [dictData, setData] = useState([])
+    const [load, setLoad] = useState(true )
+
     let { id, model } = useParams();
 
     const location = useLocation();
@@ -37,8 +43,9 @@ const PageMarksWithPanel =  () => {
         getData(URL,500)
             .then((data) => {
                 console.log(data)
-                setData(data)
-                // dispatch({type:'saveMarkState', value: data})
+                // setData(data)
+                // // dispatch({type:'saveMarkState', value: data})
+                 dispatch(saveMarkStateAction(data))
             })
             .then(() => setLoad(false))
 
@@ -53,42 +60,6 @@ const PageMarksWithPanel =  () => {
 
 
     }
-    //
-    // const SideBarContent = ({description}) => {
-    //
-    //     const keysDesc = Object.keys(description.description)
-    //
-    //     console.log(keysDesc)
-    //
-    //     return (
-    //         <div>
-    //             <h1>{description.marka}</h1>
-    //             <h3 className='mb-4'>{description.model}</h3>
-    //             {
-    //                 keysDesc.map((item, index) => (
-    //
-    //                 <div key={index} className="grid">
-    //                 <div className="col-4 border-right-2">{item}</div>
-    //                 <div className="col">{description.description[item]}</div>
-    //                 </div>
-    //                 ))
-    //             }
-    //         </div>
-    //     );
-    // };
-    //
-    //
-    // const SideBar = () => {
-    //
-    //     return (
-    //
-    //         <Sidebar  visible={visibleLeft} onHide={() => setVisibleLeft(false)}>
-    //
-    //             <SideBarContent description={sidebarContent} />
-    //
-    //         </Sidebar>
-    //     );
-    // };
 
 
 
@@ -107,7 +78,7 @@ const PageMarksWithPanel =  () => {
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>
                  <div className='pb-3'>Models: {id}</div>
-                 <DataTable loading={load} onRowClick={getModelDescription} title='Models' value={dictData}   showGridlines responsiveLayout="scroll">
+                 <DataTable loading={load} onRowClick={getModelDescription} title='Models' value={markState}   showGridlines responsiveLayout="scroll">
                      <Column field="id"  header="ID"></Column>
 
                      <Column field="model"  header="Model"></Column>

@@ -33,11 +33,6 @@ import {useDispatch, useSelector} from "react-redux";
 
 function App() {
 
-    const dispatch = useDispatch()
-    const val = useSelector( state => state.val)
-
-    console.log(val)
-
     const appRoutes = [
         {
             path: '/',

@@ -27,7 +27,7 @@ const CustomButton = ({onClick, disabled = false, loading = false, color, exampl
 
             <button className={clName} disabled={disabled} onClick={btnClicked}>
                 {children}
-                <i className={clNameIcon}></i>
+                {icon && <i className={clNameIcon}></i>}
             </button>
 
     );

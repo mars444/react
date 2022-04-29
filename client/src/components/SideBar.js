@@ -47,7 +47,7 @@ const SideBar = (sidebarHide) => {
 
     useEffect(() => {
 
-        const  URL = `http://localhost:3000/dict/${id}/${model}`
+        const  URL = `http://localhost:3001/dict/${id}/${model}`
         getData(URL,50)
             .then((data) => {
                 setSidebarContent(data)

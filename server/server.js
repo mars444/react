@@ -98,8 +98,8 @@ const dict = [
         model: 'Almera',
         description: {
             color: 'red',
-            weight: '1500 kg',
-            power: '600 hp'
+            weight: '45 kg',
+            power: '345 hp'
 
         }
     },
@@ -111,8 +111,8 @@ const dict = [
         model: 'GTR',
         description: {
             color: 'red',
-            weight: '1500 kg',
-            power: '600 hp'
+            weight: '3454 kg',
+            power: '12 hp'
 
         }
     },
@@ -120,22 +120,22 @@ const dict = [
     {
         id:1,
         marka_id: 5,
-        model: 'X1',
+        model: 'a200',
         description: {
             color: 'red',
-            weight: '1500 kg',
-            power: '600 hp'
+            weight: '23 kg',
+            power: '32 hp'
 
         }
     },
     {
         id:1,
         marka_id: 6,
-        model: 'X1',
+        model: 'x90',
         description: {
             color: 'red',
-            weight: '1500 kg',
-            power: '600 hp'
+            weight: '1456 kg',
+            power: '120 hp'
 
         }
     },
@@ -153,7 +153,7 @@ app.use(bodyParser.json())
 let cors = require("cors");
 app.use(cors());
 
-const PORT = 3000
+const PORT = 3001
 
 app.listen(PORT, () => {
     console.log(`server started....  PORT: ${PORT}`)

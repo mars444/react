@@ -112,7 +112,7 @@ const RegistrationPage = () => {
         setBtnStatus(true)
 
         try {
-            await postData('http://localhost:3000/registration', form)
+            await postData('http://localhost:3001/registration', form)
             //showSuccess()
                 .then((data) => {
 

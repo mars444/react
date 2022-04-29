@@ -26,7 +26,7 @@ const PageMarksWithPanel =  () => {
     const history = useHistory();
 
     useEffect(() => {
-        const  URL = `http://localhost:3000/dict/${id}`
+        const  URL = `http://localhost:3001/dict/${id}`
 
         getData(URL,500)
             .then((data) => {
@@ -97,7 +97,6 @@ const PageMarksWithPanel =  () => {
     return (
         <div>
 
-
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>
                  <div className='pb-3'>Models: {id}</div>
@@ -113,10 +112,6 @@ const PageMarksWithPanel =  () => {
                     <Route path="/dict/:id/:model" component={SideBar}/>
 
                 </Switch>
-
-
-
-
 
 
         </div>

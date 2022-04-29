@@ -26,7 +26,7 @@ const Dictionary =  () => {
     // const hist = useHistory();
 
     useEffect(() => {
-        const  URL = 'http://localhost:3000/dict'
+        const  URL = 'http://localhost:3001/dict'
 
         getData(URL, 500)
             .then((data) => {

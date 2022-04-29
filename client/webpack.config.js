@@ -11,7 +11,7 @@ module.exports = {
     mode: 'development',
     entry: './src/index.js',
     output: {
-        filename: 'main.js',
+        filename: 'store.js',
         path: path.resolve(__dirname, 'build')
     },
     plugins: [

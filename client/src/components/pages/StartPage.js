@@ -36,7 +36,7 @@ const StartPage = () => {
                         type="button" label="Dict"  icon="pi pi-plus" iconPos="right"/>
             </Link>
 
-                {/*<CustomButton className='m-1' color='red-1' disabled={false}  example='exapleParametr444' onClick={getElements}>*/}
+                {/*<CustomButton className='m-1 mt-4' color='red-1' disabled={true}  example='exapleParametr444' onClick={getElements}>*/}
                 {/*    Click Me*/}
                 {/*</CustomButton>*/}
 

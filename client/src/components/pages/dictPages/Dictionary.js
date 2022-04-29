@@ -11,18 +11,23 @@ import { Column } from 'primereact/column';
 import { useHistory, useLocation } from "react-router";
 import GoBackBtn from "../../buttons/GoBack";
 import PageMarksWithPanel from "./PageMarksWithPanel";
+import {useDispatch, useSelector} from "react-redux";
 
 
 const Dictionary =  () => {
 
+    const dispatch = useDispatch()
+    const dictState = useSelector( state => state.dictState)
+
+    console.log('redux_data   ', dictState)
+
     let history = useHistory();
     let { id } = useParams();
     const location = useLocation();
-    const [dictData, setData] = useState([])
-    const [load, setLoad] = useState(true)
+    const [dictData, setData] = useState(dictState)
+    const [load, setLoad] = useState(false || !dictState.length)
 
 
-    console.log('location   ', location)
     // const hist = useHistory();
 
     useEffect(() => {
@@ -30,10 +35,12 @@ const Dictionary =  () => {
 
         getData(URL, 500)
             .then((data) => {
-                console.log(data)
+                console.log( 'req_data   ', data)
                 setData(data)
+                dispatch({type:'saveDictState', value: data})
             })
             .then(() => setLoad(false))
+
 
     }, []);
 

@@ -25,11 +25,18 @@ import HomePage from "./components/pages/HomePage";
 import Dictionary from "./components/pages/dictPages/Dictionary";
 import PageMarksWithPanel from "./components/pages/dictPages/PageMarksWithPanel";
 import PageModel from "./components/pages/dictPages/PageModel";
+import CustomButton from "./components/buttons/CustomButton";
+import {useDispatch, useSelector} from "react-redux";
+
 
 
 
 function App() {
 
+    const dispatch = useDispatch()
+    const val = useSelector( state => state.val)
+
+    console.log(val)
 
     const appRoutes = [
         {
@@ -67,6 +74,7 @@ function App() {
         <Router>
             <div className='test surface-50'>
                 {/*<MenuList/>*/}
+
                 <Switch>
                     {appRoutes.map(({path, Component, exact},index) => {
 

@@ -9,7 +9,7 @@ const marksAvto =[
     { id: 3, marka: 'Lada' },
     { id: 4, marka: 'Nissan' },
     { id: 5, marka: 'Mersedes' },
-    { id: 6, marka: 'Volvo' }
+
 ]
 
 

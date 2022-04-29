@@ -4,7 +4,7 @@ const defaultState = {
 
 export const markReducer = (state, action) => {
     switch (action.type) {
-        case 'saveMarkStвate': return {...state, markState: action.value}
+        case 'saveMarkState': return {...state, markState: action.value}
 
         default:
             return defaultState

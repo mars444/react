@@ -11,14 +11,19 @@ import { Column } from 'primereact/column';
 import { useHistory, useLocation } from "react-router";
 import GoBackBtn from "../../buttons/GoBack";
 import SideBar from "../../SideBar";
+import {useDispatch, useSelector} from "react-redux";
 
 
 const PageMarksWithPanel =  () => {
-    
+
+
+    const dispatch = useDispatch()
+    const markState = useSelector( state => state.markStateRoot.markState)
+
 
     const overlayPanel = useRef(null);
     const [dictData, setData] = useState([])
-    const [load, setLoad] = useState(true)
+    const [load, setLoad] = useState(false )
     const [hide, setHide] = useState(false);
     const [sidebarContent, setSidebarContent] = useState('');
     let { id, model } = useParams();
@@ -33,6 +38,7 @@ const PageMarksWithPanel =  () => {
             .then((data) => {
                 console.log(data)
                 setData(data)
+                // dispatch({type:'saveMarkState', value: data})
             })
             .then(() => setLoad(false))
 

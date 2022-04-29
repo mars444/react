@@ -24,7 +24,7 @@ const Dictionary =  () => {
     let history = useHistory();
     let { id } = useParams();
     const location = useLocation();
-    const [dictData, setData] = useState(dictState)
+    // const [dictData, setData] = useState(dictState)
     const [load, setLoad] = useState(false || !dictState.length)
 
 
@@ -36,7 +36,7 @@ const Dictionary =  () => {
         getData(URL, 500)
             .then((data) => {
                 console.log( 'req_data   ', data)
-                setData(data)
+                // setData(data)
                 dispatch({type:'saveDictState', value: data})
             })
             .then(() => setLoad(false))
@@ -59,7 +59,7 @@ const Dictionary =  () => {
         <div>
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>
-                 <DataTable loading={load} onRowClick={pushUrl} title='Brands' value={dictData}   showGridlines responsiveLayout="scroll">
+                 <DataTable loading={load} onRowClick={pushUrl} title='Brands' value={dictState}   showGridlines responsiveLayout="scroll">
                      <Column field="id"  header="ID"></Column>
                      <Column field="marka"  header="Brands"></Column>
                  </DataTable>

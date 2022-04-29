@@ -231,6 +231,8 @@ app.get('/dict/:id', (req, res) => {
 
     const filteredDict = dict.filter(filterDict);
 
+    console.log(filteredDict)
+
     const dictId = filteredDict.map(item => item.id)
     console.log((dictId))
 

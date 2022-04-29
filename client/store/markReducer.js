@@ -1,5 +1,8 @@
 const defaultState = {
-    markState: []
+    markState: new Map()
+
+
+
 }
 const saveMarkState = 'saveMarkState'
 

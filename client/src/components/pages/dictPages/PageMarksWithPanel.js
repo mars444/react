@@ -30,9 +30,11 @@ const PageMarksWithPanel =  () => {
 
     const overlayPanel = useRef(null);
     // const [dictData, setData] = useState([])
-    const [load, setLoad] = useState(false || !markState.length)
+    const [load, setLoad] = useState(false)
 
     let { id, model } = useParams();
+    const key = `marka_id_${id}`
+
 
     const location = useLocation();
     const history = useHistory();
@@ -45,7 +47,8 @@ const PageMarksWithPanel =  () => {
                 console.log(data)
                 // setData(data)
                 // // dispatch({type:'saveMarkState', value: data})
-                 dispatch(saveMarkStateAction(data))
+
+                dispatch(saveMarkStateAction(markState.set(key, data)))
 
                 console.log('state Mark  ', store.getState())
             })
@@ -74,7 +77,7 @@ const PageMarksWithPanel =  () => {
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>
                  <div className='pb-3'>Models: {id}</div>
-                 <DataTable loading={load} onRowClick={getModelDescription} title='Models' value={markState}   showGridlines responsiveLayout="scroll">
+                 <DataTable loading={load} onRowClick={getModelDescription} title='Models' value={markState.get(key)}   showGridlines responsiveLayout="scroll">
                      <Column field="id"  header="ID"></Column>
 
                      <Column field="model"  header="Model"></Column>

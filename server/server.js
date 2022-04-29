@@ -153,7 +153,7 @@ app.use(bodyParser.json())
 let cors = require("cors");
 app.use(cors());
 
-const PORT = 3001
+const PORT = 3002
 
 app.listen(PORT, () => {
     console.log(`server started....  PORT: ${PORT}`)

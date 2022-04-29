@@ -17,12 +17,11 @@ import store from "../../../../store/store";
 
 const Dictionary =  () => {
 
-    console.log(store.getState())
 
     const dispatch = useDispatch()
     const dictState = useSelector( state => state.dictStateRoot.dictState)
 
-    console.log('redux_data   ', dictState)
+    // console.log('redux_data   ', dictState)
 
     let history = useHistory();
     let { id } = useParams();
@@ -34,7 +33,7 @@ const Dictionary =  () => {
     // const hist = useHistory();
 
     useEffect(() => {
-        const  URL = 'http://localhost:3001/dict'
+        const  URL = 'http://localhost:3002/dict'
 
         getData(URL, 500)
             .then((data) => {
@@ -43,6 +42,8 @@ const Dictionary =  () => {
                 //dispatch({type:'saveDictState', value: data})
 
                 dispatch(saveDictStateAction(data))
+
+                console.log('state Dict  ', store.getState())
             })
             .then(() => setLoad(false))
 

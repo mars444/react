@@ -23,14 +23,14 @@ import store from "../../../../store/store";
 
 const PageMarksWithPanel =  () => {
 
-    console.log(store.getState())
+
     const dispatch = useDispatch()
     const markState = useSelector( state => state.markStateRoot.markState)
 
 
     const overlayPanel = useRef(null);
     // const [dictData, setData] = useState([])
-    const [load, setLoad] = useState(true )
+    const [load, setLoad] = useState(false || !markState.length)
 
     let { id, model } = useParams();
 
@@ -38,14 +38,16 @@ const PageMarksWithPanel =  () => {
     const history = useHistory();
 
     useEffect(() => {
-        const  URL = `http://localhost:3001/dict/${id}`
+        const  URL = `http://localhost:3002/dict/${id}`
 
-        getData(URL,500)
+        getData(URL,1500)
             .then((data) => {
                 console.log(data)
                 // setData(data)
                 // // dispatch({type:'saveMarkState', value: data})
                  dispatch(saveMarkStateAction(data))
+
+                console.log('state Mark  ', store.getState())
             })
             .then(() => setLoad(false))
 
@@ -62,12 +64,6 @@ const PageMarksWithPanel =  () => {
     }
 
 
-
-    const sidebarHide = () => {
-
-        history.push(`/dict/${id}`);
-
-    }
 
 
 

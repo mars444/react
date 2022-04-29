@@ -3,12 +3,14 @@ const defaultState = {
 }
 const saveMarkState = 'saveMarkState'
 
-export const markReducer = (state, action) => {
+export const markReducer = (state = defaultState, action) => {
+    console.log('actioan',action.type)
     switch (action.type) {
+
         case saveMarkState: return {...state, markState: action.value}
 
         default:
-            return defaultState
+            return state
     }
 
 }

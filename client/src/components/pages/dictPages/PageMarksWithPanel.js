@@ -26,14 +26,14 @@ const PageMarksWithPanel =  () => {
 
     const dispatch = useDispatch()
     const markState = useSelector( state => state.markStateRoot.markState)
-
+    let { id, model } = useParams();
+    const key = `marka_id_${id}`
 
     const overlayPanel = useRef(null);
     // const [dictData, setData] = useState([])
-    const [load, setLoad] = useState(false)
+    const [load, setLoad] = useState(false || !markState.has(key))
 
-    let { id, model } = useParams();
-    const key = `marka_id_${id}`
+
 
 
     const location = useLocation();
@@ -72,6 +72,7 @@ const PageMarksWithPanel =  () => {
 
 
     return (
+
         <div>
 
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">

@@ -1,19 +1,14 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import {dictReducer} from "./dictReducer";
+import {markReducer} from "./markReducer";
 
-const defaultState = {
-    dictState: []
-}
 
-const reducer = (state, action) => {
-    switch (action.type) {
-        case 'saveDictState': return {...state, dictState: action.value}
+const rootReducer = combineReducers( {
+    dictStateRoot: dictReducer,
+    markStateRoot: markReducer
+})
 
-        default:
-            return defaultState
-    }
 
-}
-
-const store = createStore(reducer);
+const store = createStore(rootReducer);
 
 export default store;

@@ -17,7 +17,7 @@ import {useDispatch, useSelector} from "react-redux";
 const Dictionary =  () => {
 
     const dispatch = useDispatch()
-    const dictState = useSelector( state => state.dictState)
+    const dictState = useSelector( state => state.dictStateRoot.dictState)
 
     console.log('redux_data   ', dictState)
 

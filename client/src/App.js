@@ -24,9 +24,6 @@ import StartPage from "./components/pages/StartPage";
 import HomePage from "./components/pages/HomePage";
 import Dictionary from "./components/pages/dictPages/Dictionary";
 import PageMarksWithPanel from "./components/pages/dictPages/PageMarksWithPanel";
-import PageModel from "./components/pages/dictPages/PageModel";
-import CustomButton from "./components/buttons/CustomButton";
-import {useDispatch, useSelector} from "react-redux";
 
 
 

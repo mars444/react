@@ -24,19 +24,15 @@ const PageMarksWithPanel =  () => {
     console.log('render MarkState', markState)
 
 
-    const overlayPanel = useRef(null);
-    // const [dictData, setData] = useState([])
+
     const [load, setLoad] = useState(false)
 
     let { id } = useParams();
     const key = `marka_id_${id}`
 
-
-
     const location = useLocation();
     const history = useHistory();
 
-    console.log('lalalala', location.pathname)
 
     useEffect(() => {
 

@@ -4,7 +4,7 @@ import {loadMarkStateAction} from "../reducers/markReducer";
 
 export const getMarks = (URL, markState, key) => {
     return dispatch  => {
-          HTTPRequest('Get', URL, null, 1500)
+          HTTPRequest('Get', URL, null, 1000)
             .then((data) => {
                 console.log( 'req_data marks   ', data)
 

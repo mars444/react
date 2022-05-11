@@ -1,7 +1,7 @@
+const mapForBrands = new Map ()
+
 const defaultState = {
-    markState: new Map()
-
-
+    markState: mapForBrands
 
 }
 const saveMarkState = 'saveMarkState'

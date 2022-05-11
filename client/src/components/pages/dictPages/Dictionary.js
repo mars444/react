@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {getData} from "../../../functions/getSend";
+
+import {HTTPRequest} from "../../../functions/HTTPRequest";
 
 import {
     Route,
@@ -10,7 +11,6 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useHistory, useLocation } from "react-router";
 import GoBackBtn from "../../buttons/GoBack";
-import PageMarksWithPanel from "./PageMarksWithPanel";
 import {useDispatch, useSelector} from "react-redux";
 import {saveDictStateAction} from "../../../../store/dictReducer";
 import store from "../../../../store/store";
@@ -33,9 +33,8 @@ const Dictionary =  () => {
     // const hist = useHistory();
 
     useEffect(() => {
-        const  URL = 'http://localhost:3002/dict'
 
-        getData(URL, 500)
+        HTTPRequest('Get', location.pathname, '', 1000)
             .then((data) => {
                 console.log( 'req_data   ', data)
                 // setData(data)

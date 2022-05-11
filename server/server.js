@@ -95,7 +95,7 @@ const dict = [
         id:1,
         marka_id: 4,
         marka: 'Nissan',
-        model: 'Almera',
+        model: '123',
         description: {
             color: 'red',
             weight: '45 kg',

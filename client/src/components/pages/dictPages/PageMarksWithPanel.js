@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect, useRef} from 'react';
-import {getData} from "../../../functions/getSend";
+import {HTTPRequest} from "../../../functions/HTTPRequest";
 
 import {
     useParams, Route, Switch
@@ -26,12 +26,13 @@ const PageMarksWithPanel =  () => {
 
     const dispatch = useDispatch()
     const markState = useSelector( state => state.markStateRoot.markState)
+
     let { id, model } = useParams();
     const key = `marka_id_${id}`
 
     const overlayPanel = useRef(null);
     // const [dictData, setData] = useState([])
-    const [load, setLoad] = useState(false || !markState.has(key))
+    const [load, setLoad] = useState(false || !markState.size)
 
 
 
@@ -39,17 +40,17 @@ const PageMarksWithPanel =  () => {
     const location = useLocation();
     const history = useHistory();
 
-    useEffect(() => {
-        const  URL = `http://localhost:3002/dict/${id}`
+    console.log('lalalala', location.pathname)
 
-        getData(URL,1500)
+    useEffect(() => {
+
+
+        HTTPRequest('Get', location.pathname, '', 1200)
             .then((data) => {
                 console.log(data)
                 // setData(data)
                 // // dispatch({type:'saveMarkState', value: data})
-
                 dispatch(saveMarkStateAction(markState.set(key, data)))
-
                 console.log('state Mark  ', store.getState())
             })
             .then(() => setLoad(false))

@@ -1,7 +1,7 @@
-import { createStore, combineReducers } from 'redux';
-import {dictReducer} from "./dictReducer";
-import {markReducer} from "./markReducer";
-
+import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {dictReducer} from "./reducers/dictReducer";
+import {markReducer} from "./reducers/markReducer";
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers( {
     dictStateRoot: dictReducer,
@@ -9,6 +9,6 @@ const rootReducer = combineReducers( {
 })
 
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;

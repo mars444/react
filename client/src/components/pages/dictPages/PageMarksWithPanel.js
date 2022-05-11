@@ -12,7 +12,7 @@ import { useHistory, useLocation } from "react-router";
 import GoBackBtn from "../../buttons/GoBack";
 import SideBar from "../../SideBar";
 import {useDispatch, useSelector} from "react-redux";
-import {saveMarkStateAction} from "../../../../store/markReducer";
+import {saveMarkStateAction} from "../../../../store/reducers/markReducer";
 import store from "../../../../store/store";
 
 

@@ -41,6 +41,7 @@
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.2",
     "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1",
     "switch": "^0.0.0",
     "very-simple-fetch": "^0.2.0",
     "webpack-dev-server": "^4.8.1"

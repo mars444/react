@@ -12,8 +12,10 @@ import { Column } from 'primereact/column';
 import { useHistory, useLocation } from "react-router";
 import GoBackBtn from "../../buttons/GoBack";
 import {useDispatch, useSelector} from "react-redux";
-import {saveDictStateAction} from "../../../../store/dictReducer";
+import {saveDictStateAction} from "../../../../store/reducers/dictReducer";
 import store from "../../../../store/store";
+
+import {getDict} from "../../../../store/asyncActions/dictAction";
 
 const Dictionary =  () => {
 
@@ -34,18 +36,7 @@ const Dictionary =  () => {
 
     useEffect(() => {
 
-        HTTPRequest('Get', location.pathname, '', 1000)
-            .then((data) => {
-                console.log( 'req_data   ', data)
-                // setData(data)
-                //dispatch({type:'saveDictState', value: data})
-
-                dispatch(saveDictStateAction(data))
-
-                console.log('state Dict  ', store.getState())
-            })
-            .then(() => setLoad(false))
-
+        dispatch(getDict())
 
     }, []);
 

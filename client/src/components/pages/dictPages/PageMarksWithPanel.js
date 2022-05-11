@@ -36,7 +36,7 @@ const PageMarksWithPanel =  () => {
 
     useEffect(() => {
 
-        dispatch(getMarks(location.pathname, markState, key))
+        dispatch(getMarks(location.pathname, key))
 
     }, []);
 
@@ -57,7 +57,7 @@ const PageMarksWithPanel =  () => {
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>
                  <div className='pb-3'>Models: {id}</div>
-                 <DataTable loading={load} onRowClick={getModelDescription} title='Models' value={markState.get(key)}   showGridlines responsiveLayout="scroll">
+                 <DataTable loading={load} onRowClick={getModelDescription} title='Models' value={markState.get('1')}   showGridlines responsiveLayout="scroll">
                      <Column field="id"  header="ID"></Column>
 
                      <Column field="model"  header="Model"></Column>

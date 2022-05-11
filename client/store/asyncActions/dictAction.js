@@ -1,5 +1,5 @@
 import {HTTPRequest} from "../../src/functions/HTTPRequest";
-import {loadDictStateFromRequestAction, saveDictStateAction} from "../reducers/dictReducer";
+import {loadDictStateFromRequestAction} from "../reducers/dictReducer";
 
 
 export const getDict = () => {

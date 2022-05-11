@@ -1,6 +1,5 @@
 
 import React, {useState, useEffect, useRef} from 'react';
-import {HTTPRequest} from "../../../functions/HTTPRequest";
 
 import {
     useParams, Route, Switch
@@ -12,12 +11,7 @@ import { useHistory, useLocation } from "react-router";
 import GoBackBtn from "../../buttons/GoBack";
 import SideBar from "../../SideBar";
 import {useDispatch, useSelector} from "react-redux";
-import {saveMarkStateAction} from "../../../../store/reducers/markReducer";
-import store from "../../../../store/store";
-
-
-
-
+import {getMarks} from "../../../../store/asyncActions/markAction";
 
 
 
@@ -27,13 +21,15 @@ const PageMarksWithPanel =  () => {
     const dispatch = useDispatch()
     const markState = useSelector( state => state.markStateRoot.markState)
 
-    let { id, model } = useParams();
-    const key = `marka_id_${id}`
+    console.log('render MarkState', markState)
+
 
     const overlayPanel = useRef(null);
     // const [dictData, setData] = useState([])
-    const [load, setLoad] = useState(false || !markState.size)
+    const [load, setLoad] = useState(false)
 
+    let { id } = useParams();
+    const key = `marka_id_${id}`
 
 
 
@@ -44,16 +40,7 @@ const PageMarksWithPanel =  () => {
 
     useEffect(() => {
 
-
-        HTTPRequest('Get', location.pathname, '', 1200)
-            .then((data) => {
-                console.log(data)
-                // setData(data)
-                // // dispatch({type:'saveMarkState', value: data})
-                dispatch(saveMarkStateAction(markState.set(key, data)))
-                console.log('state Mark  ', store.getState())
-            })
-            .then(() => setLoad(false))
+        dispatch(getMarks(location.pathname, markState, key))
 
     }, []);
 
@@ -66,11 +53,6 @@ const PageMarksWithPanel =  () => {
 
 
     }
-
-
-
-
-
 
     return (
 

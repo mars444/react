@@ -23,13 +23,14 @@ const Dictionary =  () => {
     const dispatch = useDispatch()
     const dictState = useSelector( state => state.dictStateRoot.dictState)
 
+    console.log('render dictState', dictState)
+
     // console.log('redux_data   ', dictState)
 
     let history = useHistory();
-    let { id } = useParams();
     const location = useLocation();
     // const [dictData, setData] = useState(dictState)
-    const [load, setLoad] = useState(false || !dictState.length)
+    const [load, setLoad] = useState(false)
 
 
     // const hist = useHistory();
@@ -60,9 +61,6 @@ const Dictionary =  () => {
                      <Column field="marka"  header="Brands"></Column>
                  </DataTable>
              </div>
-
-
-
 
         </div>
 

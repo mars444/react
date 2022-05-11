@@ -1,17 +1,15 @@
-const mapForBrands = new Map ()
 
 const defaultState = {
-    markState: mapForBrands
+    markState: new Map ()
 
 }
-const SAVE_MARK_STATE = 'saveMarkState'
+const LOAD_MARK_STATE = 'loadMarkState'
 
 export const markReducer = (state = defaultState, action) => {
-    console.log('action', action.type)
-    console.log('action.value', action.value)
+
     switch (action.type) {
 
-        case SAVE_MARK_STATE: return {...state, markState: action.value}
+        case LOAD_MARK_STATE: return {...state, markState: action.value}
 
         default:
             return state
@@ -19,4 +17,5 @@ export const markReducer = (state = defaultState, action) => {
 
 }
 
-export const saveMarkStateAction = (value) => ({type:SAVE_MARK_STATE, value})
+export const loadMarkStateAction = (value) => ({type:LOAD_MARK_STATE, value})
+

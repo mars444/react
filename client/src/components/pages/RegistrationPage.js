@@ -121,6 +121,14 @@ const RegistrationPage = () => {
 
                 <Form
 
+                    validate={values => {
+                        const errors = {}
+                        if (!values.login) {
+                            errors.login = 'пустой логин'
+                        }
+                        return errors
+                    }}
+
                     mutators={{
                         setAge: (args, state, utils) => {
                             utils.changeValue(state, 'age',
@@ -142,14 +150,19 @@ const RegistrationPage = () => {
                                 <Field name="login">
                                     {props => (
                                         <div>
-                                            <InputText
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                className='border-round m-2'
-                                                placeholder='Login'
-                                                type="text"
-                                                onChange={props.input.onChange}
-                                            />
+                                            <span className="p-input-icon-right">
+                                                {props.meta.error && props.meta.touched && <i className="pi pi-times"></i>}
+                                                <InputText
+                                                    name={props.input.name}
+                                                    value={props.input.value}
+                                                    className='border-round m-2'
+                                                    placeholder='Login'
+                                                    type="text"
+                                                    onChange={props.input.onChange}
+                                                />
+                                            </span>
+
+
                                         </div>
                                     )}
                                 </Field>
@@ -245,6 +258,7 @@ const RegistrationPage = () => {
                                             <Calendar
                                                 name={props.input.name}
                                                 value={props.input.value}
+                                                readOnlyInput
                                                 placeholder='birthday'
                                                 className='border-round m-2'
                                                 onChange={form.mutators.setAge}>

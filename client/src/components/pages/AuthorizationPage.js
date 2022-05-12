@@ -19,9 +19,12 @@ import GoHomeBtn from "../buttons/GoHomeBtn";
 const AuthorizationPage = () => {
 
 
+    const [btnStatus, setBtnStatus] = useState(false)
+
     const printLoginForm = async (formData) => {
 
         console.log('formData', formData)
+        setBtnStatus(true)
 
         try {
             await HTTPRequest('POST', '/auth', formData, 1200 )
@@ -38,7 +41,7 @@ const AuthorizationPage = () => {
         }
 
         finally {
-
+            setBtnStatus(false)
         }
 
 
@@ -58,28 +61,45 @@ const AuthorizationPage = () => {
                         form.reset()
                     }}>
                         <div>
-                            <Field
-                                name="login"
-                                component="input"
-                                type="text"
-                                placeholder="Login"
-                            />
+                            <Field name="login">
+                                {props => (
+                                    <div>
+                                        <InputText
+                                            name={props.input.name}
+                                            value={props.input.value}
+                                            className='border-round m-2'
+                                            placeholder='Login'
+                                            type="text"
+                                            onChange={props.input.onChange}
+                                        />
+                                    </div>
+                                )}
+                            </Field>
                         </div>
                         <div>
-                            <Field
-                                name="password"
-                                component="input"
-                                type="password"
-                                placeholder="Password"
-                            />
+                            <Field name="password">
+                                {props => (
+                                    <div>
+                                        <InputText
+                                            name={props.input.name}
+                                            value={props.input.value}
+                                            className='border-round m-2'
+                                            placeholder='Password'
+                                            type="text"
+                                            onChange={props.input.onChange}
+                                        />
+                                    </div>
+                                )}
+                            </Field>
+                        </div>
+
+                        <div>
+
                         </div>
                         <div className="buttons">
-                            <button
-                                className='form-btn'
-                                type="submit"
-                                disabled={submitting || pristine}>
-                                Войти
-                            </button>
+
+                            <Button loading={btnStatus}  name='loginPressed' className='mt-2'
+                                    type="submit" label="Войти"  icon="pi pi-chevron-right" disabled={submitting || pristine} iconPos="right"/>
                         </div>
 
                         {/*<pre>{JSON.stringify(values, 2, 4)}</pre>*/}

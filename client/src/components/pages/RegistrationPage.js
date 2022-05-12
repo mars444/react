@@ -1,7 +1,6 @@
 import React from 'react';
 
-import {request} from "../../functions/requestFrom";
-
+import {request} from "../../functions/requestFrom"
 import { useState, useRef } from 'react'
 
 import {
@@ -19,31 +18,40 @@ import { Toast } from 'primereact/toast';
 import {postData} from "../../functions/postSend";
 
 
+import {Form, Field} from "react-final-form"
+import {HTTPRequest} from "../../functions/HTTPRequest";
+
 const RegistrationPage = () => {
 
-    const [form, setForm] = useState({
-        nickName: '',
-        password: '',
-        repeatPassword: '',
-        email: '',
-        name: '',
-        surname: '',
-        gender: '',
-        tags: [],
-        birthday: null,
-        age: ''
-    });
+
+    const printLoginForm = async (formData) => {
+
+        console.log('formData', formData)
+        setBtnStatus(true)
+
+        try {
+            await HTTPRequest('POST', '/registration', formData, 1200 )
+                .then((data) => {
+                        console.log( 'req_data  ', data)
+                });
+
+        }
+
+        catch(err){
+            console.error(err)
+        }
+
+        finally {
+            setBtnStatus(false)
+        }
+
+
+    };
+
+
 
     const [btnStatus, setBtnStatus] = useState(false)
 
-    const updateForm = e => {
-
-            setForm({
-                ...form,
-                [e.target.name]: e.target.value
-            });
-
-    };
 
 
     const [filteredItems, setFilteredItems] = useState(null);
@@ -92,53 +100,6 @@ const RegistrationPage = () => {
 
     }
 
-    const clearForm = () => {
-        setForm({
-            nickName: '',
-            password: '',
-            repeatPassword: '',
-            email: '',
-            name: '',
-            surname: '',
-            gender: '',
-            tags: [],
-            birthday: null,
-            age: ''
-        });
-    }
-
-
-    const requestSend = async () => {
-        console.log(form)
-        setBtnStatus(true)
-
-        try {
-            await postData('http://localhost:3001/registration', form)
-            //showSuccess()
-                .then((data) => {
-
-                    console.log(data)
-
-                });
-        }
-        catch(err){
-                console.error(err)
-                //showError(err)
-        }
-        finally {
-            clearForm()
-            setBtnStatus(false)
-        }
-
-
-
-
-
-
-
-
-    }
-
 
 
     const showSuccess = () => {
@@ -162,74 +123,179 @@ const RegistrationPage = () => {
                 <div className="reg_title text-xl pb-2">
                     Registration
                 </div>
-                <InputText value={form.nickName}
-                           onChange={updateForm}
-                           name='nickName' className='border-round m-2'
-                           placeholder='nickname'/>
 
-                <InputText value={form.password}
-                           type="password"
-                           onChange={updateForm}
-                           name='password' className=' border-round m-2'
-                           placeholder='password'/>
+                <Form
+                    onSubmit={printLoginForm}
+                    render={({ handleSubmit, form, submitting, pristine, values }) => (
+                        <form className = 'pt-4 flex flex-column align-items-center' onSubmit={async event => {
+                            await handleSubmit(event)
+                            form.reset()
+                        }}>
+                            <div>
+                                <Field name="login">
+                                    {props => (
+                                        <div>
+                                            <InputText
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                className='border-round m-2'
+                                                placeholder='Login'
+                                                type="text"
+                                                onChange={props.input.onChange}
+                                            />
+                                        </div>
+                                    )}
+                                </Field>
+                            </div>
+                            <div>
+                                <Field name="password">
+                                    {props => (
+                                        <div>
+                                            <InputText
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                className='border-round m-2'
+                                                placeholder='Password'
+                                                type="password"
+                                                onChange={props.input.onChange}
+                                            />
+                                        </div>
+                                    )}
+                                </Field>
+                            </div>
+                            <div>
+                                <Field name="repeatPassword">
+                                    {props => (
+                                        <div>
+                                            <InputText
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                className='border-round m-2'
+                                                placeholder='repeat password'
+                                                type="password"
+                                                onChange={props.input.onChange}
+                                            />
+                                        </div>
+                                    )}
+                                </Field>
+                            </div>
 
-                <InputText value={form.repeatPassword}
-                           type="password"
-                           onChange={updateForm}
-                           name='repeatPassword' className=' border-round m-2'
-                           placeholder='password'/>
+                            <div>
+                                <Field name="mail">
+                                    {props => (
+                                        <div>
+                                            <InputText
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                className='border-round m-2'
+                                                placeholder='email'
+                                                type="text"
+                                                onChange={props.input.onChange}
+                                            />
+                                        </div>
+                                    )}
+                                </Field>
+                            </div>
 
-                <InputText value={form.email}
-                           onChange={updateForm}
-                           name='email'
-                            className='border-round m-2'
-                            placeholder='email'/>
+                            <div>
+                                <Field name="name">
+                                    {props => (
+                                        <div>
+                                            <InputText
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                className='border-round m-2'
+                                                placeholder='name'
+                                                type="text"
+                                                onChange={props.input.onChange}
+                                            />
+                                        </div>
+                                    )}
+                                </Field>
+                            </div>
 
-                <InputText value={form.name}
-                           onChange={updateForm}
-                           name='name'
-                           className='border-round m-2'
-                           placeholder='name'/>
+                            <div>
+                                <Field name="surname">
+                                    {props => (
+                                        <div>
+                                            <InputText
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                className='border-round m-2'
+                                                placeholder='surname'
+                                                type="text"
+                                                onChange={props.input.onChange}
+                                            />
+                                        </div>
+                                    )}
+                                </Field>
+                            </div>
 
-                <InputText value={form.surname}
-                           onChange={updateForm}
-                           name='surname'
-                           placeholder='surname'/>
+                            <div>
+                                <Field name="birthday">
+                                    {props => (
+                                        <div>
+                                            <Calendar
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                placeholder='birthday'
+                                                className='border-round m-2'
+                                                onChange={calculationAge}>
+                                            </Calendar>
+                                        </div>
+                                    )}
+                                </Field>
+                            </div>
 
-                <Calendar placeholder='birthday' name='birthday' className='border-round m-2' value={form.birthday} onChange={calculationAge}></Calendar>
+                            <div>
+                                <Field name="age">
+                                    {props => (
+                                        <div>
+                                            <InputText mask="99"
+                                                       name={props.input.name}
+                                                       value={props.input.value}
+                                                       onChange={props.input.onChange}
+                                                       className='border-round m-2'
+                                                       placeholder='your age'/>
+                                        </div>
+                                    )}
+                                </Field>
+                            </div>
 
+                            <div>
+                                <Field name="gender">
+                                    {props => (
+                                        <div>
+                                            <AutoComplete
+                                                placeholder='Пол'
+                                                name={props.input.name}
+                                                value={props.input.value}
+                                                suggestions={itemsGender}
+                                                completeMethod={searchItems}
+                                                field="label"
+                                                dropdown
+                                                className='select'
+                                                onChange={props.input.onChange}
+                                            />
+                                        </div>
+                                    )}
+                                </Field>
+                            </div>
 
-                <InputText mask="99" value={form.age}
-                           name='age'
-                           onChange={updateForm}
-                           className='border-round m-2'
-                           placeholder='your age'/>
+                            <div className="buttons">
 
+                                <Button loading={btnStatus}  name='loginPressed' className='mt-3 mb-4'
+                                        type="submit" label="Зарегистрироваться"  icon="pi pi-chevron-right" disabled={submitting || pristine} iconPos="right"/>
+                            </div>
 
-                <AutoComplete
-                    placeholder='Пол'
-                    name='gender'
-                    value={form.gender}
-                    suggestions={itemsGender}
-                    completeMethod={searchItems}
-                    field="label"
-                    dropdown
-                    className='select'
-                    onChange={updateForm}
+                            {/*<pre>{JSON.stringify(values, 2, 4)}</pre>*/}
+
+                        </form>
+                    )}
                 />
 
+                {/*<Tags name= 'tags' value = {form.tags} updateForm = {updateForm}/>*/}
 
-
-                <Tags name= 'tags' value = {form.tags} updateForm = {updateForm}/>
-
-
-
-                <Button className='mt-2 button_non_underline' onClick={requestSend} loading={btnStatus}
-                        type="button" label="Register"  icon="pi pi-chevron-right" iconPos="right"/>
-
-                <div className="sub_title pb-2 mt-2">
-                    or
-                </div>
 
                 <Link to="/authorization">
                     <Button className=''

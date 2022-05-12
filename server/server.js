@@ -184,7 +184,7 @@ app.post('/registration', (req, res) => {
             return res.status(200).json({1:['пустое тело', '123243549996']})
         }
 
-        const nick = req.body.nickName
+        const nick = req.body.password
 
 
         res.status(200).json({

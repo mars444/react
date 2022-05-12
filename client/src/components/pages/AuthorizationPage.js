@@ -56,7 +56,7 @@ const AuthorizationPage = () => {
             <Form
                 onSubmit={printLoginForm}
                 render={({ handleSubmit, form, submitting, pristine, values }) => (
-                    <form className = 'pt-4' onSubmit={async event => {
+                    <form className = 'pt-4 flex flex-column align-items-center' onSubmit={async event => {
                         await handleSubmit(event)
                         form.reset()
                     }}>
@@ -96,11 +96,9 @@ const AuthorizationPage = () => {
                         <div>
 
                         </div>
-                        <div className="buttons">
 
-                            <Button loading={btnStatus}  name='loginPressed' className='mt-2'
+                            <Button className='mt-3 mb-4 button_non_underline' loading={btnStatus}  name='loginPressed'
                                     type="submit" label="Войти"  icon="pi pi-chevron-right" disabled={submitting || pristine} iconPos="right"/>
-                        </div>
 
                         {/*<pre>{JSON.stringify(values, 2, 4)}</pre>*/}
 

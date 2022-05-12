@@ -142,10 +142,13 @@ const RegistrationPage = () => {
                     }}
 
                     onSubmit={printRegForm}
-                    render={({ handleSubmit, form, submitting, pristine, values }) => (
+                    render={({ handleSubmit, form, submitting, pristine, values, errors }) => (
                         <form className = 'pt-4 flex flex-column align-items-center' onSubmit={async event => {
                             await handleSubmit(event)
-                            form.reset()
+                            if(!errors) {
+                                form.reset()
+                            }
+
 
                         }}>
                             <div>
@@ -303,6 +306,7 @@ const RegistrationPage = () => {
                                         </div>
                                     )}
                                 </Field>
+                            </div>
                                 <div>
                                     <Field name="tags">
                                         {props => (
@@ -317,7 +321,6 @@ const RegistrationPage = () => {
                                     </Field>
                                 </div>
 
-                            </div>
 
                             <div className="buttons">
 
@@ -325,15 +328,11 @@ const RegistrationPage = () => {
                                         type="submit" label="Зарегистрироваться"  icon="pi pi-chevron-right" disabled={submitting || pristine} iconPos="right"/>
                             </div>
 
-                            {/*<pre>{JSON.stringify(values, 2, 4)}</pre>*/}
+                            <pre>{JSON.stringify(values, 2, 4)}</pre>
 
                         </form>
                     )}
                 />
-
-
-
-
 
 
                 <Link to="/authorization">

@@ -121,6 +121,8 @@ const RegistrationPage = () => {
 
                 <Form
 
+                    initialValues={{ tags: [] }}
+
                     validate={values => {
                         const errors = {}
                         if (!values.login) {
@@ -150,8 +152,7 @@ const RegistrationPage = () => {
                                 <Field name="login">
                                     {props => (
                                         <div>
-                                            <span className="p-input-icon-right">
-                                                {props.meta.error && props.meta.touched && <i className="pi pi-times"></i>}
+                                            <div className="field">
                                                 <InputText
                                                     name={props.input.name}
                                                     value={props.input.value}
@@ -160,7 +161,8 @@ const RegistrationPage = () => {
                                                     type="text"
                                                     onChange={props.input.onChange}
                                                 />
-                                            </span>
+                                                {props.meta.error && props.meta.touched && <small className="p-error block">{props.meta.error}</small>}
+                                            </div>
 
 
                                         </div>
@@ -301,6 +303,20 @@ const RegistrationPage = () => {
                                         </div>
                                     )}
                                 </Field>
+                                <div>
+                                    <Field name="tags">
+                                        {props => (
+                                            <div>
+                                                <Tags
+                                                    name={props.input.name}
+                                                    value={props.input.value}
+                                                    updateForm = {props.input.onChange}
+                                                />
+                                            </div>
+                                        )}
+                                    </Field>
+                                </div>
+
                             </div>
 
                             <div className="buttons">
@@ -315,7 +331,9 @@ const RegistrationPage = () => {
                     )}
                 />
 
-                {/*<Tags name= 'tags' value = {form.tags} updateForm = {updateForm}/>*/}
+
+
+
 
 
                 <Link to="/authorization">

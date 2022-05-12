@@ -21,10 +21,12 @@ import {postData} from "../../functions/postSend";
 import {Form, Field} from "react-final-form"
 import {HTTPRequest} from "../../functions/HTTPRequest";
 
+import { useField } from 'react-final-form'
+
 const RegistrationPage = () => {
 
 
-    const printLoginForm = async (formData) => {
+    const printRegForm = async (formData) => {
 
         console.log('formData', formData)
         setBtnStatus(true)
@@ -56,8 +58,7 @@ const RegistrationPage = () => {
 
     const [filteredItems, setFilteredItems] = useState(null);
 
-
-
+    
     const itemsGender = [
         {label: 'М', value: 'М'},
         {label: 'Ж', value: 'Ж'},
@@ -82,19 +83,14 @@ const RegistrationPage = () => {
 
 
     const calculationAge = e => {
+
+        console.log('eeee', e)
         const curDate = new Date()
         const eDate = e.target.value
         if(e.target.value) {
             const timeDiff = Math.abs(eDate.getTime() - curDate.getTime())
 
-
             const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24 * 365))
-
-            setForm({
-                ...form,
-                [e.target.name]: e.target.value,
-                age:diffDays
-            });
         }
 
 
@@ -125,7 +121,24 @@ const RegistrationPage = () => {
                 </div>
 
                 <Form
-                    onSubmit={printLoginForm}
+
+                    mutators={{
+                        setAge: (args, state, utils) => {
+                            console.log('args', args[0].target)
+                            console.log('state  ', state)
+                            utils.changeValue(state, 'age', () => {
+                                const curDate = new Date()
+                                const eDate = args[0].target.value
+                                    const timeDiff = Math.abs(eDate.getTime() - curDate.getTime())
+
+                                    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24 * 365))
+
+                                return diffDays
+                            })
+                        },
+                    }}
+
+                    onSubmit={printRegForm}
                     render={({ handleSubmit, form, submitting, pristine, values }) => (
                         <form className = 'pt-4 flex flex-column align-items-center' onSubmit={async event => {
                             await handleSubmit(event)
@@ -240,7 +253,7 @@ const RegistrationPage = () => {
                                                 value={props.input.value}
                                                 placeholder='birthday'
                                                 className='border-round m-2'
-                                                onChange={calculationAge}>
+                                                onChange={form.mutators.setAge}>
                                             </Calendar>
                                         </div>
                                     )}

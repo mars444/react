@@ -84,7 +84,6 @@ const RegistrationPage = () => {
 
     const calculationAge = e => {
 
-        console.log('eeee', e)
         const curDate = new Date()
         const eDate = e.target.value
 
@@ -124,10 +123,11 @@ const RegistrationPage = () => {
 
                     mutators={{
                         setAge: (args, state, utils) => {
-                            console.log('args', args[0].target)
-                            console.log('state  ', state)
-                            utils.changeValue(state, 'age', () => {
-                                return calculationAge(args[0])})
+                            utils.changeValue(state, 'age',
+                                () => {return calculationAge(args[0])})
+
+                            utils.changeValue(state, 'birthday',
+                                () => {return args[0].value})
                         },
                     }}
 
@@ -136,6 +136,7 @@ const RegistrationPage = () => {
                         <form className = 'pt-4 flex flex-column align-items-center' onSubmit={async event => {
                             await handleSubmit(event)
                             form.reset()
+
                         }}>
                             <div>
                                 <Field name="login">

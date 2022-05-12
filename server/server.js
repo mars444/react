@@ -162,6 +162,7 @@ app.listen(PORT, () => {
 app.post('/auth', (req, res) => {
 
     console.log(req.body)
+
     if(!req.body) {
         return res.status(200).json({1:['пустое тело', '123243549996']})
     }

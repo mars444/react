@@ -22,13 +22,14 @@ const PageMarksWithPanel =  () => {
     const markState = useSelector( state => state.markStateRoot.markState)
 
     console.log('render MarkState', markState)
-
-
+    let { id } = useParams();
+    const key = `marka_id_${id}`
 
     const [load, setLoad] = useState(false)
 
-    let { id } = useParams();
-    const key = `marka_id_${id}`
+    console.log('loasd', load)
+
+
 
     const location = useLocation();
     const history = useHistory();

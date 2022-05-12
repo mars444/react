@@ -16,9 +16,7 @@ export const markReducer = (state = defaultState, action) => {
 
             const c = new Map (state.markState)
 
-            const a = {...state, markState: c}
-
-            return a
+            return {...state, markState: c}
 
         default: return state
     }

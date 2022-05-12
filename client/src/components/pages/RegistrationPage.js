@@ -18,6 +18,7 @@ import { Calendar } from 'primereact/calendar';
 import { Toast } from 'primereact/toast';
 import {postData} from "../../functions/postSend";
 
+
 const RegistrationPage = () => {
 
     const [form, setForm] = useState({

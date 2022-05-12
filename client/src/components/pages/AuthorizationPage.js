@@ -3,62 +3,43 @@ import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
 import {postData} from "../../functions/postSend";
 
+import {HTTPRequest} from "../../functions/HTTPRequest";
+
 import {
     Link,
     Route,
     useHistory,
 } from "react-router-dom";
 
+import {Form, Field} from "react-final-form";
+
 
 import GoHomeBtn from "../buttons/GoHomeBtn";
 
 const AuthorizationPage = () => {
-    console.log('render')
 
-    const [loginForm, setLoginForm] = useState({
-        login : '',
-        password: ''
-    })
-    const [btnStatus, setBtnStatus] = useState(false)
 
-    const updateLoginForm = e => {
-        setLoginForm({
-            ...loginForm,
-            [e.target.name]: e.target.value
-        });
+    const printLoginForm = async (formData) => {
 
-    }
-
-    const printLoginForm = async () => {
-        console.log(loginForm);
-
-        setBtnStatus(true)
-
+        console.log('formData', formData)
 
         try {
-            await postData('http://localhost:3001/auth', loginForm )
+            await HTTPRequest('POST', '/auth', formData, 1200 )
                 .then((data) => {
                     if (data.id) {
-                        console.log(data)
+                        console.log( 'req_data  ', data)
                     }
                 });
+
         }
+
         catch(err){
             console.error(err)
-            //showError(err)
         }
+
         finally {
-            setBtnStatus(false)
 
-
-
-            setLoginForm({
-                login: '',
-                password: '',
-            });
         }
-
-
 
 
     };
@@ -68,31 +49,49 @@ const AuthorizationPage = () => {
             <div className="reg_title text-xl pb-2">
                 Authorization
             </div>
-            <InputText onChange={updateLoginForm}
-                       value={loginForm.login}
-                       name='login'
-                       className='border-round m-2'
-                       placeholder='nickname'/>
 
-            <InputText  onChange={updateLoginForm}
-                        value={loginForm.password}
-                        name='password'
-                        className='border-round m-2'
-                        placeholder='password'
-                        type="password"/>
+            <Form
+                onSubmit={printLoginForm}
+                render={({ handleSubmit, form, submitting, pristine, values }) => (
+                    <form className = 'pt-4' onSubmit={async event => {
+                        await handleSubmit(event)
+                        form.reset()
+                    }}>
+                        <div>
+                            <Field
+                                name="login"
+                                component="input"
+                                type="text"
+                                placeholder="Login"
+                            />
+                        </div>
+                        <div>
+                            <Field
+                                name="password"
+                                component="input"
+                                type="password"
+                                placeholder="Password"
+                            />
+                        </div>
+                        <div className="buttons">
+                            <button
+                                className='form-btn'
+                                type="submit"
+                                disabled={submitting || pristine}>
+                                Войти
+                            </button>
+                        </div>
 
-            <Button loading={btnStatus}  name='loginPressed' className='mt-2' onClick={printLoginForm}
-                    type="button" label="Login"  icon="pi pi-chevron-right" iconPos="right"/>
+                        {/*<pre>{JSON.stringify(values, 2, 4)}</pre>*/}
 
-            <div className="sub_title pb-2 mt-2">
-                or
-            </div>
+                    </form>
+                )}
+            />
 
             <Link to="/registration">
                 <Button className=''
                         type="button" label="Go to registration"/>
             </Link>
-
         </div>
     );
 };

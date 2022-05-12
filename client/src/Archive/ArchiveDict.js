@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {getData} from "../../../functions/getSend";
+import {getData} from "../functions/getSend";
 
 import {
     HashRouter as Router,

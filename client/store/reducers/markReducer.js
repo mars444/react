@@ -1,4 +1,5 @@
 
+
 const defaultState = {
     markState: new Map ()
 
@@ -11,11 +12,12 @@ export const markReducer = (state = defaultState, action) => {
 
         case LOAD_MARK_STATE:
 
-            console.log('ahaahah', action.value)
+            state.markState.set(action.key, action.value)
 
-            const b = new Map ()
-            b.set('1', action.value)
-            const a = {...state, markState: b}
+            const c = new Map (state.markState)
+
+            const a = {...state, markState: c}
+
             return a
 
         default: return state
@@ -23,5 +25,5 @@ export const markReducer = (state = defaultState, action) => {
 
 }
 
-export const loadMarkStateAction = (value) => ({type:LOAD_MARK_STATE, value})
+export const loadMarkStateAction = (value, key) => ({type:LOAD_MARK_STATE, value, key})
 

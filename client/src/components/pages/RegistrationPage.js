@@ -87,12 +87,12 @@ const RegistrationPage = () => {
         console.log('eeee', e)
         const curDate = new Date()
         const eDate = e.target.value
-        if(e.target.value) {
+
             const timeDiff = Math.abs(eDate.getTime() - curDate.getTime())
 
             const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24 * 365))
-        }
 
+            return diffDays
 
     }
 
@@ -127,14 +127,7 @@ const RegistrationPage = () => {
                             console.log('args', args[0].target)
                             console.log('state  ', state)
                             utils.changeValue(state, 'age', () => {
-                                const curDate = new Date()
-                                const eDate = args[0].target.value
-                                    const timeDiff = Math.abs(eDate.getTime() - curDate.getTime())
-
-                                    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24 * 365))
-
-                                return diffDays
-                            })
+                                return calculationAge(args[0])})
                         },
                     }}
 

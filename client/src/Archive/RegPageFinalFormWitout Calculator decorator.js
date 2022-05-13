@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import {request} from "../../functions/requestFrom"
@@ -25,20 +24,6 @@ import {postData} from "../../functions/postSend";
 import {Form, Field} from "react-final-form"
 import {HTTPRequest} from "../../functions/HTTPRequest";
 
-import {calculationAge} from "../../functions/calculatorAge";
-
-
-const calculator = createDecorator(
-    {
-        field: 'birthday', // when birthday changes...
-        updates: {
-            age: (birthdayValue) =>
-                calculationAge(birthdayValue)
-        }
-    },
-
-)
-
 
 const RegistrationPage = () => {
 
@@ -53,7 +38,6 @@ const RegistrationPage = () => {
                 .then((data) => {
                     console.log( 'req_data  ', data)
                 });
-            showSuccess()
 
         }
 
@@ -67,10 +51,6 @@ const RegistrationPage = () => {
 
 
     };
-
-
-
-
 
 
 
@@ -102,11 +82,28 @@ const RegistrationPage = () => {
     }
 
 
+
+
+    const calculationAge = e => {
+
+        const curDate = new Date()
+        const eDate = e.target.value
+
+        const timeDiff = Math.abs(eDate.getTime() - curDate.getTime())
+
+        const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24 * 365))
+
+        return diffDays
+
+    }
+
+
+
     const showSuccess = () => {
         toast.current.show({severity: 'success', summary: 'Success Message'});
     }
-    const showError = () => {
-        toast.current.show({severity: 'error', summary: 'Заполните все поля'});
+    const showError = (text) => {
+        toast.current.show({severity: 'error', summary: text});
     }
 
 
@@ -125,8 +122,6 @@ const RegistrationPage = () => {
                 </div>
 
                 <Form
-
-                    decorators={[calculator]}
 
                     initialValues={{ tags: [] }}
 
@@ -149,7 +144,6 @@ const RegistrationPage = () => {
                     }}
 
                     onSubmit={printRegForm}
-
                     render={({ handleSubmit, form, submitting, pristine, values, errors }) => (
                         <form className = 'pt-4 flex flex-column align-items-center' onSubmit={async event => {
                             await handleSubmit(event)
@@ -274,8 +268,7 @@ const RegistrationPage = () => {
                                                 readOnlyInput
                                                 placeholder='birthday'
                                                 className='border-round m-2'
-                                                onChange={props.input.onChange}
-                                            >
+                                                onChange={form.mutators.setAge}>
                                             </Calendar>
                                         </div>
                                     )}

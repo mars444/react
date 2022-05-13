@@ -68,14 +68,7 @@ const RegistrationPage = () => {
 
     };
 
-
-
-
-
-
-
     const [btnStatus, setBtnStatus] = useState(false)
-
 
 
     const [filteredItems, setFilteredItems] = useState(null);
@@ -103,7 +96,7 @@ const RegistrationPage = () => {
 
 
     const showSuccess = () => {
-        toast.current.show({severity: 'success', summary: 'Success Message'});
+        toast.current.show({severity: 'success', summary: 'Success Registration'});
     }
     const showError = () => {
         toast.current.show({severity: 'error', summary: 'Заполните все поля'});
@@ -125,9 +118,7 @@ const RegistrationPage = () => {
                 </div>
 
                 <Form
-
                     decorators={[calculator]}
-
                     initialValues={{ tags: [] }}
 
                     validate={values => {
@@ -136,16 +127,6 @@ const RegistrationPage = () => {
                             errors.login = 'пустой логин'
                         }
                         return errors
-                    }}
-
-                    mutators={{
-                        setAge: (args, state, utils) => {
-                            utils.changeValue(state, 'age',
-                                () => {return calculationAge(args[0])})
-
-                            utils.changeValue(state, 'birthday',
-                                () => {return args[0].value})
-                        },
                     }}
 
                     onSubmit={printRegForm}
@@ -337,7 +318,7 @@ const RegistrationPage = () => {
                                         type="submit" label="Зарегистрироваться"  icon="pi pi-chevron-right" disabled={submitting || pristine} iconPos="right"/>
                             </div>
 
-                            <pre>{JSON.stringify(values, 2, 4)}</pre>
+                            {/*<pre>{JSON.stringify(values, 2, 4)}</pre>*/}
 
                         </form>
                     )}

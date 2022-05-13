@@ -3,9 +3,10 @@ import {dictReducer} from "./reducers/dictReducer";
 import {markReducer} from "./reducers/markReducer";
 import thunk from "redux-thunk";
 
+
 const rootReducer = combineReducers( {
     dictStateRoot: dictReducer,
-    markStateRoot: markReducer
+    markStateRoot: markReducer,
 })
 
 

@@ -1,6 +1,6 @@
 import {delay} from "./requestFrom";
 
-const PORT = 3002
+const PORT = 3000
 const serverURL = `http://localhost:${PORT}`
 
 export const HTTPRequest = async (method, urlEnd, data, timeOut) => {

@@ -153,7 +153,7 @@ app.use(bodyParser.json())
 let cors = require("cors");
 app.use(cors());
 
-const PORT = 3002
+const PORT = 3000
 
 app.listen(PORT, () => {
     console.log(`server started....  PORT: ${PORT}`)
@@ -180,16 +180,17 @@ app.post('/auth', (req, res) => {
 app.post('/registration', (req, res) => {
 
         console.log(req.body)
+
         if(!req.body) {
             return res.status(200).json({1:['пустое тело', '123243549996']})
         }
 
-        const nick = req.body.password
+        const nick = req.body.login
 
 
         res.status(200).json({
             nickName: nick,
-            password: 'sucssses registarttion',
+            password: 'sucssses111111 registarttion',
 
         })
 

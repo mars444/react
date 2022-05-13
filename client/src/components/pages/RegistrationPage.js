@@ -37,13 +37,12 @@ const calculator = createDecorator(
     {
         field: 'birthday', // when birthday changes...
         updates: {
-            age: (birthdayValue) =>
-                calculationAge(birthdayValue)
+            age: (birthdayValueDate) =>
+                calculationAge(birthdayValueDate)
         }
     },
 
 )
-
 
 const RegistrationPage = () => {
 
@@ -53,7 +52,7 @@ const RegistrationPage = () => {
 
     const printRegForm = async (formData) => {
 
-        console.log('formData', formData)
+        console.log('formData  ', formData)
         setBtnStatus(true)
 
         try {
@@ -132,7 +131,7 @@ const RegistrationPage = () => {
                 <Form
 
                     decorators={[calculator]}
-                    initialValues={regState}
+                    initialValues={{tags: []}}
 
                     validate={values => {
                         const errors = {}

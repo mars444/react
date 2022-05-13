@@ -31,6 +31,8 @@ import {calculationAge} from "../../functions/calculatorAge";
 import {useDispatch, useSelector} from "react-redux";
 
 import {regAction} from "../../../store/reducers/regReducer";
+import CustomInputWithValidation from "../inputs/CustomInputWithValidation";
+import customInputWithValidation from "../inputs/CustomInputWithValidation";
 
 
 const calculator = createDecorator(
@@ -46,8 +48,8 @@ const calculator = createDecorator(
 
 const RegistrationPage = () => {
 
-    const dispatch = useDispatch()
-    const regState = useSelector( state => state.regStateRoot.regState)
+    // const dispatch = useDispatch()
+    // const regState = useSelector( state => state.regStateRoot.regState)
 
 
     const printRegForm = async (formData) => {
@@ -131,7 +133,6 @@ const RegistrationPage = () => {
                 <Form
 
                     decorators={[calculator]}
-                    initialValues={{tags: []}}
 
                     validate={values => {
                         const errors = {}
@@ -145,39 +146,24 @@ const RegistrationPage = () => {
 
 
                     render={({ handleSubmit, form, submitting, pristine, values, errors }) => (
-                        <form className = 'pt-4 flex flex-column align-items-center' onSubmit={async event => {
-                            await handleSubmit(event)
-                            if(!errors) {
-                                form.reset()
-                            }
-
-                        }}>
-                            {console.log(values)}
+                        <form className = 'pt-4 flex flex-column align-items-center'
+                              onSubmit={handleSubmit}
+                        >
+                            {/*{console.log(values)}*/}
                             {/*{console.log(dispatch(regAction(form.getState().values)))}*/}
 
                             <div>
 
-                                <Field name="login">
-                                    {props => (
-                                        <div>
-                                            <div className="field">
-                                                <InputText
-                                                    name={props.input.name}
-                                                    value={props.input.value}
-                                                    className='border-round m-2'
-                                                    placeholder='Login'
-                                                    type="text"
-                                                    onChange={props.input.onChange}
-                                                />
-                                                {props.meta.error && props.meta.touched && <small className="p-error block">{props.meta.error}</small>}
-                                            </div>
+                                <Field
+                                    name="login"
+                                    component={customInputWithValidation}
+                                    placeholder = 'asdasd'
+                                >
 
-                                        </div>
-                                    )}
                                 </Field>
                             </div>
                             <div>
-                                <Field name="password">
+                                <Field  name="password">
                                     {props => (
                                         <div>
                                             <InputText

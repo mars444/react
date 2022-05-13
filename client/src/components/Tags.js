@@ -65,7 +65,7 @@ const Tags = ({value, updateForm, name}) => {
     return (
         <div>
             {
-                value.map((item, index) => (
+                 value && value.map((item, index) => (
                     <div key={index} className="p-inputgroup desc_input">
                         <InputText onChange={changeHandler}
                                    placeholder="Vote"

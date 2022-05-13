@@ -85,7 +85,7 @@ const AuthorizationPage = () => {
                                             value={props.input.value}
                                             className='border-round m-2'
                                             placeholder='Password'
-                                            type="text"
+                                            type="password"
                                             onChange={props.input.onChange}
                                         />
                                     </div>

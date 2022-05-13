@@ -28,6 +28,11 @@ import {HTTPRequest} from "../../functions/HTTPRequest";
 import {calculationAge} from "../../functions/calculatorAge";
 
 
+import {useDispatch, useSelector} from "react-redux";
+
+import {regAction} from "../../../store/reducers/regReducer";
+
+
 const calculator = createDecorator(
     {
         field: 'birthday', // when birthday changes...
@@ -42,6 +47,9 @@ const calculator = createDecorator(
 
 const RegistrationPage = () => {
 
+    const dispatch = useDispatch()
+    const regState = useSelector( state => state.regStateRoot.regState)
+
 
     const printRegForm = async (formData) => {
 
@@ -53,8 +61,8 @@ const RegistrationPage = () => {
                 .then((data) => {
                     console.log( 'req_data  ', data)
                 });
-            showSuccess()
 
+            showSuccess()
         }
 
         catch(err){
@@ -68,18 +76,18 @@ const RegistrationPage = () => {
 
     };
 
+
+
     const [btnStatus, setBtnStatus] = useState(false)
 
 
+
+
     const [filteredItems, setFilteredItems] = useState(null);
-
-
     const itemsGender = [
         {label: 'М', value: 'М'},
         {label: 'Ж', value: 'Ж'},
-
     ]
-
     const searchItems = (event) => {
         //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
 
@@ -95,18 +103,22 @@ const RegistrationPage = () => {
     }
 
 
+
+
     const showSuccess = () => {
         toast.current.show({severity: 'success', summary: 'Success Registration'});
     }
     const showError = () => {
         toast.current.show({severity: 'error', summary: 'Заполните все поля'});
     }
-
-
     const toast = useRef(null);
+
+
+
 
     return (
         <div>
+
 
             <Toast ref={toast} />
 
@@ -118,8 +130,9 @@ const RegistrationPage = () => {
                 </div>
 
                 <Form
+
                     decorators={[calculator]}
-                    initialValues={{ tags: [] }}
+                    initialValues={regState}
 
                     validate={values => {
                         const errors = {}
@@ -131,6 +144,7 @@ const RegistrationPage = () => {
 
                     onSubmit={printRegForm}
 
+
                     render={({ handleSubmit, form, submitting, pristine, values, errors }) => (
                         <form className = 'pt-4 flex flex-column align-items-center' onSubmit={async event => {
                             await handleSubmit(event)
@@ -138,9 +152,12 @@ const RegistrationPage = () => {
                                 form.reset()
                             }
 
-
                         }}>
+                            {console.log(values)}
+                            {/*{console.log(dispatch(regAction(form.getState().values)))}*/}
+
                             <div>
+
                                 <Field name="login">
                                     {props => (
                                         <div>
@@ -155,7 +172,6 @@ const RegistrationPage = () => {
                                                 />
                                                 {props.meta.error && props.meta.touched && <small className="p-error block">{props.meta.error}</small>}
                                             </div>
-
 
                                         </div>
                                     )}
@@ -319,7 +335,6 @@ const RegistrationPage = () => {
                             </div>
 
                             {/*<pre>{JSON.stringify(values, 2, 4)}</pre>*/}
-
                         </form>
                     )}
                 />

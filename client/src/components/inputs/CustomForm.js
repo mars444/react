@@ -10,6 +10,7 @@ const CustomForm = (props) => {
         <FinalForm
             validate = {props.validate}
             onSubmit={props.onSubmit}
+            form={props.form}
             render={renderProps => (
                 <form
                     onSubmit={renderProps.handleSubmit}>

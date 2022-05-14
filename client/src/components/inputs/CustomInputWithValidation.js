@@ -1,10 +1,13 @@
 import React from "react";
-import { useField } from "react-final-form";
+import {Field, useField} from "react-final-form";
 import {InputText} from "primereact/inputtext";
+import validator from "validator";
 
 
 const CustomInputWithValidation = (props) => {
 
+
+        console.log('props.validate', props.validate)
 
     const {
         input,
@@ -23,10 +26,19 @@ const CustomInputWithValidation = (props) => {
 
     return (
 
-        <div className="field">
-            <InputText {...inputProps} validateOnly={null} className = {touched && (error || submitError) ? 'p-invalid' : ''} />
-            <small className="p-error block">{touched && (error || submitError) ? error : ""}</small>
-        </div>
+        <Field  name="login">
+            {props => (
+                <div>
+                    <div className="field">
+                        <InputText {...inputProps}  className = {touched && (error || submitError) ? 'p-invalid' : ''} />
+                        <small className="p-error block">{touched && (error || submitError) ? error : ""}</small>
+                    </div>
+
+                </div>
+            )}
+        </Field>
+
+
     );
 }
 

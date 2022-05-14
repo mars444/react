@@ -163,19 +163,15 @@ const RegistrationPage = () => {
                             {/*    </Field>*/}
                             {/*</div>*/}
                             <div>
-                                <Field  name="login">
-                                    {props => (
-                                        <div>
+
                                             <CustomInputWithValidation
                                             placeholder = '213434'
-                                            name = {props.input.name}
                                             validate={v =>
                                                 !validator.isEmail(v || "") && "Please Enter a Valid Email!"
                                             }
+                                            name = "login"
                                             />
-                                        </div>
-                                    )}
-                                </Field>
+
                             </div>
                             <div>
                                 <Field name="repeatPassword">

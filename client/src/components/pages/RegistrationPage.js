@@ -32,7 +32,6 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {regAction} from "../../../store/reducers/regReducer";
 import CustomInputWithValidation from "../inputs/CustomInputWithValidation";
-import customInputWithValidation from "../inputs/CustomInputWithValidation";
 
 
 const calculator = createDecorator(
@@ -152,16 +151,16 @@ const RegistrationPage = () => {
                             {/*{console.log(values)}*/}
                             {/*{console.log(dispatch(regAction(form.getState().values)))}*/}
 
-                            <div>
+                            {/*<div>*/}
 
-                                <Field
-                                    name="login"
-                                    component={customInputWithValidation}
-                                    placeholder = 'asdasd'
-                                >
+                            {/*    <Field*/}
+                            {/*        name="login"*/}
+                            {/*        */}
+                            {/*        placeholder = 'asdasd'*/}
+                            {/*    >*/}
 
-                                </Field>
-                            </div>
+                            {/*    </Field>*/}
+                            {/*</div>*/}
                             <div>
                                 <Field  name="password">
                                     {props => (
@@ -320,6 +319,8 @@ const RegistrationPage = () => {
                             </div>
 
                             {/*<pre>{JSON.stringify(values, 2, 4)}</pre>*/}
+
+                            <CustomInputWithValidation/>
                         </form>
                     )}
                 />
@@ -330,11 +331,13 @@ const RegistrationPage = () => {
                             type="button" label="Go to authorization"/>
                 </Link>
 
+
             </div>
 
 
 
             <Toast ref={toast} />
+
 
         </div>
     );

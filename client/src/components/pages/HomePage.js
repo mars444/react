@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import {Button} from "primereact/button";
+import CustomInputWithValidation from "../inputs/CustomInputWithValidation";
 
 const HomePage = () => {
     return (
@@ -11,6 +12,8 @@ const HomePage = () => {
                 <Button className=''
                         type="button" label="Log out"/>
             </Link>
+
+
             </div>
     );
 };

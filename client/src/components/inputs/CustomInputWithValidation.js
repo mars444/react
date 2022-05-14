@@ -12,19 +12,18 @@ const CustomInputWithValidation = (props) => {
         validate: props.validate
     });
 
+
     const inputProps = {
         ...props,
         error: touched && error && true,
-        className: error ? 'p-invalid' : '',
         ...input
     };
 
     return (
 
         <div className="field">
-            <label htmlFor="username2" className="block">Username</label>
-            <InputText {...inputProps} />
-            <small id="username2-help" className="p-error block">{touched && (error || submitError) ? error : ""}</small>
+            <InputText {...inputProps} validateOnly={null} className = {touched && (error || submitError) ? 'p-invalid' : ''} />
+            <small className="p-error block">{touched && (error || submitError) ? error : ""}</small>
         </div>
     );
 }

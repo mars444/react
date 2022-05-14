@@ -12,26 +12,21 @@ import {
 import createDecorator from 'final-form-calculate'
 
 
-import {InputText} from "primereact/inputtext";
+
 import {Button} from "primereact/button";
 import GoHomeBtn from "../buttons/GoHomeBtn";
-import Tags from "../Tags";
-import { AutoComplete } from 'primereact/autocomplete';
-import { Calendar } from 'primereact/calendar';
+
 import { Toast } from 'primereact/toast';
-import {postData} from "../../functions/postSend";
+import validator from "validator/es";
 
 
-import {Form, Field} from "react-final-form"
+
 import {HTTPRequest} from "../../functions/HTTPRequest";
 
 import {calculationAge} from "../../functions/calculatorAge";
 
-
-import {useDispatch, useSelector} from "react-redux";
-
-import {regAction} from "../../../store/reducers/regReducer";
 import CustomInputWithValidation from "../inputs/CustomInputWithValidation";
+import CustomForm from "../inputs/CustomForm";
 
 
 const calculator = createDecorator(
@@ -129,201 +124,39 @@ const RegistrationPage = () => {
                     Registration
                 </div>
 
-                <Form
+                <CustomForm
+                    onSubmit={printRegForm}>
+                    {props => (
+                        <div>
 
-                    decorators={[calculator]}
+                                <CustomInputWithValidation
+                                    name="username"
+                                    placeholder="Username"
+                                    validate={v =>
+                                        !validator.isEmail(v || "") && "Please Enter a Valid Email!"
+                                    }
+                                />
 
-                    validate={values => {
-                        const errors = {}
-                        if (!values.login) {
-                            errors.login = 'пустой логин'
-                        }
-                        return errors
-                    }}
+                            <CustomInputWithValidation
+                                name="email"
+                                placeholder="email"
+                                validate={v =>
+                                    !validator.isNumeric(v || "") && "Please Enter a Valid number!"
+                                }
+                            />
 
-                    onSubmit={printRegForm}
+                                <CustomInputWithValidation name="password" type="password" placeholder="Password" />
 
+                            <Button loading={btnStatus}  name='loginPressed' className='mt-3 mb-4'
+                                    type="submit" label="Зарегистрироваться"  icon="pi pi-chevron-right"  iconPos="right"/>
 
-                    render={({ handleSubmit, form, submitting, pristine, values, errors }) => (
-                        <form className = 'pt-4 flex flex-column align-items-center'
-                              onSubmit={handleSubmit}
-                        >
-                            {/*{console.log(values)}*/}
-                            {/*{console.log(dispatch(regAction(form.getState().values)))}*/}
-
-                            {/*<div>*/}
-
-                            {/*    <Field*/}
-                            {/*        name="login"*/}
-                            {/*        */}
-                            {/*        placeholder = 'asdasd'*/}
-                            {/*    >*/}
-
-                            {/*    </Field>*/}
-                            {/*</div>*/}
-                            <div>
-                                <Field  name="password">
-                                    {props => (
-                                        <div>
-                                            <InputText
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                className='border-round m-2'
-                                                placeholder='Password'
-                                                type="password"
-                                                onChange={props.input.onChange}
-                                            />
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
-                            <div>
-                                <Field name="repeatPassword">
-                                    {props => (
-                                        <div>
-                                            <InputText
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                className='border-round m-2'
-                                                placeholder='repeat password'
-                                                type="password"
-                                                onChange={props.input.onChange}
-                                            />
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
-
-                            <div>
-                                <Field name="mail">
-                                    {props => (
-                                        <div>
-                                            <InputText
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                className='border-round m-2'
-                                                placeholder='email'
-                                                type="text"
-                                                onChange={props.input.onChange}
-                                            />
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
-
-                            <div>
-                                <Field name="name">
-                                    {props => (
-                                        <div>
-                                            <InputText
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                className='border-round m-2'
-                                                placeholder='name'
-                                                type="text"
-                                                onChange={props.input.onChange}
-                                            />
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
-
-                            <div>
-                                <Field name="surname">
-                                    {props => (
-                                        <div>
-                                            <InputText
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                className='border-round m-2'
-                                                placeholder='surname'
-                                                type="text"
-                                                onChange={props.input.onChange}
-                                            />
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
-
-                            <div>
-                                <Field name="birthday">
-                                    {props => (
-                                        <div>
-                                            <Calendar
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                readOnlyInput
-                                                placeholder='birthday'
-                                                className='border-round m-2'
-                                                onChange={props.input.onChange}
-                                            >
-                                            </Calendar>
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
-
-                            <div>
-                                <Field name="age">
-                                    {props => (
-                                        <div>
-                                            <InputText mask="99"
-                                                       name={props.input.name}
-                                                       value={props.input.value}
-                                                       onChange={props.input.onChange}
-                                                       className='border-round m-2'
-                                                       placeholder='your age'/>
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
-
-                            <div>
-                                <Field name="gender">
-                                    {props => (
-                                        <div>
-                                            <AutoComplete
-                                                placeholder='Пол'
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                suggestions={itemsGender}
-                                                completeMethod={searchItems}
-                                                field="label"
-                                                dropdown
-                                                className='select'
-                                                onChange={props.input.onChange}
-                                            />
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
-                            <div>
-                                <Field name="tags">
-                                    {props => (
-                                        <div>
-                                            <Tags
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                updateForm = {props.input.onChange}
-                                            />
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
-
-
-                            <div className="buttons">
-
-                                <Button loading={btnStatus}  name='loginPressed' className='mt-3 mb-4'
-                                        type="submit" label="Зарегистрироваться"  icon="pi pi-chevron-right" disabled={submitting || pristine} iconPos="right"/>
-                            </div>
-
-                            {/*<pre>{JSON.stringify(values, 2, 4)}</pre>*/}
-
-                            <CustomInputWithValidation/>
-                        </form>
+                        </div>
                     )}
-                />
+
+
+                </CustomForm>
+
+
 
 
                 <Link to="/authorization">

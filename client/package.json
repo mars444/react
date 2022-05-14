@@ -46,6 +46,7 @@
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "switch": "^0.0.0",
+    "validator": "^13.7.0",
     "very-simple-fetch": "^0.2.0",
     "webpack-dev-server": "^4.8.1"
   }

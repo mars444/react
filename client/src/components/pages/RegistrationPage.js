@@ -149,7 +149,7 @@ const RegistrationPage = () => {
                         <form className = 'pt-4 flex flex-column align-items-center'
                               onSubmit={handleSubmit}
                         >
-                            {/*{console.log(values)}*/}
+                            {console.log(values)}
                             {/*{console.log(dispatch(regAction(form.getState().values)))}*/}
 
                             {/*<div>*/}
@@ -164,12 +164,20 @@ const RegistrationPage = () => {
                             {/*</div>*/}
 
                                             <CustomInputWithValidation
-                                            placeholder = '213434'
+                                            placeholder = 'login'
                                             validate={v =>
                                                 !validator.isEmail(v || "") && "Please Enter a Valid Email!"
                                             }
                                             name = "login"
                                             />
+
+                            <CustomInputWithValidation
+                                placeholder = 'password'
+                                validate={v =>
+                                    (v && v.length > 5 || "") && "Please Enter a Valid number!"
+                                }
+                                name = "password"
+                            />
 
 
                             <div>

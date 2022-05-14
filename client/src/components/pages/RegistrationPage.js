@@ -162,7 +162,6 @@ const RegistrationPage = () => {
 
                             {/*    </Field>*/}
                             {/*</div>*/}
-                            <div>
 
                                             <CustomInputWithValidation
                                             placeholder = '213434'
@@ -172,7 +171,7 @@ const RegistrationPage = () => {
                                             name = "login"
                                             />
 
-                            </div>
+
                             <div>
                                 <Field name="repeatPassword">
                                     {props => (

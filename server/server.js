@@ -185,14 +185,27 @@ app.post('/registration', (req, res) => {
             return res.status(200).json({1:['пустое тело', '123243549996']})
         }
 
-        const nick = req.body.login
+        const errors = {}
 
+        const inputsNames = ['login', 'password', 'repeatPassword', 'name', 'surname', 'birthday', 'age','gender', 'tags']
 
-        res.status(200).json({
-            nickName: nick,
-            password: 'sucssses111111 registarttion',
+        inputsNames.forEach((itemInput) => {
 
+            console.log(itemInput)
+            if(!req.body[itemInput]) {
+                errors[itemInput] = `Пустой ${itemInput}`
+            }
         })
+
+
+    if(Object.keys(errors)) {
+        res.status(400).json(errors)
+        return
+    }
+
+
+
+        res.status(200).json(errors)
 
 })
 

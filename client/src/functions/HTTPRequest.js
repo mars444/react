@@ -15,6 +15,7 @@ export const HTTPRequest = async (method, urlEnd, data, timeOut) => {
             mode: 'cors', // no-cors, *cors, same-origin
         });
 
+
         return response.json(); // parses JSON response into native JavaScript objects
 
 
@@ -30,7 +31,10 @@ export const HTTPRequest = async (method, urlEnd, data, timeOut) => {
 
         });
 
-        return response.json(); // parses JSON response into native JavaScript objects
+
+            return response.json(); // parses JSON response into native JavaScript objects
+
+
     }
 
 

@@ -15,26 +15,20 @@ const CustomInputWithValidation = (props) => {
 
     const validateNullValue = value => (value ? undefined : `Пустой ${props.name}`)
 
+    console.log('[rooooopd', props)
 
     return (
 
-        <div>
-            <Field {...inputProps} validate={validateNullValue}>
-                {props => (
                         <div className="field">
-                            {/*{console.log('props.input.name' , props.input.name)}*/}
+                            {console.log('props.inp' , props)}
                                 <InputText
-                                    name={props.input.name}
+                                    name={props.name}
                                     placeholder={props.placeholder}
-                                    type={props.input.type}
+                                    type={props.type}
                                     onChange={props.input.onChange}
                                 />
-                            {props.meta.touched && props.meta.error && <small className="p-error block">{props.meta.error}</small>}
+                            {props.meta.touched && (props.meta.error || props.meta.submitError) && <small className="p-error block">{props.meta.error || props.meta.submitError}</small>}
                         </div>
-
-                )}
-            </Field>
-        </div>
 
 
 

@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import {request} from "../../functions/requestFrom"
+import {delay, request} from "../../functions/requestFrom"
 import { useState, useRef } from 'react'
 
 import {
@@ -20,7 +20,9 @@ import { AutoComplete } from 'primereact/autocomplete';
 import { Calendar } from 'primereact/calendar';
 import { Toast } from 'primereact/toast';
 import {postData} from "../../functions/postSend";
-import validator from "validator";
+
+import validator from 'validator';
+
 
 
 import {Form, Field} from "react-final-form"
@@ -51,23 +53,21 @@ const RegistrationPage = () => {
     // const dispatch = useDispatch()
     // const regState = useSelector( state => state.regStateRoot.regState)
 
-
     const printRegForm = async (formData) => {
 
         console.log('formData  ', formData)
         setBtnStatus(true)
 
         try {
-            await HTTPRequest('POST', '/registration', formData, 1200 )
-                .then((data) => {
-                    console.log( 'req_data  ', data)
-                });
+            const data  = await HTTPRequest('POST', '/registration', formData, 1200 )
+            console.log('data',data)
 
             showSuccess()
         }
 
         catch(err){
             console.error(err)
+            return err
         }
 
         finally {
@@ -76,8 +76,6 @@ const RegistrationPage = () => {
 
 
     };
-
-
 
     const [btnStatus, setBtnStatus] = useState(false)
 
@@ -114,8 +112,14 @@ const RegistrationPage = () => {
     }
     const toast = useRef(null);
 
-    const validateNullValue = value => (value ? undefined : `Пустой ${value}`)
 
+
+
+    const validateNullValueServer = (values) => {
+        if (values.login) {
+            return { login: 'Usernameewqfrqwf!' }
+        }
+    }
 
 
 
@@ -139,13 +143,16 @@ const RegistrationPage = () => {
                     decorators={[calculator]}
 
                     validate={values => {
-                        const error = {}
+                        const errors = {}
 
                         if (values.password !== values.repeatPassword) {
-                            error.repeatPassword = 'пароли не совпадают'
+                            errors.repeatPassword = 'пароли не совпадают'
                         }
 
-                        return error
+                        // if(!validator.isMail(values.mail)) {
+                        //     error.mail = 'Введите посту в формате @@@'
+                        // }
+                        return errors
                     }}
 
                     onSubmit={printRegForm}
@@ -158,31 +165,31 @@ const RegistrationPage = () => {
                         >
 
 
-                            <CustomInputWithValidation
+                            <Field component={CustomInputWithValidation}
                                 name = "login"
                                 placeholder = 'login'
                                 type = 'text'
                             />
 
-                            <CustomInputWithValidation
+                           <Field component={CustomInputWithValidation}
                                 name = "password"
                                 placeholder = 'password'
                                 type = 'password'
                             />
 
-                            <CustomInputWithValidation
+                            <Field component={CustomInputWithValidation}
                                 name = "repeatPassword"
                                 placeholder = 'repeatPassword'
                                 type = 'password'
                             />
 
-                            <CustomInputWithValidation
+                            <Field component={CustomInputWithValidation}
                                 name = "mail"
                                 placeholder = 'mail'
                                 type = 'mail'
                             />
 
-                            <CustomInputWithValidation
+                            <Field component={CustomInputWithValidation}
                                 name = "name"
                                 placeholder = 'name'
                                 type = 'text'
@@ -190,7 +197,7 @@ const RegistrationPage = () => {
 
                             />
 
-                            <CustomInputWithValidation
+                            <Field component={CustomInputWithValidation}
                                 name = "surname"
                                 placeholder = 'surname'
                                 type = 'text'
@@ -217,7 +224,7 @@ const RegistrationPage = () => {
                             </div>
 
 
-                            <CustomInputWithValidation
+                            <Field component={CustomInputWithValidation}
                                 name = "age"
                                 placeholder = 'age'
                                 type = 'text'

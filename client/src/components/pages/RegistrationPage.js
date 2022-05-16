@@ -33,6 +33,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {regAction} from "../../../store/reducers/regReducer";
 import CustomInputWithValidation from "../inputs/CustomInputWithValidation";
+import {validate} from "@babel/core/lib/config/validation/options";
 
 
 const calculator = createDecorator(
@@ -146,107 +147,67 @@ const RegistrationPage = () => {
 
 
                     render={({ handleSubmit, form, submitting, pristine, values, errors }) => (
+
                         <form className = 'pt-4 flex flex-column align-items-center'
                               onSubmit={handleSubmit}
                         >
-                            {console.log(values)}
-                            {/*{console.log(dispatch(regAction(form.getState().values)))}*/}
 
-                            {/*<div>*/}
 
-                            {/*    <Field*/}
-                            {/*        name="login"*/}
-                            {/*        */}
-                            {/*        placeholder = 'asdasd'*/}
-                            {/*    >*/}
-
-                            {/*    </Field>*/}
-                            {/*</div>*/}
-
-                                            <CustomInputWithValidation
-                                            placeholder = 'login'
-                                            validate={v =>
-                                                !validator.isEmail(v || "") && "Please Enter a Valid Email!"
-                                            }
-                                            name = "login"
-                                            />
-
-                            <CustomInputWithValidation
-                                placeholder = 'password'
-                                validate={v =>
-                                    (v && v.length > 5 || "") && "Please Enter a Valid number!"
-                                }
-                                name = "password"
+                            <CustomInputWithValidation name = "login"
+                                                       placeholder = 'login'
+                                                       type = 'text'
+                                                       validationErrorMessage =  "Please Enter a Valid login!"
+                                                       error = {errors.login}
                             />
 
+                            <CustomInputWithValidation name = "password"
+                                                       placeholder = 'password'
+                                                       type = 'password'
+                                                       validationErrorMessage =  "Please Enter a Valid password!"
 
-                            <div>
-                                <Field name="repeatPassword">
-                                    {props => (
-                                        <div>
-                                            <InputText
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                className='border-round m-2'
-                                                placeholder='repeat password'
-                                                type="password"
-                                                onChange={props.input.onChange}
-                                            />
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
 
-                            <div>
-                                <Field name="mail">
-                                    {props => (
-                                        <div>
-                                            <InputText
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                className='border-round m-2'
-                                                placeholder='email'
-                                                type="text"
-                                                onChange={props.input.onChange}
-                                            />
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
+                            />
 
-                            <div>
-                                <Field name="name">
-                                    {props => (
-                                        <div>
-                                            <InputText
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                className='border-round m-2'
-                                                placeholder='name'
-                                                type="text"
-                                                onChange={props.input.onChange}
-                                            />
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
+                            <CustomInputWithValidation name = "repeatPassword"
+                                                       placeholder = 'repeatPassword'
+                                                       type = 'password'
+                                                       validationErrorMessage =  "Please Enter a Valid password!"
 
-                            <div>
-                                <Field name="surname">
-                                    {props => (
-                                        <div>
-                                            <InputText
-                                                name={props.input.name}
-                                                value={props.input.value}
-                                                className='border-round m-2'
-                                                placeholder='surname'
-                                                type="text"
-                                                onChange={props.input.onChange}
-                                            />
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
+
+                            />
+
+                            <CustomInputWithValidation name = "name"
+                                                       placeholder = 'name'
+                                                       type = 'text'
+                                                       validationErrorMessage =  "Please Enter a Valid password!"
+
+
+                            />
+
+                            <CustomInputWithValidation name = "surname"
+                                                       placeholder = 'surname'
+                                                       type = 'text'
+                                                       validationErrorMessage =  "Please Enter a Valid password!"
+
+
+                            />
+
+                            <CustomInputWithValidation name = "surname"
+                                                       placeholder = 'surname'
+                                                       type = 'text'
+                                                       validationErrorMessage =  "Please Enter a Valid password!"
+
+
+                            />
+
+                            <CustomInputWithValidation name = "surname"
+                                                       placeholder = 'surname'
+                                                       type = 'text'
+                                                       validationErrorMessage =  "Please Enter a Valid password!"
+
+
+                            />
+
 
                             <div>
                                 <Field name="birthday">
@@ -266,20 +227,14 @@ const RegistrationPage = () => {
                                 </Field>
                             </div>
 
-                            <div>
-                                <Field name="age">
-                                    {props => (
-                                        <div>
-                                            <InputText mask="99"
-                                                       name={props.input.name}
-                                                       value={props.input.value}
-                                                       onChange={props.input.onChange}
-                                                       className='border-round m-2'
-                                                       placeholder='your age'/>
-                                        </div>
-                                    )}
-                                </Field>
-                            </div>
+
+                            <CustomInputWithValidation name = "age"
+                                                       placeholder = 'age'
+                                                       type = 'text'
+                                                       validationErrorMessage =  "Please Enter a Valid password!"
+
+
+                            />
 
                             <div>
                                 <Field name="gender">
@@ -300,6 +255,7 @@ const RegistrationPage = () => {
                                     )}
                                 </Field>
                             </div>
+
                             <div>
                                 <Field name="tags">
                                     {props => (
@@ -321,7 +277,7 @@ const RegistrationPage = () => {
                                         type="submit" label="Зарегистрироваться"  icon="pi pi-chevron-right" disabled={submitting || pristine} iconPos="right"/>
                             </div>
 
-                            {/*<pre>{JSON.stringify(values, 2, 4)}</pre>*/}
+                            <pre>{JSON.stringify(values, 2, 4)}</pre>
 
                         </form>
                     )}

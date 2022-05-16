@@ -71,7 +71,7 @@ const Tags = ({value, updateForm, name}) => {
                                    placeholder="Vote"
                                    name={index}
                                    value={item}/>
-                        <Button icon='pi pi-minus' onClick={() => {deleteTag(index)}}  />
+                        <Button type='reset' icon='pi pi-minus' onClick={() => {deleteTag(index)}}  />
                     </div>
                 ))
             }

@@ -7,36 +7,34 @@ import validator from "validator";
 const CustomInputWithValidation = (props) => {
 
 
-        console.log('props.validate', props.validate)
-
-    const {
-        input,
-        meta: { error, touched, submitError }
-    } = useField(props.name, {
-        initialValue: props.initialValue,
-        validate: props.validate
-    });
-
 
     const inputProps = {
         ...props,
-        error: touched && error && true,
-        ...input
+        Classname: `border-round m-2 ${props.className ? props.className : ''}`
     };
+
 
     return (
 
-        <Field  name="login">
-            {props => (
-                <div>
-                    <div className="field">
-                        <InputText {...inputProps}  className = {touched && (error || submitError) ? 'p-invalid' : ''} />
-                        <small className="p-error block">{touched && (error || submitError) ? error : ""}</small>
-                    </div>
+        <div>
+            <Field {...inputProps}>
+                {props => (
+                        <div className="field">
+                            {/*{console.log('props.input.name' , props.input.name)}*/}
+                                <InputText
+                                    name={props.input.name}
+                                    placeholder={props.placeholder}
+                                    type={props.input.type}
+                                    onChange={props.input.onChange}
+                                />
+                            <small className="p-error block">{props.error ? props.validationErrorMessage : ""}</small>
+                        </div>
 
-                </div>
-            )}
-        </Field>
+                )}
+            </Field>
+        </div>
+
+
 
 
     );

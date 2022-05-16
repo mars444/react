@@ -133,12 +133,29 @@ const RegistrationPage = () => {
 
                 <Form
 
+                    subscription={{ submitting: true, pristine: true }}
+
                     decorators={[calculator]}
 
                     validate={values => {
                         const error = {}
                         if (!values.login) {
                             error.login = 'пустой логин'
+                        }
+                        if (!values.password) {
+                            error.password = 'пустой пароль'
+                        }
+                        if (!values.repeatPassword) {
+                            error.repeatPassword = 'повторите пароль'
+                        }
+                        if (values.password !== values.repeatPassword) {
+                            error.repeatPassword = 'пароли не совпадают'
+                        }
+                        if (!values.name) {
+                            error.name = 'пустое имя'
+                        }
+                        if (!values.surname) {
+                            error.surname = 'пустое фамилимя'
                         }
                         return error
                     }}
@@ -153,58 +170,55 @@ const RegistrationPage = () => {
                         >
 
 
-                            <CustomInputWithValidation name = "login"
-                                                       placeholder = 'login'
-                                                       type = 'text'
-                                                       validationErrorMessage =  "Please Enter a Valid login!"
-                                                       error = {errors.login}
+                            <CustomInputWithValidation
+                                name = "login"
+                                placeholder = 'login'
+                                type = 'text'
                             />
 
-                            <CustomInputWithValidation name = "password"
-                                                       placeholder = 'password'
-                                                       type = 'password'
-                                                       validationErrorMessage =  "Please Enter a Valid password!"
-
-
-                            />
-
-                            <CustomInputWithValidation name = "repeatPassword"
-                                                       placeholder = 'repeatPassword'
-                                                       type = 'password'
-                                                       validationErrorMessage =  "Please Enter a Valid password!"
+                            <CustomInputWithValidation
+                                name = "password"
+                                placeholder = 'password'
+                                type = 'password'
 
 
                             />
 
-                            <CustomInputWithValidation name = "name"
-                                                       placeholder = 'name'
-                                                       type = 'text'
-                                                       validationErrorMessage =  "Please Enter a Valid password!"
+                            <CustomInputWithValidation
+                                name = "repeatPassword"
+                                placeholder = 'repeatPassword'
+                                type = 'password'
 
 
                             />
 
-                            <CustomInputWithValidation name = "surname"
-                                                       placeholder = 'surname'
-                                                       type = 'text'
-                                                       validationErrorMessage =  "Please Enter a Valid password!"
+                            <CustomInputWithValidation
+                                name = "name"
+                                placeholder = 'name'
 
 
                             />
 
-                            <CustomInputWithValidation name = "surname"
-                                                       placeholder = 'surname'
-                                                       type = 'text'
-                                                       validationErrorMessage =  "Please Enter a Valid password!"
+                            <CustomInputWithValidation
+                                name = "surname"
+                                placeholder = 'surname'
+                                type = 'text'
 
 
                             />
 
-                            <CustomInputWithValidation name = "surname"
-                                                       placeholder = 'surname'
-                                                       type = 'text'
-                                                       validationErrorMessage =  "Please Enter a Valid password!"
+                            <CustomInputWithValidation
+                                name = "surname"
+                                placeholder = 'surname'
+                                type = 'text'
 
+
+                            />
+
+                            <CustomInputWithValidation
+                                name = "surname"
+                                placeholder = 'surname'
+                                type = 'text'
 
                             />
 
@@ -228,12 +242,10 @@ const RegistrationPage = () => {
                             </div>
 
 
-                            <CustomInputWithValidation name = "age"
-                                                       placeholder = 'age'
-                                                       type = 'text'
-                                                       validationErrorMessage =  "Please Enter a Valid password!"
-
-
+                            <CustomInputWithValidation
+                                name = "age"
+                                placeholder = 'age'
+                                type = 'text'
                             />
 
                             <div>

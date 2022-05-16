@@ -27,7 +27,7 @@ const CustomInputWithValidation = (props) => {
                                     type={props.input.type}
                                     onChange={props.input.onChange}
                                 />
-                            <small className="p-error block">{props.error ? props.validationErrorMessage : ""}</small>
+                            {props.meta.touched && props.meta.error && <small className="p-error block">{props.meta.error}</small>}
                         </div>
 
                 )}

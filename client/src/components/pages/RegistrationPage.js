@@ -33,7 +33,6 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {regAction} from "../../../store/reducers/regReducer";
 import CustomInputWithValidation from "../inputs/CustomInputWithValidation";
-import {validate} from "@babel/core/lib/config/validation/options";
 
 
 const calculator = createDecorator(
@@ -115,6 +114,8 @@ const RegistrationPage = () => {
     }
     const toast = useRef(null);
 
+    const validateNullValue = value => (value ? undefined : `Пустой ${value}`)
+
 
 
 
@@ -139,24 +140,11 @@ const RegistrationPage = () => {
 
                     validate={values => {
                         const error = {}
-                        if (!values.login) {
-                            error.login = 'пустой логин'
-                        }
-                        if (!values.password) {
-                            error.password = 'пустой пароль'
-                        }
-                        if (!values.repeatPassword) {
-                            error.repeatPassword = 'повторите пароль'
-                        }
+
                         if (values.password !== values.repeatPassword) {
                             error.repeatPassword = 'пароли не совпадают'
                         }
-                        if (!values.name) {
-                            error.name = 'пустое имя'
-                        }
-                        if (!values.surname) {
-                            error.surname = 'пустое фамилимя'
-                        }
+
                         return error
                     }}
 
@@ -180,28 +168,23 @@ const RegistrationPage = () => {
                                 name = "password"
                                 placeholder = 'password'
                                 type = 'password'
-
-
                             />
 
                             <CustomInputWithValidation
                                 name = "repeatPassword"
                                 placeholder = 'repeatPassword'
                                 type = 'password'
+                            />
 
-
+                            <CustomInputWithValidation
+                                name = "mail"
+                                placeholder = 'mail'
+                                type = 'mail'
                             />
 
                             <CustomInputWithValidation
                                 name = "name"
                                 placeholder = 'name'
-
-
-                            />
-
-                            <CustomInputWithValidation
-                                name = "surname"
-                                placeholder = 'surname'
                                 type = 'text'
 
 
@@ -211,16 +194,8 @@ const RegistrationPage = () => {
                                 name = "surname"
                                 placeholder = 'surname'
                                 type = 'text'
-
-
                             />
 
-                            <CustomInputWithValidation
-                                name = "surname"
-                                placeholder = 'surname'
-                                type = 'text'
-
-                            />
 
 
                             <div>

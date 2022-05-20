@@ -153,7 +153,7 @@ app.use(bodyParser.json())
 let cors = require("cors");
 app.use(cors());
 
-const PORT = 3333
+const PORT = 3003
 
 app.listen(PORT, () => {
     console.log(`server started....  PORT: ${PORT}`)
@@ -187,7 +187,7 @@ app.post('/registration', (req, res) => {
 
         const errors = {}
 
-        const inputsNames = ['login', 'password', 'repeatPassword', 'name', 'surname', 'birthday', 'age','gender', 'tags']
+        const inputsNames = ['login', 'password', 'repeatPassword', 'name', 'surname', 'birthday', 'mail', 'age','gender', 'tags']
 
         inputsNames.forEach((itemInput) => {
 
@@ -196,16 +196,15 @@ app.post('/registration', (req, res) => {
                 errors[itemInput] = `Пустой ${itemInput}`
             }
         })
+    console.log('errors obj' ,Object.keys(errors))
 
-
-    if(Object.keys(errors)) {
+    if(Object.keys(errors).length) {
         res.status(400).json(errors)
         return
     }
 
 
-
-        res.status(200).json(errors)
+        res.status(200).json({'registration': 'succses'})
 
 })
 

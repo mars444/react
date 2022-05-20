@@ -22,6 +22,7 @@ const CustomInputWithValidation = (props) => {
                             {/*{console.log('props.inp' , props)}*/}
                                 <InputText
                                     name={props.name}
+                                    value={props.input.value}
                                     placeholder={props.placeholder}
                                     type={props.type}
                                     onChange={props.input.onChange}

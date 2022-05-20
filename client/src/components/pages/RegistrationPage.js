@@ -45,7 +45,6 @@ const calculator = createDecorator(
                 calculationAge(birthdayValueDate)
         }
     },
-
 )
 
 const RegistrationPage = () => {
@@ -66,6 +65,7 @@ const RegistrationPage = () => {
 
         catch(err){
             console.error('erroror', err)
+            showError()
             return err
         }
 
@@ -137,7 +137,7 @@ const RegistrationPage = () => {
 
                 <Form
 
-                    subscription={{ submitting: true, pristine: true }}
+                    // subscription={{ submitting: true, pristine: true }}
 
                     decorators={[calculator]}
 

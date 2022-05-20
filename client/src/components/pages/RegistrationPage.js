@@ -60,13 +60,12 @@ const RegistrationPage = () => {
 
         try {
             const data  = await HTTPRequest('POST', '/registration', formData, 1200 )
-            console.log('data',data)
-
+            console.log('dataqqqqqqq',data)
             showSuccess()
         }
 
         catch(err){
-            console.error(err)
+            console.error('erroror', err)
             return err
         }
 
@@ -142,18 +141,18 @@ const RegistrationPage = () => {
 
                     decorators={[calculator]}
 
-                    validate={values => {
-                        const errors = {}
-
-                        if (values.password !== values.repeatPassword) {
-                            errors.repeatPassword = 'пароли не совпадают'
-                        }
-
-                        // if(!validator.isMail(values.mail)) {
-                        //     error.mail = 'Введите посту в формате @@@'
-                        // }
-                        return errors
-                    }}
+                    // validate={values => {
+                    //     const errors = {}
+                    //
+                    //     if (values.password !== values.repeatPassword) {
+                    //         errors.repeatPassword = 'пароли не совпадают'
+                    //     }
+                    //
+                    //     // if(!validator.isMail(values.mail)) {
+                    //     //     error.mail = 'Введите посту в формате @@@'
+                    //     // }
+                    //     return errors
+                    // }}
 
                     onSubmit={printRegForm}
 

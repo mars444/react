@@ -15,12 +15,11 @@ const CustomInputWithValidation = (props) => {
 
     const validateNullValue = value => (value ? undefined : `Пустой ${props.name}`)
 
-    console.log('[rooooopd', props)
 
     return (
 
                         <div className="field">
-                            {console.log('props.inp' , props)}
+                            {/*{console.log('props.inp' , props)}*/}
                                 <InputText
                                     name={props.name}
                                     placeholder={props.placeholder}

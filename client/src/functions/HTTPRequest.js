@@ -1,6 +1,6 @@
 import {delay} from "./requestFrom";
 
-const PORT = 3000
+const PORT = 3333
 const serverURL = `http://localhost:${PORT}`
 
 export const HTTPRequest = async (method, urlEnd, data, timeOut) => {
@@ -31,8 +31,12 @@ export const HTTPRequest = async (method, urlEnd, data, timeOut) => {
 
         });
 
+        if (response.status === 400) {
+            throw await response.json()
+        }
 
-            return response.json(); // parses JSON response into native JavaScript objects
+        return response.json(); // parses JSON response into native JavaScript objects
+
 
 
     }

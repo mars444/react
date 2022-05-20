@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e05681b0-ba90-4b6d-bacd-5b597ff26558" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
     </list>
@@ -30,7 +31,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/petr/WebstormProjects/azimuts",
+    "last_opened_file_path": "/home/petr/REACT_GIT/react",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -93,7 +94,13 @@
       <workItem from="1652436240150" duration="21302000" />
       <workItem from="1652528868735" duration="3971000" />
       <workItem from="1652538416915" duration="5944000" />
-      <workItem from="1652607896713" duration="17598000" />
+      <workItem from="1652607896713" duration="19258000" />
+      <workItem from="1652865240514" duration="4029000" />
+      <workItem from="1652879753782" duration="86000" />
+      <workItem from="1652879864183" duration="1479000" />
+      <workItem from="1652977734515" duration="33000" />
+      <workItem from="1653038235883" duration="2223000" />
+      <workItem from="1653042366342" duration="335000" />
     </task>
     <servers />
   </component>
@@ -110,5 +117,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$USER_HOME$/WebstormProjects/azimuts/azimut.js</url>
+          <line>2156</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -120,7 +120,7 @@ const RegistrationPage = () => {
         }
     }
 
-
+    const validateNullValue = value => (value ? undefined : `Пустой ${props.name}`)
 
     return (
         <div>
@@ -137,7 +137,7 @@ const RegistrationPage = () => {
 
                 <Form
 
-                    // subscription={{ submitting: true, pristine: true }}
+                    subscription={{ submitting: true, pristine: true }}
 
                     decorators={[calculator]}
 
@@ -168,6 +168,7 @@ const RegistrationPage = () => {
                                 name = "login"
                                 placeholder = 'login'
                                 type = 'text'
+                                   valid ate={validateNullValue}
                             />
 
                            <Field component={CustomInputWithValidation}
@@ -217,7 +218,9 @@ const RegistrationPage = () => {
                                                 onChange={props.input.onChange}
                                             >
                                             </Calendar>
+                                            {props.meta.touched && (props.meta.error || props.meta.submitError) && <small className="p-error block">{props.meta.error || props.meta.submitError}</small>}
                                         </div>
+
                                     )}
                                 </Field>
                             </div>

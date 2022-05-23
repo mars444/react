@@ -17,15 +17,15 @@ import {getDict} from "../../../../store/asyncActions/dictAction";
 
 
 const PageMarksWithPanel =  () => {
-
-
+    let { id } = useParams();
+    const key = `marka_id_${id}`
     const dispatch = useDispatch()
-    const markState = useSelector( state => state.markStateRoot.markState)
+    const markState = useSelector( state => state.markStateRoot.get('markState'))
 
     console.log('render MarkState', markState)
 
-    let { id } = useParams();
-    const key = `marka_id_${id}`
+
+
 
     console.log("Длинаqqqqqqqqqqqqqqqqqqq", markState.get(key))
 
@@ -65,7 +65,7 @@ const PageMarksWithPanel =  () => {
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>
                  <div className='pb-3'>Models: {id}</div>
-                 <DataTable loading={load} onRowClick={getModelDescription} title='Models' value={markState.get(key)}   showGridlines responsiveLayout="scroll">
+                 <DataTable loading={load} onRowClick={getModelDescription} title='Models' value={markState.get(key)?.toJS()}   showGridlines responsiveLayout="scroll">
                      <Column field="id"  header="ID"></Column>
 
                      <Column field="model"  header="Model"></Column>

@@ -1,4 +1,4 @@
-import {fromJS} from "immutable";
+import {fromJS, Map} from "immutable";
 
 
 // const defaultState = {
@@ -7,7 +7,7 @@ import {fromJS} from "immutable";
 // }
 
 const defaultState = fromJS({
-    markState: [],
+    markState: {},
     number: 66,
     lab_1: 1,
     lab_2: 2,
@@ -27,8 +27,19 @@ export const markReducer = (state = defaultState, action) => {
 
         case LOAD_MARK_STATE:
 
-            const newState = state
-            newState.markState = new Map(action.key, action.value)
+            console.log('qqqqqqqqqqqq',action.key, action.value)
+
+            // const newMap = Map([action.key, action.value])
+
+            const newState  = state.set('markState', fromJS({[action.key] : action.value}))
+
+            console.log('defaultState LIST', state.get('dictState'))
+            console.log('newState LIST', newState.get('dictState'))
+
+            console.log('NEWSTATE', newState)
+
+            return newState
+
 
         default: return state
     }

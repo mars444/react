@@ -27,24 +27,24 @@ const PageMarksWithPanel =  () => {
     let { id } = useParams();
     const key = `marka_id_${id}`
 
-    const [load, setLoad] = useState(true)
+    console.log("Длинаqqqqqqqqqqqqqqqqqqq", markState.get(key))
 
-    console.log('loasd', load)
+    const [load, setLoad] = useState(markState.get(key) ? !markState.get(key).length : true)
+
+        console.log('loasd', load)
 
 
 
     const location = useLocation();
     const history = useHistory();
 
+
     useEffect(() => {
 
-        const fetchData = async () => {
-            const data = await dispatch(getMarks(`/dict/${id}`, key))
-            setLoad(false)
-        }
-
-        fetchData()
-
+        dispatch(getMarks(`/dict/${id}`, key))
+            .then( () => {
+                setLoad(false)
+            })
 
     }, []);
 

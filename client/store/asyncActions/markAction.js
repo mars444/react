@@ -4,16 +4,14 @@ import {useSelector} from "react-redux";
 
 
 export const getMarks = (URL, key) => {
-    return (dispatch)  => {
+    return async (dispatch)  => {
 
 
         try {
-            HTTPRequest('Get', URL, null, 1500)
-                .then((data) => {
-
+            const data = await HTTPRequest('Get', URL, null, 1500)
                     console.log( 'req_data marks  ', data)
                     dispatch(loadMarkStateAction(data, key))
-                })
+
         }
 
         catch (e) {

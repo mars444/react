@@ -1,7 +1,7 @@
 
 
 const defaultState = {
-    regState: {tags:[1,2,3]}
+    regState:       {tags:[1,2,3]}
 }
 
 // Actions

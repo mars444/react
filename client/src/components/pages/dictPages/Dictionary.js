@@ -13,13 +13,17 @@ const Dictionary =  () => {
 
 
     const dispatch = useDispatch()
-    const dictState = useSelector( state => state.dictStateRoot.dictState)
+    const dictState = useSelector( state => state.dictStateRoot.get('dictState'))
 
+    const dictStateRoot = useSelector( state => state.dictStateRoot)
+    console.log('dictStateRoot', dictStateRoot)
     console.log('render dictState', dictState)
+
+
 
     let history = useHistory();
     const location = useLocation();
-    const [load, setLoad] = useState(!dictState.length)
+    const [load, setLoad] = useState(dictState ? !dictState.length: true)
 
 
     useEffect(() => {

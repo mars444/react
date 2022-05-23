@@ -29,7 +29,7 @@ const PageMarksWithPanel =  () => {
 
     console.log("Длинаqqqqqqqqqqqqqqqqqqq", markState.get(key))
 
-    const [load, setLoad] = useState(markState.get(key) ? !markState.get(key).length : true)
+    const [load, setLoad] = useState(markState.get(key) ? !markState.get(key) : true)
 
         console.log('loasd', load)
 

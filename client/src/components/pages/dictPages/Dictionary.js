@@ -19,12 +19,15 @@ const Dictionary =  () => {
 
     let history = useHistory();
     const location = useLocation();
-    const [load, setLoad] = useState(false)
+    const [load, setLoad] = useState(false || !dictState.length)
 
 
     useEffect(() => {
 
         dispatch(getDict())
+            .then( () => {
+                    setLoad(false)
+        })
 
     }, []);
 

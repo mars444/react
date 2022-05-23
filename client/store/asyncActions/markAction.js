@@ -8,7 +8,7 @@ export const getMarks = (URL, key) => {
 
 
         try {
-            HTTPRequest('Get', URL, null, 1000)
+            HTTPRequest('Get', URL, null, 1500)
                 .then((data) => {
 
                     console.log( 'req_data marks  ', data)
@@ -17,10 +17,12 @@ export const getMarks = (URL, key) => {
         }
 
         catch (e) {
+            console.log('lalala errror')
             console.error(e)
         }
 
         finally {
+
         }
 
     }

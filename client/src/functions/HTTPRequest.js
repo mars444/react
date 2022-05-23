@@ -38,7 +38,6 @@ export const HTTPRequest = async (method, urlEnd, data, timeOut) => {
         return response.json(); // parses JSON response into native JavaScript objects
 
 
-
     }
 
 

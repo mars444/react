@@ -12,6 +12,7 @@ import GoBackBtn from "../../buttons/GoBack";
 import SideBar from "../../SideBar";
 import {useDispatch, useSelector} from "react-redux";
 import {getMarks} from "../../../../store/asyncActions/markAction";
+import {getDict} from "../../../../store/asyncActions/dictAction";
 
 
 
@@ -22,10 +23,11 @@ const PageMarksWithPanel =  () => {
     const markState = useSelector( state => state.markStateRoot.markState)
 
     console.log('render MarkState', markState)
+
     let { id } = useParams();
     const key = `marka_id_${id}`
 
-    const [load, setLoad] = useState(false)
+    const [load, setLoad] = useState(true)
 
     console.log('loasd', load)
 
@@ -34,10 +36,15 @@ const PageMarksWithPanel =  () => {
     const location = useLocation();
     const history = useHistory();
 
-
     useEffect(() => {
 
-        dispatch(getMarks(location.pathname, key))
+        const fetchData = async () => {
+            const data = await dispatch(getMarks(`/dict/${id}`, key))
+            setLoad(false)
+        }
+
+        fetchData()
+
 
     }, []);
 

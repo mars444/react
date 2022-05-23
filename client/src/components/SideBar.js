@@ -3,13 +3,14 @@ import { Sidebar } from 'primereact/sidebar';
 import {useEffect, useState} from "react";
 import {getData} from "../functions/getSend";
 import {useHistory, useParams} from "react-router-dom";
+import {HTTPRequest} from "../functions/HTTPRequest";
 
 
 const SideBarContent = ({description}) => {
 
     const keysDesc = Object.keys(description.description)
 
-    console.log(keysDesc)
+    console.log('keysDesc', keysDesc)
 
     return (
         <div>
@@ -47,9 +48,9 @@ const SideBar = (sidebarHide) => {
 
     useEffect(() => {
 
-        const  URL = `http://localhost:3002/dict/${id}/${model}`
-        getData(URL,50)
+            HTTPRequest('Get', `/dict/${id}/${model}`, '', 0 )
             .then((data) => {
+                console.log('data SIDEBAR', data)
                 setSidebarContent(data)
             })
 

@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useMemo} from 'react';
 
 import {
     useParams, Route, Switch
@@ -22,7 +22,11 @@ const PageMarksWithPanel =  () => {
     const dispatch = useDispatch()
     const markState = useSelector( state => state.markStateRoot.get('markState'))
 
-    console.log('render MarkState', markState)
+    const result = useMemo(() => markState?.get(key), [markState, key]);
+
+    console.log('result', result)
+
+    console.log('render Mark    State', markState)
 
 
 
@@ -65,7 +69,7 @@ const PageMarksWithPanel =  () => {
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>
                  <div className='pb-3'>Models: {id}</div>
-                 <DataTable loading={load} onRowClick={getModelDescription} title='Models' value={markState.get(key)?.toJS()}   showGridlines responsiveLayout="scroll">
+                 <DataTable loading={load} onRowClick={getModelDescription} title='Models' value={result}   showGridlines responsiveLayout="scroll">
                      <Column field="id"  header="ID"></Column>
 
                      <Column field="model"  header="Model"></Column>

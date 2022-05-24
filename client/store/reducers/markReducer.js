@@ -27,16 +27,16 @@ export const markReducer = (state = defaultState, action) => {
 
         case LOAD_MARK_STATE:
 
-            console.log('qqqqqqqqqqqq',action.key, action.value)
+
 
             const newMap = state.get('markState').set(action.key, action.value)
 
             const newState  = state.set('markState', newMap)
 
-            console.log('old List',state.get('markState'))
-            console.log('newState LIST', newState.get('markState'))
-
-            console.log('NEWSTATE', newState)
+            // console.log('old List',state.get('markState'))
+            // console.log('newState LIST', newState.get('markState'))
+            //
+            // console.log('NEWSTATE', newState)
 
             return newState
 

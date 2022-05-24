@@ -19,7 +19,7 @@ export const regReducer = (state =  defaultState, action = {}) => {
             return a
 
         default:
-            console.log('state ', state)
+            // console.log('state ', state)
             return state
     }
 }

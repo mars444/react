@@ -22,20 +22,22 @@ const PageMarksWithPanel =  () => {
     const dispatch = useDispatch()
     const markState = useSelector( state => state.markStateRoot.get('markState'))
 
-    const result = useMemo(() => markState?.get(key), [markState, key]);
+    // const result = useMemo(() => markState?.get(key), [markState, key]);
 
-    console.log('result', result)
+    const result = markState?.get(key)
 
-    console.log('render Mark    State', markState)
+    // console.log('result', result)
+    //
+    // console.log('render Mark    State', markState)
+    //
 
 
 
-
-    console.log("Длинаqqqqqqqqqqqqqqqqqqq", markState.get(key))
+    // console.log("Длинаqqqqqqqqqqqqqqqqqqq", markState.get(key))
 
     const [load, setLoad] = useState(markState.get(key) ? !markState.get(key) : true)
 
-        console.log('loasd', load)
+        console.log('loasd1111111111111111111111111111111')
 
 
 

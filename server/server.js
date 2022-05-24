@@ -191,14 +191,14 @@ app.post('/auth', (req, res) => {
 
 app.post('/registration', (req, res) => {
 
-        console.log(req.body)
+        // console.log(req.body)
 
         if (!req.body) {
             return res.status(200).json({1:['пустое тело', '123243549996']})
         }
 
         const errors = {}
-
+        errors.status = `Введите все данные`
         const inputsNames = ['login', 'password', 'repeatPassword', 'name', 'surname', 'birthday', 'mail', 'age']
 
         inputsNames.forEach((itemInput) => {
@@ -209,17 +209,17 @@ app.post('/registration', (req, res) => {
         })
     console.log('errors obj' ,Object.keys(errors))
 
-    if (Object.keys(errors).length) {
+    if (Object.keys(errors).length > 1) {
         res.status(400).json(errors)
         return
     }
-    console.log('44123213', req.body.login)
-    console.log('44123213', users.hasOwnProperty(req.body.login))
 
     if (users.hasOwnProperty(req.body.login)) {
-        res.status(400).json({status: 'Такой пользователь существует'})
-        return
+        console.log("База данных ползователей НЕ ИЗМЕНИЛАСЬ")
+        return res.status(400).json({status: 'Такой    пользователь существует'})
+
     }
+    console.log('WTFFFFFFFFFFFFFFFFFFFFFFFFFf')
 
     users[req.body.login] = {
         login: req.body.login,
@@ -233,7 +233,7 @@ app.post('/registration', (req, res) => {
         tags:req.body.tags,
     }
 
-    console.log("База данных ползователей", users)
+    console.log("База данных ползователей ОБНОВЛЕНА", users)
 
 
 

@@ -15,6 +15,8 @@ import {Form, Field} from "react-final-form";
 
 
 import GoHomeBtn from "../buttons/GoHomeBtn";
+import {useRef} from "react";
+import {Toast} from "primereact/toast";
 
 const AuthorizationPage = () => {
 
@@ -27,17 +29,17 @@ const AuthorizationPage = () => {
         setBtnStatus(true)
 
         try {
-            await HTTPRequest('POST', '/auth', formData, 1200 )
-                .then((data) => {
-                    if (data.id) {
-                        console.log( 'req_data  ', data)
-                    }
-                });
+            const data = await HTTPRequest('POST', '/auth', formData, 1200 )
+            console.log( 'req_data  ', data)
+            showSuccess(data.status)
+
 
         }
 
         catch(err){
             console.error(err)
+            showError(err.status)
+            return err
         }
 
         finally {
@@ -46,8 +48,19 @@ const AuthorizationPage = () => {
 
 
     };
+
+    const showSuccess = (text) => {
+        toast.current.show({severity: 'success', summary: text});
+    }
+    const showError = (text) => {
+        toast.current.show({severity: 'error', summary: text});
+    }
+    const toast = useRef(null);
+
+
     return (
         <div className="flex flex-column align-items-center p-4 bg-white border-round 30px relative_block">
+            <Toast ref={toast} />
            <GoHomeBtn/>
             <div className="reg_title text-xl pb-2">
                 Authorization

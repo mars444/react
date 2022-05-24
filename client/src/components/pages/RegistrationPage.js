@@ -60,12 +60,12 @@ const RegistrationPage = () => {
         try {
             const data  = await HTTPRequest('POST', '/registration', formData, 1200 )
             console.log('dataqqqqqqq',data)
-            showSuccess()
+            showSuccess(data.status)
         }
 
         catch(err){
             console.error('erroror', err)
-            showError()
+            showError(err.status)
             return err
         }
 
@@ -103,11 +103,11 @@ const RegistrationPage = () => {
 
 
 
-    const showSuccess = () => {
-        toast.current.show({severity: 'success', summary: 'Success Registration'});
+    const showSuccess = (text) => {
+        toast.current.show({severity: 'success', summary: text});
     }
-    const showError = () => {
-        toast.current.show({severity: 'error', summary: 'Заполните все поля'});
+    const showError = (text) => {
+        toast.current.show({severity: 'error', summary: text});
     }
     const toast = useRef(null);
 

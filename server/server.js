@@ -143,7 +143,14 @@ const dict = [
 
 ]
 
-
+const users = {
+    mars1234: {
+        login: 'mars1234',
+        id: 444,
+        password: 'mars1234',
+        name: 'Piter'
+    }
+}
 
 
 
@@ -168,10 +175,15 @@ app.post('/auth', (req, res) => {
     }
 
     const login = req.body.login || 'pusto'
-    const pass = req.body.password || 'pusto'
+    const password = req.body.password || 'pusto'
     const id = uuidv4()
 
-    res.status(200).json({login: login, password: pass, toto: 'wefewfwf', id: id})
+
+    if (login === users[login]?.login && password === users[login]?.password) {
+        return res.status(200).json({status: 'Успешная авторизация', id: id})
+    }
+
+    res.status(400).json({status: 'Неверный логин или пароль', id: 666})
 })
 
 
@@ -181,30 +193,51 @@ app.post('/registration', (req, res) => {
 
         console.log(req.body)
 
-        if(!req.body) {
+        if (!req.body) {
             return res.status(200).json({1:['пустое тело', '123243549996']})
         }
 
         const errors = {}
 
-        const inputsNames = ['login', 'password', 'repeatPassword', 'name', 'surname', 'birthday', 'mail', 'age','gender', 'tags']
+        const inputsNames = ['login', 'password', 'repeatPassword', 'name', 'surname', 'birthday', 'mail', 'age']
 
         inputsNames.forEach((itemInput) => {
 
-            console.log(itemInput)
             if(!req.body[itemInput]) {
                 errors[itemInput] = `Пустой ${itemInput}`
             }
         })
     console.log('errors obj' ,Object.keys(errors))
 
-    if(Object.keys(errors).length) {
+    if (Object.keys(errors).length) {
         res.status(400).json(errors)
         return
     }
+    console.log('44123213', req.body.login)
+    console.log('44123213', users.hasOwnProperty(req.body.login))
+
+    if (users.hasOwnProperty(req.body.login)) {
+        res.status(400).json({status: 'Такой пользователь существует'})
+        return
+    }
+
+    users[req.body.login] = {
+        login: req.body.login,
+        password:req.body.password,
+        name:req.body.name,
+        surname:req.body.surname,
+        birthday:req.body.birthday,
+        mail:req.body.mail,
+        age:req.body.age,
+        gender:req.body.gender,
+        tags:req.body.tags,
+    }
+
+    console.log("База данных ползователей", users)
 
 
-        res.status(200).json({'registration': 'succses'})
+
+        res.status(200).json({status: 'Успешная регистрация'})
 
 })
 

@@ -24,6 +24,9 @@ import StartPage from "./components/pages/StartPage";
 import HomePage from "./components/pages/HomePage";
 import Dictionary from "./components/pages/dictPages/Dictionary";
 import PageMarksWithPanel from "./components/pages/dictPages/PageMarksWithPanel";
+import TestHook_1 from "./components/pages/TestHook_1";
+import TestHook_2 from "./components/pages/TestHook_2";
+import TestHook_3 from "./components/pages/TestHook_3";
 
 
 
@@ -56,6 +59,18 @@ function App() {
         {
             path: "/dict/:id",
             Component: PageMarksWithPanel,
+        },
+        {
+            path: "/hook_1",
+            Component: TestHook_1,
+        },
+        {
+            path: "/hook_2",
+            Component: TestHook_2,
+        },
+        {
+            path: "/hook_3",
+            Component: TestHook_3,
         },
 
     ];

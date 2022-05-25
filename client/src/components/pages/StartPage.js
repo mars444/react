@@ -36,7 +36,26 @@ const StartPage = () => {
                         type="button" label="Dict"  icon="pi pi-plus" iconPos="right"/>
             </Link>
 
-                {/*<CustomButton className='m-1 mt-4' color='red-1' disabled={true}  example='exapleParametr444' onClick={getElements}>*/}
+            <Link to="/hook_1">
+
+                <Button  className='mt-2 button_non_underline'
+                         type="button" label="HOOK_1"  icon="pi pi-chevron-right" iconPos="right"/>
+            </Link>
+
+            <Link to="/hook_2">
+
+                <Button  className='mt-2 button_non_underline'
+                         type="button" label="HOOK_2"  icon="pi pi-chevron-right" iconPos="right"/>
+            </Link>
+
+            <Link to="/hook_3">
+
+                <Button  className='mt-2 button_non_underline'
+                         type="button" label="HOOK_3"  icon="pi pi-chevron-right" iconPos="right"/>
+            </Link>
+
+
+            {/*<CustomButton className='m-1 mt-4' color='red-1' disabled={true}  example='exapleParametr444' onClick={getElements}>*/}
                 {/*    Click Me*/}
                 {/*</CustomButton>*/}
 

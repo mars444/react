@@ -1,0 +1,104 @@
+import React, {useState} from 'react';
+import {Button} from "primereact/button";
+import { Toolbar } from 'primereact/toolbar';
+import {Column} from "primereact/column";
+import {DataTable} from "primereact/datatable";
+import {Link} from "react-router-dom";
+import {HTTPRequest} from "../functions/HTTPRequest";
+import {loadDictStateFromRequestAction} from "../../store/reducers/dictReducer";
+import {useEffect} from "react";
+import {getDict} from "../../store/asyncActions/dictAction";
+
+
+
+const TableAdaptivePage = () => {
+
+    const [dataTable, setDataTable] = useState([])
+    const [loadTable, setLoadTable] = useState(true)
+
+
+    useEffect(async () => {
+
+        try {
+            const data = await HTTPRequest('Get', '/table_adaptive', '', 1000)
+
+            setDataTable(data)
+
+        }
+
+        catch(err){
+            console.error(err)
+        }
+
+        finally {
+            setLoadTable(false)
+        }
+
+    }, []);
+
+
+
+
+
+
+    return (
+        <div className=''>
+            <div className='container head_adaptive_table' style={{maxWidth: '1200px', margin: '0 auto', maxHeight: '100vh'}}>
+                <header className='flex justify-content-between align-items-center bg-white mb-3 border-round p-5'>
+                    <div className="logo">Logo</div>
+                    <h1 className="header__title">
+                        Title
+                    </h1>
+                    <div className="logout">
+                        <Link to="/">
+                            <Button className=''
+                                    type="button" label="" icon='pi pi-home'/>
+                        </Link>
+                    </div>
+                </header>
+
+
+                    <div className="some_block flex align-items-center justify-content-between bg-white mb-3 border-round p-5">
+                        <div className="left">
+                            leftItems
+                        </div>
+                        <div className="right">
+                            rightItems
+                        </div>
+                    </div>
+
+                <div className='flex-grow-1 overflow-x-auto'>
+                    <DataTable
+                        className='mb-5'
+                        title='Brands'
+                        value={dataTable}
+                        loading={loadTable}
+                        showGridlines
+                        scrollable
+                        scrollHeight="flex"
+                        header="Таблица респонсив">
+                        <Column field="id"  header="ID"></Column>
+                        <Column field="marka"  header="Brands"></Column>
+                    </DataTable>
+                </div>
+
+
+
+                <footer>
+                    <h1
+                        className="footer flex justify-content-center bg-white mt-3 border-round p-5"
+                        style={{ height: '100px'}}
+                    >
+                        Footer
+                    </h1>
+                </footer>
+
+
+            </div>
+
+
+        </div>
+    );
+};
+
+export default TableAdaptivePage;

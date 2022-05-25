@@ -18,15 +18,16 @@ import 'primeicons/primeicons.css';                            //icons
 import 'primeflex/primeflex.scss';
 
 
-import AuthorizationPage from './components/pages/AuthorizationPage';
-import RegistrationPage from "./components/pages/RegistrationPage";
-import StartPage from "./components/pages/StartPage";
-import HomePage from "./components/pages/HomePage";
-import Dictionary from "./components/pages/dictPages/Dictionary";
-import PageMarksWithPanel from "./components/pages/dictPages/PageMarksWithPanel";
-import TestHook_1 from "./components/pages/TestHook_1";
-import TestHook_2 from "./components/pages/TestHook_2";
-import TestHook_3 from "./components/pages/TestHook_3";
+import AuthorizationPage from './pages/AuthorizationPage';
+import RegistrationPage from "./pages/RegistrationPage";
+import StartPage from "./pages/StartPage";
+import HomePage from "./pages/HomePage";
+import Dictionary from "./pages/dictPages/Dictionary";
+import PageMarksWithPanel from "./pages/dictPages/PageMarksWithPanel";
+import TestHook_1 from "./pages/testHooks/TestHook_1";
+import TestHook_2 from "./pages/testHooks/TestHook_2";
+import TestHook_3 from "./pages/testHooks/TestHook_3";
+import TableAdaptivePage from "./pages/TableAdaptivePage";
 
 
 
@@ -72,6 +73,10 @@ function App() {
             path: "/hook_3",
             Component: TestHook_3,
         },
+        {
+            path: "/table_adaptive",
+            Component: TableAdaptivePage,
+        },
 
     ];
 
@@ -79,7 +84,7 @@ function App() {
 
     return (
         <Router>
-            <div className='test surface-50'>
+            <div className='surface-50'>
                 {/*<MenuList/>*/}
 
                 <Switch>
@@ -88,7 +93,7 @@ function App() {
                         return <Route key={index}  path={path} exact={exact} component={Component}/>
                     })}
                 </Switch>
-            </div>g
+            </div>
         </Router>
 
     );

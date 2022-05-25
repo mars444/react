@@ -3,39 +3,33 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Rating } from 'primereact/rating';
-import {HTTPRequest} from "../../functions/HTTPRequest";
-import GoHomeBtn from "../buttons/GoHomeBtn";
+import GoHomeBtn from "../../components/buttons/GoHomeBtn";
 import {myHook} from "../../myHooks/myHook";
-import {getDict} from "../../../store/asyncActions/dictAction";
 
 
-const TestHook_2 = () => {
+
+const TestHook_1 = () => {
 
     const [products, setProducts] = myHook()
 
-    const clickRewriteData = () => {
-        setProducts([
-            {
-                id: "1000",
-                code: "f230fh0g3",
-                name: "Bamboo Watch",
-                description: "Product Description",
-                image: "bamboo-watch.jpg",
-                price: 6500000,
-                category: "Accessories",
-                quantity: 24,
-                inventoryStatus: "INSTOCK",
-                rating: 1
-            }])
-    }
-
-
-
-
-
+const clickRewriteData = () => {
+    setProducts([
+        {
+            id: "1000",
+            code: "f230fh0g3",
+            name: "Bamboo Watch",
+            description: "Product Description",
+            image: "bamboo-watch.jpg",
+            price: 6500000,
+            category: "Accessories",
+            quantity: 240,
+            inventoryStatus: "INSTOCK",
+            rating: 1
+        }])
+}
 
     const formatCurrency = (value) => {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        return value.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' });
     }
 
     const imageBodyTemplate = (rowData) => {
@@ -47,7 +41,7 @@ const TestHook_2 = () => {
     }
 
     const ratingBodyTemplate = (rowData) => {
-        return <Rating value={rowData.rating} readOnly cancel={false} />;
+        return <Rating value={rowData.rating} cancel={false}  />;
     }
 
     const statusBodyTemplate = (rowData) => {
@@ -56,15 +50,15 @@ const TestHook_2 = () => {
 
     const header = (
         <div className="table-header pb-5">
-            2222222222222222222222 <GoHomeBtn/>
+           11111111111111111111111111111 <GoHomeBtn/>
         </div>
     );
     const footer = `In total there are ${products ? products.length : 0} products.`;
 
     return (
-        <div className="datatable-templating-demo ">
+        <div className="datatable-templating-demo test test_2">
 
-            <div className="card bg-green-900">
+            <div className=" bg-green-900">
                 <DataTable value={products} header={header} footer={footer} responsiveLayout="scroll">
                     <Column field="name" header="Name"></Column>
                     <Column header="Image" body={imageBodyTemplate}></Column>
@@ -80,5 +74,5 @@ const TestHook_2 = () => {
     );
 }
 
-export default TestHook_2;
+export default TestHook_1;
                  

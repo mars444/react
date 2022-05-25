@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Button} from "primereact/button";
 import {Link} from "react-router-dom";
-import CustomButton from "../buttons/CustomButton";
+import CustomButton from "../components/buttons/CustomButton";
 
 const StartPage = () => {
 
@@ -14,7 +14,7 @@ const StartPage = () => {
 
 
     return (
-        <div className= 'flex flex-column align-items-center p-4 bg-white border-round 30px'>
+        <div className= 'flex flex-column align-items-center p-4 bg-white border-round 30px test surface-50 test_2'>
         <div className= 'text-4xl pb-10 '>
             Hello
         </div>
@@ -42,16 +42,22 @@ const StartPage = () => {
                          type="button" label="HOOK_1"  icon="pi pi-chevron-right" iconPos="right"/>
             </Link>
 
-            <Link to="/hook_2">
+            {/*<Link to="/hook_2">*/}
+
+            {/*    <Button  className='mt-2 button_non_underline'*/}
+            {/*             type="button" label="HOOK_2"  icon="pi pi-chevron-right" iconPos="right"/>*/}
+            {/*</Link>*/}
+
+            {/*<Link to="/hook_3">*/}
+
+            {/*    <Button  className='mt-2 button_non_underline'*/}
+            {/*             type="button" label="HOOK_3"  icon="pi pi-chevron-right" iconPos="right"/>*/}
+            {/*</Link>*/}
+
+            <Link to="/table_adaptive">
 
                 <Button  className='mt-2 button_non_underline'
-                         type="button" label="HOOK_2"  icon="pi pi-chevron-right" iconPos="right"/>
-            </Link>
-
-            <Link to="/hook_3">
-
-                <Button  className='mt-2 button_non_underline'
-                         type="button" label="HOOK_3"  icon="pi pi-chevron-right" iconPos="right"/>
+                         type="button" label="Adaptive_Table"  icon="pi pi-chevron-right" iconPos="right"/>
             </Link>
 
 

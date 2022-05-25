@@ -4,10 +4,10 @@ import React, {useState, useEffect} from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useHistory, useLocation } from "react-router";
-import GoBackBtn from "../../buttons/GoBack";
+import GoBackBtn from "../../components/buttons/GoBack";
 import {useDispatch, useSelector} from "react-redux";
 
-import {getDict} from "../../../../store/asyncActions/dictAction";
+import {getDict} from "../../../store/asyncActions/dictAction";
 
 const Dictionary =  () => {
 
@@ -26,24 +26,14 @@ const Dictionary =  () => {
     const [load, setLoad] = useState(dictState ? !dictState.length: true)
 
 
-    useEffect(() => {
-
-        dispatch(getDict())
-            .then( () => {
-                setLoad(false)
-            })
-
-    }, []);
 
 
     const pushUrl = (e) => {
         history.push(`${location.pathname}/${e.data.id}`);
     }
 
-
-
     return (
-        <div>
+        <div className='test surface-50 test_2'>
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>
                  <DataTable loading={load} onRowClick={pushUrl} title='Brands' value={dictState}   showGridlines responsiveLayout="scroll">

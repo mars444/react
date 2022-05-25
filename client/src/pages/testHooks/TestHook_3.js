@@ -3,33 +3,35 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Rating } from 'primereact/rating';
-import GoHomeBtn from "../buttons/GoHomeBtn";
+import {HTTPRequest} from "../../functions/HTTPRequest";
+import GoHomeBtn from "../../components/buttons/GoHomeBtn";
 import {myHook} from "../../myHooks/myHook";
+import {getDict} from "../../../store/asyncActions/dictAction";
 
 
-
-const TestHook_1 = () => {
+const TestHook_3 = () => {
 
     const [products, setProducts] = myHook()
 
-const clickRewriteData = () => {
-    setProducts([
-        {
-            id: "1000",
-            code: "f230fh0g3",
-            name: "Bamboo Watch",
-            description: "Product Description",
-            image: "bamboo-watch.jpg",
-            price: 6500000,
-            category: "Accessories",
-            quantity: 24,
-            inventoryStatus: "INSTOCK",
-            rating: 1
-        }])
-}
+    const clickRewriteData = () => {
+        setProducts([
+            {
+                id: "1000",
+                code: "f230fh0g3",
+                name: "Bamboo Watch",
+                description: "Product Description",
+                image: "bamboo-watch.jpg",
+                price: 6500000,
+                category: "Accessories",
+                quantity: 24,
+                inventoryStatus: "INSTOCK",
+                rating: 1
+            }])
+    }
+
 
     const formatCurrency = (value) => {
-        return value.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' });
+        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     }
 
     const imageBodyTemplate = (rowData) => {
@@ -50,13 +52,13 @@ const clickRewriteData = () => {
 
     const header = (
         <div className="table-header pb-5">
-           11111111111111111111111111111 <GoHomeBtn/>
+            3333333333333333333 <GoHomeBtn/>
         </div>
     );
     const footer = `In total there are ${products ? products.length : 0} products.`;
 
     return (
-        <div className="datatable-templating-demo ">
+        <div className="datatable-templating-demo test test_2">
 
             <div className="card bg-green-900">
                 <DataTable value={products} header={header} footer={footer} responsiveLayout="scroll">
@@ -74,5 +76,5 @@ const clickRewriteData = () => {
     );
 }
 
-export default TestHook_1;
+export default TestHook_3;
                  

@@ -4,12 +4,12 @@ import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
 import { Rating } from 'primereact/rating';
 import {HTTPRequest} from "../../functions/HTTPRequest";
-import GoHomeBtn from "../buttons/GoHomeBtn";
+import GoHomeBtn from "../../components/buttons/GoHomeBtn";
 import {myHook} from "../../myHooks/myHook";
 import {getDict} from "../../../store/asyncActions/dictAction";
 
 
-const TestHook_3 = () => {
+const TestHook_2 = () => {
 
     const [products, setProducts] = myHook()
 
@@ -28,6 +28,10 @@ const TestHook_3 = () => {
                 rating: 1
             }])
     }
+
+
+
+
 
 
     const formatCurrency = (value) => {
@@ -52,13 +56,13 @@ const TestHook_3 = () => {
 
     const header = (
         <div className="table-header pb-5">
-            3333333333333333333 <GoHomeBtn/>
+            2222222222222222222222 <GoHomeBtn/>
         </div>
     );
     const footer = `In total there are ${products ? products.length : 0} products.`;
 
     return (
-        <div className="datatable-templating-demo ">
+        <div className="datatable-templating-demo test test_2">
 
             <div className="card bg-green-900">
                 <DataTable value={products} header={header} footer={footer} responsiveLayout="scroll">
@@ -76,5 +80,5 @@ const TestHook_3 = () => {
     );
 }
 
-export default TestHook_3;
+export default TestHook_2;
                  

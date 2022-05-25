@@ -49,11 +49,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src" />
+      <recent name="$PROJECT_DIR$/client/src/components/pages/testHooks" />
       <recent name="$PROJECT_DIR$/client/src/Archive" />
       <recent name="$PROJECT_DIR$/client/src/components/pages" />
       <recent name="$PROJECT_DIR$/client/store/reducers" />
-      <recent name="$PROJECT_DIR$/client/src/components/pages/dictPages" />
-      <recent name="$PROJECT_DIR$/client/src/components/inputs" />
     </key>
   </component>
   <component name="RunManager">
@@ -115,7 +115,7 @@
       <workItem from="1653383141927" duration="32000" />
       <workItem from="1653399272181" duration="6926000" />
       <workItem from="1653410098438" duration="1478000" />
-      <workItem from="1653469656297" duration="5787000" />
+      <workItem from="1653469656297" duration="14434000" />
     </task>
     <servers />
   </component>

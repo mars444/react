@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import {delay, request} from "../../functions/requestFrom"
+import {delay, request} from "../functions/requestFrom"
 import { useState, useRef } from 'react'
 
 import {
@@ -14,27 +14,27 @@ import createDecorator from 'final-form-calculate'
 
 import {InputText} from "primereact/inputtext";
 import {Button} from "primereact/button";
-import GoHomeBtn from "../buttons/GoHomeBtn";
-import Tags from "../Tags";
+import GoHomeBtn from "../components/buttons/GoHomeBtn";
+import Tags from "../components/Tags";
 import { AutoComplete } from 'primereact/autocomplete';
 import { Calendar } from 'primereact/calendar';
 import { Toast } from 'primereact/toast';
-import {postData} from "../../functions/postSend";
+import {postData} from "../functions/postSend";
 
 import validator from 'validator';
 
 
 
 import {Form, Field} from "react-final-form"
-import {HTTPRequest} from "../../functions/HTTPRequest";
+import {HTTPRequest} from "../functions/HTTPRequest";
 
-import {calculationAge} from "../../functions/calculatorAge";
+import {calculationAge} from "../functions/calculatorAge";
 
 
 import {useDispatch, useSelector} from "react-redux";
 
-import {regAction} from "../../../store/reducers/regReducer";
-import CustomInputWithValidation from "../inputs/CustomInputWithValidation";
+import {regAction} from "../../store/reducers/regReducer";
+import CustomInputWithValidation from "../components/inputs/CustomInputWithValidation";
 
 
 const calculator = createDecorator(
@@ -123,7 +123,7 @@ const RegistrationPage = () => {
     const validateNullValue = value => (value ? undefined : `Пустой ${props.name}`)
 
     return (
-        <div>
+        <div className='test surface-50 test_2'>
 
 
             <Toast ref={toast} />

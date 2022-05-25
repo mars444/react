@@ -8,11 +8,11 @@ import {
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { useHistory, useLocation } from "react-router";
-import GoBackBtn from "../../buttons/GoBack";
-import SideBar from "../../SideBar";
+import GoBackBtn from "../../components/buttons/GoBack";
+import SideBar from "../../components/SideBar";
 import {useDispatch, useSelector} from "react-redux";
-import {getMarks} from "../../../../store/asyncActions/markAction";
-import {getDict} from "../../../../store/asyncActions/dictAction";
+import {getMarks} from "../../../store/asyncActions/markAction";
+import {getDict} from "../../../store/asyncActions/dictAction";
 
 
 
@@ -66,7 +66,7 @@ const PageMarksWithPanel =  () => {
 
     return (
 
-        <div>
+        <div className='test surface-50 test_2'>
 
              <div className="flex flex-column align-items-center p-7 bg-white border-round m-2 relative_block">
                  <GoBackBtn/>

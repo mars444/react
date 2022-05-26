@@ -6,8 +6,12 @@
 a {
   text-decoration: none;
 }
-
+.scroll-padding {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+}
 .container {
+  height: 100vh;
   max-height: 100vh;
   max-width: 1200px;
   margin: auto;

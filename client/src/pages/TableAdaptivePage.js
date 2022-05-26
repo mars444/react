@@ -43,10 +43,6 @@ const TableAdaptivePage = () => {
     }, []);
 
 
-
-
-
-
     return (
             <div className='container head_adaptive_table'>
                 <header className='flex justify-content-between align-items-center bg-white mb-3 border-round p-5'>
@@ -71,23 +67,19 @@ const TableAdaptivePage = () => {
                             rightItems
                         </div>
                     </div>
-
-                    <DataTable
-                        className='mb-5flex-grow-1 overflow-x-auto'
-                        title='Brands'
-                        value={dataTable}
-                        loading={loadTable}
-                        showGridlines
-                        scrollable
-                        scrollHeight="flex"
-                        header="Таблица респонсив"
-                        footer="Footer">
-
-                        <Column field="id"  header="ID"></Column>
-                        <Column field="marka"  header="Brands"></Column>
-                    </DataTable>
-
-
+                <div className={'flex-grow-1 flex flex-column justify-content-between overflow-hidden border-1'}>
+                <DataTable  paginator
+                            value={dataTable}
+                            className=''
+                            scrollable
+                            scrollHeight='flex'
+                            loading={loadTable}
+                            rows={7} rowsPerPageOptions={[7,14,100]}
+                         >
+                    <Column field="id"  header="ID"></Column>
+                    <Column field="marka"  header="Brands"></Column>
+                </DataTable>
+                </div>
 
 
                 <footer>

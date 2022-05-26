@@ -17,12 +17,18 @@ const TableAdaptivePage = () => {
     const [loadTable, setLoadTable] = useState(true)
 
 
-    useEffect(async () => {
+    useEffect( () => {
+
+        async function fetchData() {
+            // You can await here
+            const data = await HTTPRequest('Get', '/table_adaptive', '', 1000)
+            setDataTable(data)
+            setLoadTable(false)
+        }
 
         try {
-            const data = await HTTPRequest('Get', '/table_adaptive', '', 1000)
 
-            setDataTable(data)
+            fetchData()
 
         }
 
@@ -31,7 +37,7 @@ const TableAdaptivePage = () => {
         }
 
         finally {
-            setLoadTable(false)
+
         }
 
     }, []);
@@ -42,8 +48,7 @@ const TableAdaptivePage = () => {
 
 
     return (
-        <div className=''>
-            <div className='container head_adaptive_table' style={{maxWidth: '1200px', margin: '0 auto', maxHeight: '100vh'}}>
+            <div className='container head_adaptive_table'>
                 <header className='flex justify-content-between align-items-center bg-white mb-3 border-round p-5'>
                     <div className="logo">Logo</div>
                     <h1 className="header__title">
@@ -67,20 +72,21 @@ const TableAdaptivePage = () => {
                         </div>
                     </div>
 
-                <div className='flex-grow-1 overflow-x-auto'>
                     <DataTable
-                        className='mb-5'
+                        className='mb-5flex-grow-1 overflow-x-auto'
                         title='Brands'
                         value={dataTable}
                         loading={loadTable}
                         showGridlines
                         scrollable
                         scrollHeight="flex"
-                        header="Таблица респонсив">
+                        header="Таблица респонсив"
+                        footer="Footer">
+
                         <Column field="id"  header="ID"></Column>
                         <Column field="marka"  header="Brands"></Column>
                     </DataTable>
-                </div>
+
 
 
 
@@ -94,7 +100,6 @@ const TableAdaptivePage = () => {
                 </footer>
 
 
-            </div>
 
 
         </div>

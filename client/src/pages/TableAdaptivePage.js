@@ -45,8 +45,8 @@ const TableAdaptivePage = () => {
     const imageBodyTemplate = (rowData) => {
 
         return (
-            <div className='flex align-items-center justify-content-between flex-grow-1'>
-                <img src={require(`../static/${rowData.image}`).default} width={300}     className="product-image" />
+            <div className='flex align-items-center justify-content-between flex-grow-1 border-1 bg-blue-50 border-round'>
+                <img src={require(`../static/${rowData.image}`).default} width={300}    />
                 <h1 className='flex flex-column p-5 justify-content-center align-items-center'>
                     Desc
                 </h1>

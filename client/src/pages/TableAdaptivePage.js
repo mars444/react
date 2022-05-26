@@ -48,7 +48,7 @@ const TableAdaptivePage = () => {
             <div className='flex align-items-center justify-content-between flex-grow-1 border-1 bg-blue-50 border-round'>
                 <img src={require(`../static/${rowData.image}`).default} width={300}    />
                 <h1 className='flex flex-column p-5 justify-content-center align-items-center'>
-                    Desc
+                    {rowData.marka}  title
                 </h1>
                 <div className='flex flex-column p-5 justify-content-center align-items-center'>
                     <h3>{rowData.image}</h3>
@@ -87,6 +87,7 @@ const TableAdaptivePage = () => {
                     </div>
                 <div className={'flex-grow-1 flex flex-column justify-content-between overflow-hidden border-1'}>
                 <DataTable  paginator
+                            stripedRows
                             value={dataTable}
                             responsiveLayout="stack"
                             className=''
@@ -95,9 +96,9 @@ const TableAdaptivePage = () => {
                             loading={loadTable}
                             rows={7} rowsPerPageOptions={[7,14,100]}
                          >
-                    <Column field="id"  header="ID" style={{ maxWidth: '20px' }}></Column>
-                    <Column header="Image" body={imageBodyTemplate} ></Column>
-                    <Column field="marka"  header="Brands" style={{ maxWidth: '100px' }}></Column>
+                    <Column field="id" sortable  header="ID" style={{maxWidth: '50px', justifyContent: 'center'}}></Column>
+                    <Column header="Image" body={imageBodyTemplate}  style={{justifyContent: 'center' }}></Column>
+                    <Column field="marka"  header="Brand" style={{ maxWidth: '100px', justifyContent: 'center' }}></Column>
                 </DataTable>
                 </div>
 

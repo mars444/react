@@ -9,8 +9,6 @@ import {loadDictStateFromRequestAction} from "../../store/reducers/dictReducer";
 import {useEffect} from "react";
 import {getDict} from "../../store/asyncActions/dictAction";
 
-
-
 const TableAdaptivePage = () => {
 
     const [dataTable, setDataTable] = useState([])
@@ -43,6 +41,26 @@ const TableAdaptivePage = () => {
     }, []);
 
 
+
+    const imageBodyTemplate = (rowData) => {
+
+        return (
+            <div className='flex align-items-center justify-content-between flex-grow-1'>
+                <img src={require(`../static/${rowData.image}`).default} width={300}     className="product-image" />
+                <h1 className='flex flex-column p-5 justify-content-center align-items-center'>
+                    Desc
+                </h1>
+                <div className='flex flex-column p-5 justify-content-center align-items-center'>
+                    <h3>{rowData.image}</h3>
+                    <p className={'p-3'}>description</p>
+                </div>
+            </div>
+
+            )
+
+    }
+
+
     return (
             <div className='container head_adaptive_table'>
                 <header className='flex justify-content-between align-items-center bg-white mb-3 border-round p-5'>
@@ -70,14 +88,16 @@ const TableAdaptivePage = () => {
                 <div className={'flex-grow-1 flex flex-column justify-content-between overflow-hidden border-1'}>
                 <DataTable  paginator
                             value={dataTable}
+                            responsiveLayout="stack"
                             className=''
                             scrollable
                             scrollHeight='flex'
                             loading={loadTable}
                             rows={7} rowsPerPageOptions={[7,14,100]}
                          >
-                    <Column field="id"  header="ID"></Column>
-                    <Column field="marka"  header="Brands"></Column>
+                    <Column field="id"  header="ID" style={{ maxWidth: '20px' }}></Column>
+                    <Column header="Image" body={imageBodyTemplate} ></Column>
+                    <Column field="marka"  header="Brands" style={{ maxWidth: '100px' }}></Column>
                 </DataTable>
                 </div>
 

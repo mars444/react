@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const miniCss = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 
 module.exports = {
@@ -34,6 +35,25 @@ module.exports = {
                     'sass-loader',
                 ],
             },
+            {
+                test: /\.(png|svg|jpg|gif|webp)$/,
+                // use: "url-loader?limit=8192&name=images/[hash:8].[name].[ext]"
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options:
+                            { // Параметр опции option здесь может определить размер изображения, которое должно быть преобразовано в base64
+                                name: '[name].[ext]',
+                                limit: 50000, // Указывает, что изображения размером менее 50 КБ преобразуются в base64, а изображения размером более 50 КБ являются путями
+                                outputPath: 'images' // Определяем папку выходного изображения
+                            }
+                    },
+
+                ]
+            },
+
+
+
 
             {
                 test: /\.css/,
@@ -55,6 +75,7 @@ module.exports = {
                     },
                 },
             },
+
 
 
         ],
